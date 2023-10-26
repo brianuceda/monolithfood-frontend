@@ -1,5 +1,25 @@
+$bg-gradient: linear-gradient(90deg, rgba(19, 16, 30, 1) 0%, rgba(19, 16, 30, 1) 30%, rgba(19, 16, 30, 1) 70%, rgba(31, 15, 15, 1) 100%);
+$bg-gradient-short: linear-gradient(90deg, rgba(19, 16, 30, 1) 0%, rgba(19, 16, 30, 1) 30%, rgba(19, 16, 30, 1) 80%, rgba(31, 15, 15, 1) 100%);
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.all {
+    background: $bg-gradient;
+    width: 100vw;
+    height: 100vh;
+    color: #fff;
+
+    .content {
+        padding: 50px 10%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .all {
+        background: $bg-gradient-short;
+    }
 }

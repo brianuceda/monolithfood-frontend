@@ -21,6 +21,20 @@ const routes: Routes = [
         (m) => m.LandingPageModule
       ),
   },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./features/landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./features/landing-page/landing-page.module').then(
+        (m) => m.LandingPageModule
+      ),
+  },
   // Application routes
   {
     path: 'my-profile',
