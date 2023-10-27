@@ -1,52 +1,60 @@
-$bg-color: rgba(0, 0, 0, 0.2);
-$nav-height: 40px;
-$text-color: #FFFFFF;
-$money-color: #6E6CD3;
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+$rotation-time: 2s;
 
 .navbar {
-    padding: 10px 1%;
-    background: $bg-color;
+  padding: 10px 1%;
+  background: $bg-navbar-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title {
+    height: $nav-height;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    width: 100%;
+  }
 
-    .title {
-        height: $nav-height;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-weight: 500;
-        font-size: 16px;
-        width: 100%;
+  .profile {
+    position: absolute;
+    right: 1%;
+    display: flex;
+    text-align: end;
+
+    .data {
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: $txt-color;
+
+      .money {
+        letter-spacing: 0px;
+        font-weight: 600;
+        color: $primary-color;
+      }
     }
 
-    .profile {
-        position: absolute;
-        right: 1%;
-        display: flex;
-        text-align: end;
+    .img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
 
-        .data {
-            margin-right: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: .5px;
-            color: $text-color;
-
-            .money {
-                letter-spacing: 0px;
-                font-weight: 600;
-                color: $money-color;
-            }
-        }
-
-        .img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-        }
+      &:hover {
+        cursor: pointer;
+        animation: rotateInfinite $rotation-time linear infinite;
+      }
     }
+  }
 }

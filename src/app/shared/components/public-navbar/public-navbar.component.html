@@ -1,19 +1,18 @@
 <div class="navbar">
     <div class="navbar-title" (click)="route('home')">
-        <img src="assets/images/logo.png" alt="Logo">
-        <span>Monolith Food</span>
+        <img class="logo-img" src="assets/images/logo.png" alt="Logo">
+        <span class="logo-txt">Monolith Food</span>
     </div>
     <div>
         <mat-icon id="menu" (click)="toggleMenu()">menu</mat-icon>
     </div>
     <div class="navbar-buttons">
-        <a type="button" class="btn" mat-flat-button (click)="route('')"
-            [ngClass]="{'active-route': isActive('/')}">Inicio</a>
-        <a type="button" class="btn" mat-flat-button (click)="route('about-us')"
+        <a type="button" class="btn" (click)="route('')" [ngClass]="{'active-route': isActive('/')}">Inicio</a>
+        <a type="button" class="btn" (click)="route('about-us')"
             [ngClass]="{'active-route': isActive('/about-us')}">Nosotros</a>
-        <a type="button" class="btn" mat-flat-button (click)="route('login')"
+        <a type="button" class="btn" (click)="route('login')"
             [ngClass]="{'active-route': isActive('/login')}">Ingresar</a>
-        <a type="button" class="btn" mat-flat-button (click)="route('register')"
+        <a type="button" class="btn" (click)="route('register')"
             [ngClass]="{'active-route': isActive('/register')}">Registrarse</a>
     </div>
 </div>

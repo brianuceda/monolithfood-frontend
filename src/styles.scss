@@ -1,4 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+// Material Design Components
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
 
 * {
   margin: 0;
@@ -7,6 +14,16 @@
 }
 
 body {
-  position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+// Dialog
+.mat-mdc-dialog-surface {
+  background: transparent !important;
+  border-radius: $dialog-border-radius;
+}
+// Background of Dialog
+.style-css-dialog-background {
+  background-color: $bg-back-dialog-gradient;
+  backdrop-filter: blur(2px);
 }

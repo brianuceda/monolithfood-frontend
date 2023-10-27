@@ -1,9 +1,17 @@
-<div class="all">
-    <app-private-navbar *ngIf="isPrivateRoute(); else publicNavbar"></app-private-navbar>
-    <ng-template #publicNavbar>
-        <app-public-navbar></app-public-navbar>
-    </ng-template>
-    <div class="content">
-        <router-outlet></router-outlet>
-    </div>
-</div>
+<mat-drawer-container autosize class="all" [class.all-landing]="!isPrivateRoute()" [class.all-app]="isPrivateRoute()">
+    <!-- <mat-drawer #sidenav mode="side" [opened]="isSidenavOpened" [ngClass]="{'mini': !isSidenavOpened}">
+        <app-sidebar *ngIf="isPrivateRoute();" (toggle)="toggleSidenav()"></app-sidebar>
+    </mat-drawer> -->
+    <mat-drawer #drawer opened mode="over">
+        <app-sidebar *ngIf="isPrivateRoute();" [sidenavRef]="drawer"></app-sidebar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-private-navbar *ngIf="isPrivateRoute(); else publicNavbar"></app-private-navbar>
+        <ng-template #publicNavbar>
+            <app-public-navbar></app-public-navbar>
+        </ng-template>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

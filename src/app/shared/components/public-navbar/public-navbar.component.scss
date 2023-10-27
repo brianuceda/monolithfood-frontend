@@ -1,91 +1,90 @@
-$bg-color: rgba(0, 0, 0, 0.2);
-$nav-height: 40px;
-$btn-text-color: #9F9EA3;
-$btn-selected: #FDFDFD;
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
 
 .navbar {
-    padding: 10px 10%;
-    background: $bg-color;
+  padding: 10px 10%;
+  background: $bg-navbar-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .navbar-title {
+    height: $nav-height;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-left: 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
-    .navbar-title {
-        height: $nav-height;
-        cursor: pointer;
-        transition: 0.5s;
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
-
-        img {
-            margin-right: 15px;
-            width: 30px;
-            height: 30px;
-        }
-
-        span {
-            font-weight: 500;
-            font-size: 16px;
-            color: $btn-selected;
-        }
+    .logo-img {
+      margin-right: 15px;
+      width: 30px;
+      height: 30px;
     }
 
-    .navbar-title:hover {
-        opacity: 0.5;
+    .logo-txt {
+      font-weight: 500;
+      font-size: 16px;
+      color: $btn-selected;
     }
 
-    .navbar-buttons {
-        height: 30px;
-        display: flex;
-        align-items: center;
-
-        .btn {
-            margin: 0 10px;
-            color: white;
-            transition: 0.5s;
-            font-size: 14px;
-            font-weight: 500;
-            color: $btn-text-color;
-
-            &.active-route {
-                color: $btn-selected;
-            }
-
-            &.active-route:hover {
-                color: $btn-selected;
-            }
-        }
-
-        .btn:hover {
-            color: $btn-selected;
-        }
+    &:hover {
+      opacity: 0.5;
     }
+  }
 
-    #menu {
-        display: none;
+  .navbar-buttons {
+    height: 30px;
+    display: flex;
+    align-items: center;
+
+    .btn {
+      margin: 0 10px;
+      transition: 0.5s;
+      font-size: 14px;
+      font-weight: 500;
+      color: $txt-color-lead;
+      border: none;
+
+      &:hover {
+        color: $btn-selected;
+      }
+
+      &.active-route {
+        color: $btn-selected;
+      }
+
+      &.active-route:hover {
+        color: $btn-selected;
+      }
     }
+  }
+
+  #menu {
+    display: none;
+  }
 }
 
 @media (max-width: 824px) {
-
-    .navbar {
-
-        #menu {
-            display: flex;
-            cursor: pointer;
-        }
-
-        .navbar-title {
-            margin-left: 0;
-
-            span {
-                font-size: 14px;
-            }
-        }
-
-        .navbar-buttons {
-            display: none;
-        }
+  .navbar {
+    #menu {
+      display: flex;
+      cursor: pointer;
     }
+
+    .navbar-title {
+      margin-left: 0;
+
+      .logo-txt {
+        font-size: 14px;
+      }
+    }
+
+    .navbar-buttons {
+      display: none;
+    }
+  }
 }
