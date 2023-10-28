@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DataService } from 'src/app/shared/services/data.service';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-private-navbar',
@@ -11,8 +11,8 @@ export class PrivateNavbarComponent {
   title?: string;
   titleSub?: Subscription;
 
-  constructor(private dataService: DataService) {
-    this.titleSub = this.dataService.currentTitle.subscribe(
+  constructor(private globalService: GlobalService) {
+    this.titleSub = this.globalService.currentTitle$.subscribe(
       (title) => (this.title = title)
     );
   }

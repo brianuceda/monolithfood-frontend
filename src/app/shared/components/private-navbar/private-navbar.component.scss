@@ -7,11 +7,19 @@
 $rotation-time: 2s;
 
 .navbar {
-  padding: 10px 1%;
+  width: auto;
+  height: $nav-height;
+  padding: 10px;
   background: $bg-navbar-color;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+
+  .logo {
+    display: flex;
+    min-width: 200px;
+    justify-content: flex-start;
+  }
 
   .title {
     height: $nav-height;
@@ -20,14 +28,18 @@ $rotation-time: 2s;
     align-items: center;
     font-weight: 500;
     font-size: 16px;
-    width: 100%;
+    position: absolute;
+    left: 10px;
+    width: calc(100% - 20px);
+    z-index: 0;
   }
 
   .profile {
-    position: absolute;
-    right: 1%;
     display: flex;
+    min-width: 200px;
+    justify-content: flex-end;
     text-align: end;
+    z-index: 1;
 
     .data {
       margin-right: 20px;
@@ -45,16 +57,16 @@ $rotation-time: 2s;
         color: $primary-color;
       }
     }
+  }
 
-    .img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+  .img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
 
-      &:hover {
-        cursor: pointer;
-        animation: rotateInfinite $rotation-time linear infinite;
-      }
+    &:hover {
+      cursor: pointer;
+      animation: rotateInfinite $rotation-time linear infinite;
     }
   }
 }

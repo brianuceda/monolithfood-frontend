@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from 'src/app/shared/services/data.service';
+import { GlobalService } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-objectives',
@@ -7,10 +7,10 @@ import { DataService } from 'src/app/shared/services/data.service';
   styleUrls: ['./objectives.component.scss'],
 })
 export class ObjectivesComponent {
-  constructor(private dataService: DataService) {}
+  constructor(private globalService: GlobalService) {}
   ngOnInit(): void {
     Promise.resolve().then(() => {
-      this.dataService.setTitle('Objetivos Nutricionales');
+      this.globalService.setTitle('Objetivos Nutricionales');
     });
   }
 }

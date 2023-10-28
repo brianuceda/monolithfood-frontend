@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from 'src/app/shared/services/data.service';
+import { GlobalService } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-subscriptions',
@@ -7,10 +7,10 @@ import { DataService } from 'src/app/shared/services/data.service';
   styleUrls: ['./subscriptions.component.scss'],
 })
 export class SubscriptionsComponent {
-  constructor(private dataService: DataService) {}
+  constructor(private globalService: GlobalService) {}
   ngOnInit(): void {
     Promise.resolve().then(() => {
-      this.dataService.setTitle('Planes de Suscripción');
+      this.globalService.setTitle('Planes de Suscripción');
     });
   }
 }

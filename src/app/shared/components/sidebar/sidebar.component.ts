@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatDrawer } from '@angular/material/sidenav';
+import { Component } from '@angular/core';
+import { GlobalService } from '../../services/global.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +7,15 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  @Input() sidenavRef!: MatDrawer;
+  isSidebarExpanded!: boolean;
 
-  toggleSidenav() {
-    this.sidenavRef.toggle();
+  constructor(private globalService: GlobalService) {
+    this.globalService.isSidebarExpanded$.subscribe(
+      (expanded) => (this.isSidebarExpanded = expanded)
+    );
+  }
+
+  toggleSidebar() {
+    this.globalService.toggleSidebar();
   }
 }

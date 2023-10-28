@@ -1,7 +1,7 @@
-import { DataService } from 'src/app/shared/services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { GlobalService } from './shared/services/global.service';
 
 @Component({
   selector: 'app-root',
@@ -9,24 +9,23 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'MonolithFoodFrontend';
+  title = 'Monolith Food';
   isUserAuthenticated?: boolean;
-  isSidenavOpened = true;
+  isSidebarExpanded!: boolean;
 
   constructor(
-    private dataService: DataService,
+    private globalService: GlobalService,
     private router: Router,
     private authService: AuthService
   ) {
     this.isUserAuthenticated = this.authService.isAuthenticated();
-  }
-
-  toggleSidenav() {
-    this.isSidenavOpened = !this.isSidenavOpened;
+    this.globalService.isSidebarExpanded$.subscribe(
+      (expanded) => (this.isSidebarExpanded = expanded)
+    );
   }
 
   isPrivateRoute(): boolean {
-    return this.dataService.isPrivateRoute(this.router.url);
+    return this.globalService.isPrivateRoute(this.router.url);
   }
 
   // Testing

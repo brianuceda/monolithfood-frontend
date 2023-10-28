@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataService } from 'src/app/shared/services/data.service';
+import { GlobalService } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-activity-levels',
@@ -7,10 +7,10 @@ import { DataService } from 'src/app/shared/services/data.service';
   styleUrls: ['./activity-levels.component.scss'],
 })
 export class ActivityLevelsComponent {
-  constructor(private dataService: DataService) {}
+  constructor(private globalService: GlobalService) {}
   ngOnInit(): void {
     Promise.resolve().then(() => {
-      this.dataService.setTitle('Nivel de Actividad Física');
+      this.globalService.setTitle('Nivel de Actividad Física');
     });
   }
 }

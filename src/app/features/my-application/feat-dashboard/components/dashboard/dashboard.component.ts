@@ -5,7 +5,7 @@ import { SetInformationComponent } from '../../../feat-onboarding/components/set
 import { SelectObjectivesComponent } from '../../../feat-onboarding/components/select-objectives/select-objectives.component';
 import { SelectActivityLevelComponent } from '../../../feat-onboarding/components/select-activity-level/select-activity-level.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DataService } from 'src/app/shared/services/data.service';
+import { GlobalService } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 })
 export class DashboardComponent {
   constructor(
-    private dataService: DataService,
+    private globalService: GlobalService,
     private authService: AuthService,
     private dialog: MatDialog
   ) {}
@@ -22,7 +22,7 @@ export class DashboardComponent {
   ngOnInit(): void {
     //Ejecutar el código luego de que se haya inicializado el componente
     Promise.resolve().then(() => {
-      this.dataService.setTitle('Panel de Inicio');
+      this.globalService.setTitle('Panel de Inicio');
     });
     this.openDialogBasedOnProfileStage();
   }
