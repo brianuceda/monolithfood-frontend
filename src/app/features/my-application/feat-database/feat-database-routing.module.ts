@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DatabaseComponent } from './components/database/database.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FavouritesComponent } from './components/favourites/favourites.component';
 
 const routes: Routes = [
-    { path: '', component: DatabaseComponent },
-    { path: 'favorites', component: FavoritesComponent }
+  { path: '', component: DatabaseComponent },
+  { path: 'favourites', component: FavouritesComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class FeatDatabaseRoutingModule { }
+export class FeatDatabaseRoutingModule {}

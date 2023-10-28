@@ -24,10 +24,6 @@ export class AppComponent implements OnInit {
     );
   }
 
-  isPrivateRoute(): boolean {
-    return this.globalService.isPrivateRoute(this.router.url);
-  }
-
   // Testing
   ngOnInit() {
     // Exponer los métodos en el objeto window
@@ -37,6 +33,14 @@ export class AppComponent implements OnInit {
       setActivityLevelToken: this.setActivityLevelToken.bind(this),
       setObjectivesToken: this.setObjectivesToken.bind(this),
     };
+  }
+
+  isPrivateRoute(): boolean {
+    return this.globalService.isPrivateRoute(this.router.url);
+  }
+
+  notIsErrorPage(): boolean {
+    return this.router.url !== '/monolithfood/error';
   }
 
   public setCompletedToken(): void {

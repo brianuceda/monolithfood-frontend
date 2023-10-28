@@ -10,6 +10,7 @@ import { PrivateNavbarComponent } from './private-navbar/private-navbar.componen
 import { SidebarComponent } from './sidebar/sidebar.component';
 // Components
 import { ButtonComponent } from './button/button.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ButtonComponent } from './button/button.component';
     PrivateNavbarComponent,
     SidebarComponent,
   ],
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
   exports: [
     ButtonComponent,
     PublicNavbarComponent,

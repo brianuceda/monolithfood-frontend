@@ -4,15 +4,15 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-.navbar {
-  padding: 10px 10%;
+.public-navbar {
+  padding: 0 10%;
   background: $bg-navbar-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .navbar-title {
-    height: $nav-height;
+    height: $bar-size;
     cursor: pointer;
     transition: 0.5s;
     margin-left: 20px;
@@ -69,7 +69,7 @@
 }
 
 @media (max-width: 824px) {
-  .navbar {
+  .public-navbar {
     #menu {
       display: flex;
       cursor: pointer;

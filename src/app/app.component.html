@@ -1,15 +1,12 @@
 <div class="all" [class.all-landing]="!isPrivateRoute()" [class.all-app]="isPrivateRoute()"
     [class.expanded-sidebar]="isSidebarExpanded">
-    <div class="sidebar-container">
-        <app-sidebar *ngIf="isPrivateRoute();"></app-sidebar>
-    </div>
-    <div class="navbar-container">
-        <app-private-navbar *ngIf="isPrivateRoute(); else publicNavbar"></app-private-navbar>
-        <ng-template #publicNavbar>
-            <app-public-navbar></app-public-navbar>
-        </ng-template>
-    </div>
-    <div class="content">
+    <app-sidebar *ngIf="isPrivateRoute() && notIsErrorPage();"></app-sidebar>
+    <!-- <div class="navbar-container"> -->
+    <app-private-navbar *ngIf="isPrivateRoute() && notIsErrorPage(); else publicNavbar"></app-private-navbar>
+    <ng-template #publicNavbar>
+        <app-public-navbar *ngIf="notIsErrorPage();"></app-public-navbar>
+    </ng-template>
+    <div class="content" [class.content-void]="!isPrivateRoute()">
         <router-outlet></router-outlet>
     </div>
 </div>

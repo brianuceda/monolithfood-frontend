@@ -1,21 +1,32 @@
 import { Component } from '@angular/core';
-import { GlobalService } from '../../services/global.service';
+import { SidebarData } from './sidebar-data';
+import { fadeInOut, rotate } from './sidebar.animations';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
+  animations: [fadeInOut, rotate],
 })
 export class SidebarComponent {
-  isSidebarExpanded!: boolean;
+  expanded: boolean = false;
+  screenWidth: number = 0;
+  lastCloseTime: number = 0;
+  navData = SidebarData;
 
-  constructor(private globalService: GlobalService) {
-    this.globalService.isSidebarExpanded$.subscribe(
-      (expanded) => (this.isSidebarExpanded = expanded)
-    );
+  toggleCollapse(): void {
+    this.expanded = !this.expanded;
   }
 
-  toggleSidebar() {
-    this.globalService.toggleSidebar();
+  expandSidebarOnHover(): void {
+    // Después de cerrar el sidebar, habrá una pequeña demora antes de que pueda volver a abrirse con el evento (mouseenter)
+    if (!this.expanded && Date.now() - this.lastCloseTime > 100) {
+      this.toggleCollapse();
+    }
+  }
+
+  closeSidenav(): void {
+    this.expanded = false;
+    this.lastCloseTime = Date.now();
   }
 }

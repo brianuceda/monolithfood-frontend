@@ -4,11 +4,9 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-$rotation-time: 2s;
-
-.navbar {
+.private-navbar {
   width: auto;
-  height: $nav-height;
+  height: $bar-size;
   padding: 10px;
   background: $bg-navbar-color;
   display: flex;
@@ -22,7 +20,7 @@ $rotation-time: 2s;
   }
 
   .title {
-    height: $nav-height;
+    height: $bar-size;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +30,7 @@ $rotation-time: 2s;
     left: 10px;
     width: calc(100% - 20px);
     z-index: 0;
+    padding-left: $bar-size;
   }
 
   .profile {
@@ -46,10 +45,11 @@ $rotation-time: 2s;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.5px;
       color: $txt-color;
+      gap: 2.5px;
 
       .money {
         letter-spacing: 0px;
@@ -60,13 +60,13 @@ $rotation-time: 2s;
   }
 
   .img {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 
     &:hover {
       cursor: pointer;
-      animation: rotateInfinite $rotation-time linear infinite;
+      animation: rotateInfinite $rotation-img-time linear infinite;
     }
   }
 }

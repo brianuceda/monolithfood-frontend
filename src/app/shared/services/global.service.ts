@@ -20,6 +20,10 @@ export class GlobalService {
     const publicRoutes = ['/', '/home', '/about-us', '/login', '/register'];
     return !publicRoutes.includes(path);
   }
+  public isDashboardRoute(path: string): boolean {
+    const dashboardRoutes = ['/dashboard'];
+    return dashboardRoutes.includes(path);
+  }
   public toggleSidebar(): void {
     this.isExpandedSubject.next(!this.isExpandedSubject.value);
   }

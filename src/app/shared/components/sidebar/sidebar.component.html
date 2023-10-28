@@ -1,4 +1,21 @@
-<div [class.contracted]="!isSidebarExpanded" class="container">
-    <button (click)="toggleSidebar()">BTN</button>
-    <span>assssssssssssssssssssssssssssssssssssss</span>
+<div class="sidenav" (mouseenter)="expandSidebarOnHover()" [ngClass]="expanded ? 'sidenav-expanded':''"
+    (mouseleave)="closeSidenav()">
+    <div class="logo-container">
+        <div class="logo">
+            <img src="../../../../assets/images/logo.png" (click)="toggleCollapse()">
+        </div>
+        <div class="logo-text" @fadeInOut *ngIf="expanded">MonolithFood</div>
+        <button class="btn-close" @rotate *ngIf="expanded" (click)="closeSidenav()">
+            <i class="fas fa-times close-icon"></i>
+        </button>
+    </div>
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" *ngFor="let data of navData">
+            <a class="sidenav-nav-link" [routerLink]="[data.routerLink]" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="expanded">{{data.label}}</span>
+            </a>
+        </li>
+    </ul>
 </div>

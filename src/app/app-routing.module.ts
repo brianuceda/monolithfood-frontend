@@ -37,6 +37,14 @@ const routes: Routes = [
         (m) => m.LandingPageModule
       ),
   },
+  // General routes
+  {
+    path: 'monolithfood',
+    loadChildren: () =>
+      import('./features/my-application/feat-general/feat-general.module').then(
+        (m) => m.FeatGeneralModule
+      ),
+  },
   // Application routes
   {
     path: 'dashboard',

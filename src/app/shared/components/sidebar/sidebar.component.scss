@@ -3,20 +3,131 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.sidenav {
+  background: transparent;
+  transition: $sidebar-transition-time;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: $bar-size;
+  height: 100vh;
+  // box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    padding: 0.938rem;
+    width: 100%;
+
+    .logo {
+      background: transparent;
+      text-align: center;
+      width: 3rem;
+      min-width: 3rem;
+      height: 3rem;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+      }
+    }
+
+    .logo-text {
+      margin-left: 1.5rem;
+      font-size: 20px;
+      font-weight: 700;
+      color: $txt-color;
+    }
+
+    .btn-close {
+      margin-left: auto;
+      cursor: pointer;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: transparent;
+      border: none;
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .fa-times {
+        font-size: 24px;
+        color: $txt-color;
+      }
+    }
+  }
 }
 
-.container {
-  width: $sidebar-width;
-  height: 100%;
-  color: #000;
-  background: #fff;
-  transition: width 0.3s ease;
+.sidenav-expanded {
+  width: $sidebar-expanded-width;
+}
 
-  &.contracted {
-    width: $sidebar-contracted-width;
+.sidenav-nav {
+  background: $bg-navbar-color;
+  list-style: none;
+  padding: 0.938rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  height: calc(100% - 3.65rem);
+  cursor: pointer;
+
+  .sidenav-nav-item {
+    width: 100%;
+    margin-bottom: 0.625rem;
+
+    .sidenav-nav-link {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      color: $txt-color;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: $sidebar-transition-time;
+
+      .sidenav-link-icon {
+        font-size: 22px;
+        width: 2rem;
+        min-width: 2rem;
+        margin: 0 0.5rem;
+        text-align: center;
+      }
+
+      .sidenav-link-text {
+        margin-left: 1.5rem;
+        font-weight: 500;
+        font-size: 16px;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .sidenav-nav-item:hover {
+    .sidenav-nav-link {
+      background-color: $txt-color;
+      color: $tertiary-color;
+    }
+  }
+}
+
+.active {
+  background-color: $txt-color;
+  .sidenav-link-icon,
+  .sidenav-link-text {
+    color: $tertiary-color;
   }
 }

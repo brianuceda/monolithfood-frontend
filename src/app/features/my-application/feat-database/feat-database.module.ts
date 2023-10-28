@@ -4,6 +4,6 @@ import { FeatDatabaseRoutingModule } from './feat-database-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, FeatDatabaseRoutingModule]
+  imports: [CommonModule, FeatDatabaseRoutingModule],
 })
-export class FeatDatabaseModule { }
+export class FeatDatabaseModule {}
