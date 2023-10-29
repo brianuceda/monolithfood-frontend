@@ -5,14 +5,17 @@
 @import "src/assets/scss/animations.scss";
 
 .public-navbar {
+  position: fixed;
+  width: 100%;
   padding: 0 10%;
   background: $bg-navbar-color;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  // Navbar in auth routes
+  // [1.1] Superposición de oscuridad a imagen de fondo de la pagina de autenticacion (login / register)
   &.in-auth-page {
+    position: static;
     background: $bg-auth-navbar-color;
   }
 

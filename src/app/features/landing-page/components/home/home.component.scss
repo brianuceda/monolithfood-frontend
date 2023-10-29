@@ -1,4 +1,16 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
 .container {
-    width: 100%;
-    text-align: center;
+  min-width: 100%;
+  min-height: calc(100vh - ($bar-size + $content-padding-tb));
+  height: 100%;
+  color: $txt-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

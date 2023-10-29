@@ -4,7 +4,7 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-$login-width: 25%;
+$auth-page-width: 450px;
 $bg-img-login-auth-page: "../assets/images/backgrounds/bg-login-page.png";
 $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
@@ -14,145 +14,95 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
   box-sizing: border-box;
 }
 
-// Window
+// [1] Pantalla en general
 .all {
   width: 100vw;
   max-width: 100%;
   height: 100%;
   min-height: 100vh;
   color: $txt-color;
-  // overflow: overlay;
 
+  // [X] Oculta el scroll cuando se abre un dialog
   &.is-in-dialog {
     overflow: hidden;
   }
 
-  // Backgrounds
+  // [1.1] Color de fondo de la landing page
   &.all-landing {
     background: $bg-default-gradient-landing;
   }
 
+  // [1.2] Color de fondo de la app
   &.all-app {
     background: $bg-default-gradient-app;
   }
 
-  // Reservations of space inside the content
+  // [2.1] Espacio para el contenido de la app tomando en cuenta el navbar y el sidebar
   .content {
-    // Navbar
-    height: calc(100% - $bar-size);
     // Sidebar
     margin-left: $bar-size;
-    // Content
-    padding: 50px 10%;
+    // Contenido tomando en cuenta el navbar
+    height: 100%;
+    padding: $content-padding-tb $content-padding-lr;
   }
-
+  // [2.2] Modificaciones para el contenido de la landing page
   .content-full-width {
+    width: 100%;
+    height: 100%;
     margin-left: 0;
+    padding-top: $bar-size;
   }
 
-  // Navbar in auth pages
+  // [3] Navbar en una pagina de autenticacion (login / register)
   .in-auth-page {
     display: inline-block;
-    width: calc(100% - $login-width);
+    width: calc(100% - $auth-page-width);
     background: $bg-auth-content-color;
   }
 
-  // Content of login page
+  // [3.1] Contenido modificable en una pagina de autenticacion (login / register)
+  &.login-auth-page,
+  &.register-auth-page {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+
+    .content {
+      width: $auth-page-width;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // [3.1.1] Todo en contenido de la pantalla del login
   &.login-auth-page {
     background-image: url($bg-img-login-auth-page);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    justify-content: space-between;
-
-    .content {
-      width: $login-width;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
   }
 
-  // Content of register page
+  // [3.1.2] Todo el contenido de la pantalla de register
   &.register-auth-page {
     background-image: url($bg-img-register-auth-page);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    display: flex;
-    justify-content: space-between;
-
-    .content {
-      width: $login-width;
-      height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
   }
 }
 
-$plus-queries: 5%;
-
-@media (max-width: $media-query-xxl) {
-  .all {
-    // Navbar in auth pages
-    .in-auth-page {
-      width: calc(100% - ($login-width + ($plus-queries * 1)));
-    }
-
-    // Content of auth pages
-    &.login-auth-page {
-      .content {
-        width: $login-width + $plus-queries;
-      }
-    }
-  }
-}
-
-@media (max-width: $media-query-xl) {
-  .all {
-    // Navbar in auth pages
-    .in-auth-page {
-      width: calc(100% - ($login-width + ($plus-queries * 2)));
-    }
-
-    // Content of auth pages
-    &.login-auth-page {
-      .content {
-        width: $login-width + ($plus-queries * 2);
-      }
-    }
-  }
-}
-
-@media (max-width: $media-query-lg) {
-  .all {
-    // Navbar in auth pages
-    .in-auth-page {
-      width: calc(100% - ($login-width + ($plus-queries * 3)));
-    }
-
-    // Content of auth pages
-    &.login-auth-page {
-      .content {
-        width: $login-width + ($plus-queries * 3);
-      }
-    }
-  }
-}
+// * ------------------ [ Media queries ] ------------------ * //
 
 @media (max-width: $media-query-md) {
+  // [1] Pantalla en general
   .all {
-    // Navbar in auth pages
+    // [3] Navbar en una pagina de autenticacion
     .in-auth-page {
-      width: calc(100% - ($login-width + ($plus-queries * 4)));
+      width: calc(100% - 50%);
     }
 
-    // Content of auth pages
-    &.login-auth-page {
+    // [3.1] Contenido modificable en una pagina de autenticacion
+    &.login-auth-page,
+    &.register-auth-page {
       .content {
-        width: $login-width + ($plus-queries * 4);
+        width: 50%;
       }
     }
   }
@@ -163,7 +113,6 @@ $plus-queries: 5%;
     display: flex;
     flex-direction: column;
 
-    // Navbar in auth pages
     .in-auth-page {
       width: 100%;
       height: calc($bar-size);
@@ -172,7 +121,6 @@ $plus-queries: 5%;
       z-index: 100;
     }
 
-    // Content of auth pages
     &.login-auth-page,
     &.register-auth-page {
       .content {
