@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { GlobalService } from './shared/services/global.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,23 +11,28 @@ import { GlobalService } from './shared/services/global.service';
 })
 export class AppComponent implements OnInit {
   title = 'Monolith Food';
-  isUserAuthenticated?: boolean;
   isSidebarExpanded!: boolean;
+  actualPath!: string;
 
   constructor(
+    private authService: AuthService,
     private globalService: GlobalService,
-    private router: Router,
-    private authService: AuthService
+    private router: Router
   ) {
-    this.isUserAuthenticated = this.authService.isAuthenticated();
     this.globalService.isSidebarExpanded$.subscribe(
       (expanded) => (this.isSidebarExpanded = expanded)
     );
   }
 
-  // Testing
-  ngOnInit() {
-    // Exponer los métodos en el objeto window
+  ngOnInit(): void {
+    this.setActualPath(); // Establecer el path inicial
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd) // Filtrar solo eventos de finalización de navegación
+      )
+      .subscribe(() => {
+        this.setActualPath(); // Actualizar el path cada vez que cambia la ruta
+      });
     (window as any).app = {
       setCompletedToken: this.setCompletedToken.bind(this),
       setPersonalInfoToken: this.setPersonalInfoToken.bind(this),
@@ -35,14 +41,38 @@ export class AppComponent implements OnInit {
     };
   }
 
+  // * Metodos
+  // El usuario está en una ruta privada? (rutas que requieren autenticación)
   isPrivateRoute(): boolean {
-    return this.globalService.isPrivateRoute(this.router.url);
+    let isPrivateRoute = this.globalService.isPrivateRoute(this.router.url);
+    return isPrivateRoute;
   }
-
+  // El usuario no está en la página de error
   notIsErrorPage(): boolean {
-    return this.router.url !== '/monolithfood/error';
+    return this.router.url !== '/server/error';
+  }
+  // El usuario está en alguna página de autenticación (login o register)
+  isInAuthPage(): boolean {
+    return (
+      this.actualPath === 'login-auth-page' ||
+      this.actualPath === 'register-auth-page'
+    );
+  }
+  // Si hay algún dashboard abierto, ocultar el overflow del body
+  isDialogOpened(): boolean {
+    return this.authService.isDialogOpened();
   }
 
+  // * Funciones
+  private setActualPath(): void {
+    if (this.router.url === '/login') {
+      this.actualPath = 'login-auth-page';
+    } else if (this.router.url === '/register') {
+      this.actualPath = 'register-auth-page';
+    } else {
+      this.actualPath = this.router.url;
+    }
+  }
   public setCompletedToken(): void {
     localStorage.removeItem('token');
     localStorage.setItem(

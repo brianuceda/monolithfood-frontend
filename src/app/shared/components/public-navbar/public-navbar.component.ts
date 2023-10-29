@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-public-navbar',
   templateUrl: './public-navbar.component.html',
-  styleUrls: ['./public-navbar.component.scss']
+  styleUrls: ['./public-navbar.component.scss'],
 })
 export class PublicNavbarComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   route(path: string): void {
     this.router.navigate([path]);
@@ -20,5 +20,8 @@ export class PublicNavbarComponent {
   toggleMenu() {
     const menu = document.getElementById('menu');
     menu!.classList.toggle('hidden');
+  }
+  isInAuthPage(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register';
   }
 }

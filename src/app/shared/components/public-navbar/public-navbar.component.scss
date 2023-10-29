@@ -11,6 +11,11 @@
   justify-content: space-between;
   align-items: center;
 
+  // Navbar in auth routes
+  &.in-auth-page {
+    background: $bg-auth-navbar-color;
+  }
+
   .navbar-title {
     height: $bar-size;
     cursor: pointer;
@@ -29,6 +34,7 @@
       font-weight: 500;
       font-size: 16px;
       color: $btn-selected;
+      white-space: nowrap;
     }
 
     &:hover {
@@ -68,7 +74,7 @@
   }
 }
 
-@media (max-width: 824px) {
+@media (max-width: $media-query-xl) {
   .public-navbar {
     #menu {
       display: flex;
@@ -77,10 +83,6 @@
 
     .navbar-title {
       margin-left: 0;
-
-      .logo-txt {
-        font-size: 14px;
-      }
     }
 
     .navbar-buttons {

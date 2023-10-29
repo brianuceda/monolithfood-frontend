@@ -7,6 +7,7 @@ import { SharedComponentsModule } from 'src/app/shared/components/shared-compone
 import { FaqComponent } from './features/my-application/feat-general/components/faq/faq.component';
 import { ErrorComponent } from './features/my-application/feat-general/components/error/error.component';
 import { FeatGeneralModule } from './features/my-application/feat-general/feat-general.module';
+import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
 
 @NgModule({
   declarations: [AppComponent, FaqComponent, ErrorComponent],
@@ -14,6 +15,7 @@ import { FeatGeneralModule } from './features/my-application/feat-general/feat-g
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AngularMaterialModule,
     SharedComponentsModule,
     FeatGeneralModule,
   ],

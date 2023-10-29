@@ -4,6 +4,10 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
+$login-width: 25%;
+$bg-img-login-auth-page: "../assets/images/backgrounds/bg-login-page.png";
+$bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +17,15 @@
 // Window
 .all {
   width: 100vw;
-  height: 100vh;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100vh;
   color: $txt-color;
+  // overflow: overlay;
+
+  &.is-in-dialog {
+    overflow: hidden;
+  }
 
   // Backgrounds
   &.all-landing {
@@ -25,14 +36,151 @@
     background: $bg-default-gradient-app;
   }
 
-  // Content
+  // Reservations of space inside the content
   .content {
-    height: calc(100vh - $bar-size);
-    padding: 50px 10%;
+    // Navbar
+    height: calc(100% - $bar-size);
+    // Sidebar
     margin-left: $bar-size;
+    // Content
+    padding: 50px 10%;
   }
 
-  .content-void {
+  .content-full-width {
     margin-left: 0;
+  }
+
+  // Navbar in auth pages
+  .in-auth-page {
+    display: inline-block;
+    width: calc(100% - $login-width);
+    background: $bg-auth-content-color;
+  }
+
+  // Content of login page
+  &.login-auth-page {
+    background-image: url($bg-img-login-auth-page);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+
+    .content {
+      width: $login-width;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // Content of register page
+  &.register-auth-page {
+    background-image: url($bg-img-register-auth-page);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+
+    .content {
+      width: $login-width;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+$plus-queries: 5%;
+
+@media (max-width: $media-query-xxl) {
+  .all {
+    // Navbar in auth pages
+    .in-auth-page {
+      width: calc(100% - ($login-width + ($plus-queries * 1)));
+    }
+
+    // Content of auth pages
+    &.login-auth-page {
+      .content {
+        width: $login-width + $plus-queries;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-xl) {
+  .all {
+    // Navbar in auth pages
+    .in-auth-page {
+      width: calc(100% - ($login-width + ($plus-queries * 2)));
+    }
+
+    // Content of auth pages
+    &.login-auth-page {
+      .content {
+        width: $login-width + ($plus-queries * 2);
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-lg) {
+  .all {
+    // Navbar in auth pages
+    .in-auth-page {
+      width: calc(100% - ($login-width + ($plus-queries * 3)));
+    }
+
+    // Content of auth pages
+    &.login-auth-page {
+      .content {
+        width: $login-width + ($plus-queries * 3);
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-md) {
+  .all {
+    // Navbar in auth pages
+    .in-auth-page {
+      width: calc(100% - ($login-width + ($plus-queries * 4)));
+    }
+
+    // Content of auth pages
+    &.login-auth-page {
+      .content {
+        width: $login-width + ($plus-queries * 4);
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-sm) {
+  .all {
+    display: flex;
+    flex-direction: column;
+
+    // Navbar in auth pages
+    .in-auth-page {
+      width: 100%;
+      height: calc($bar-size);
+      height: 100%;
+      position: absolute;
+      z-index: 100;
+    }
+
+    // Content of auth pages
+    &.login-auth-page,
+    &.register-auth-page {
+      .content {
+        width: 100%;
+        margin-top: $bar-size;
+        height: calc(100vh - $bar-size);
+        z-index: 200;
+      }
+    }
   }
 }

@@ -39,7 +39,7 @@ const routes: Routes = [
   },
   // General routes
   {
-    path: 'monolithfood',
+    path: 'server',
     loadChildren: () =>
       import('./features/my-application/feat-general/feat-general.module').then(
         (m) => m.FeatGeneralModule
@@ -77,6 +77,10 @@ const routes: Routes = [
       import('./features/my-application/feat-reports/feat-reports.module').then(
         (m) => m.FeatReportsModule
       ),
+  },
+  {
+    path: '**',
+    redirectTo: 'server/error',
   },
 ];
 

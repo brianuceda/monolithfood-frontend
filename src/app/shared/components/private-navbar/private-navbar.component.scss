@@ -70,3 +70,13 @@
     }
   }
 }
+
+@media (max-width: $media-query-md) {
+  .private-navbar {
+    .profile {
+      .data {
+        display: none;
+      }
+    }
+  }
+}

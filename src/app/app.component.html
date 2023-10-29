@@ -1,12 +1,16 @@
 <div class="all" [class.all-landing]="!isPrivateRoute()" [class.all-app]="isPrivateRoute()"
-    [class.expanded-sidebar]="isSidebarExpanded">
-    <app-sidebar *ngIf="isPrivateRoute() && notIsErrorPage();"></app-sidebar>
-    <!-- <div class="navbar-container"> -->
+    [class.expanded-sidebar]="isSidebarExpanded" [class.is-in-dialog]="isDialogOpened()"
+    [class.login-auth-page]="actualPath === 'login-auth-page'"
+    [class.register-auth-page]="actualPath === 'register-auth-page'">
+    <!-- Sidebar -->
+    <app-sidebar *ngIf="isPrivateRoute() && notIsErrorPage()"></app-sidebar>
+    <!-- Navbars -->
     <app-private-navbar *ngIf="isPrivateRoute() && notIsErrorPage(); else publicNavbar"></app-private-navbar>
     <ng-template #publicNavbar>
-        <app-public-navbar *ngIf="notIsErrorPage();"></app-public-navbar>
+        <app-public-navbar *ngIf="notIsErrorPage()" [class.in-auth-page]="isInAuthPage()"></app-public-navbar>
     </ng-template>
-    <div class="content" [class.content-void]="!isPrivateRoute()">
+    <!-- Content -->
+    <div class="content" [class.content-full-width]="!isPrivateRoute()">
         <router-outlet></router-outlet>
     </div>
 </div>

@@ -11,9 +11,9 @@ export class PublicAuthGuard implements CanActivate {
     const token = localStorage.getItem('token');
     const currentRoute = route.url[0]?.path;
 
+    // Si tiene un token y está en una ruta de autenticación, redirigir a '/dashboard'.
     if (token) {
       try {
-        console.log('currentRoute', currentRoute);
         if (currentRoute === 'login' || currentRoute === 'register') {
           this.router.navigateByUrl('/dashboard');
           return false;
