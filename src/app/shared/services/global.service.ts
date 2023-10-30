@@ -17,7 +17,14 @@ export class GlobalService {
     this.titleSubject.next(title);
   }
   public isPrivateRoute(path: string): boolean {
-    const publicRoutes = ['/', '/home', '/about-us', '/login', '/register'];
+    const publicRoutes = [
+      '/',
+      '/home',
+      '/about-us',
+      '/login',
+      '/register',
+      '/server/error',
+    ];
     return !publicRoutes.includes(path);
   }
   public isDashboardRoute(path: string): boolean {

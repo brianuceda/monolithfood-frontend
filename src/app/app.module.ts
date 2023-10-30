@@ -8,9 +8,10 @@ import { FaqComponent } from './features/my-application/feat-general/components/
 import { ErrorComponent } from './features/my-application/feat-general/components/error/error.component';
 import { FeatGeneralModule } from './features/my-application/feat-general/feat-general.module';
 import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
+import { PlansComponent } from './features/my-application/feat-plans/components/plans/plans.component';
 
 @NgModule({
-  declarations: [AppComponent, FaqComponent, ErrorComponent],
+  declarations: [AppComponent, FaqComponent, ErrorComponent, PlansComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

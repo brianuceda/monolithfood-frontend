@@ -4,8 +4,10 @@ import {
   style,
   animate,
   keyframes,
+  state,
 } from '@angular/animations';
 
+// Sidebar Menu
 export const fadeInOut = trigger('fadeInOut', [
   transition(':enter', [
     style({ opacity: 0 }),
@@ -16,7 +18,6 @@ export const fadeInOut = trigger('fadeInOut', [
     animate('250ms', style({ opacity: 0 })),
   ]),
 ]);
-
 export const rotate = trigger('rotate', [
   transition(':enter', [
     animate(
@@ -27,4 +28,25 @@ export const rotate = trigger('rotate', [
       ])
     ),
   ]),
+]);
+// Sublevel Menu
+export const slideInOut = trigger('slideInOut', [
+  state(
+    'hidden',
+    style({
+      height: '0',
+      overflow: 'hidden',
+    })
+  ),
+  state(
+    'visible',
+    style({
+      height: '*',
+    })
+  ),
+  transition('visible <=> hidden', [
+    style({ overflow: 'hidden' }),
+    animate('{{transitionParams}}'),
+  ]),
+  transition('void => *', animate(0)),
 ]);

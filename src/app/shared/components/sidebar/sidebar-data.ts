@@ -1,4 +1,6 @@
-export const SidebarData = [
+import { ISidebarData } from './helper';
+
+export const sidebarData: ISidebarData[] = [
   {
     routerLink: 'dashboard',
     icon: 'fas fa-home',
@@ -8,6 +10,7 @@ export const SidebarData = [
     routerLink: 'my-profile',
     icon: 'fa-solid fa-gear',
     label: 'Cuenta',
+    expanded: false,
     items: [
       {
         routerLink: 'my-profile',
@@ -21,16 +24,13 @@ export const SidebarData = [
         routerLink: 'my-profile/activity-levels',
         label: 'Actividad física',
       },
-      {
-        routerLink: 'my-profile/subscriptions',
-        label: 'Suscripciones',
-      },
     ],
   },
   {
     routerLink: 'database',
     icon: 'fa-solid fa-database',
     label: 'Base de datos',
+    expanded: false,
     items: [
       {
         routerLink: 'database',
@@ -43,9 +43,15 @@ export const SidebarData = [
     ],
   },
   {
+    routerLink: 'plans',
+    icon: 'fa-regular fa-credit-card',
+    label: 'Subscripciones',
+  },
+  {
     routerLink: 'reports',
     icon: 'fa-solid fa-chart-simple',
     label: 'Reportes',
+    expanded: false,
     items: [
       {
         routerLink: 'reports',
@@ -62,4 +68,101 @@ export const SidebarData = [
     icon: 'fa-solid fa-circle-question',
     label: 'F.A.Q.',
   },
+  // Datos de prueba
+  // {
+  //   routerLink: 'reports',
+  //   icon: 'fa-solid fa-chart-simple',
+  //   label: 'Reportes',
+  //   expanded: true,
+  //   items: [
+  //     {
+  //       routerLink: 'reports',
+  //       label: 'Generales',
+  //     },
+  //     {
+  //       routerLink: 'reports/fitness',
+  //       label: 'Fitness',
+  //     },
+  //   ],
+  // },
+  // {
+  //   routerLink: 'reports',
+  //   icon: 'fa-solid fa-chart-simple',
+  //   label: 'Reportes',
+  //   expanded: true,
+  //   items: [
+  //     {
+  //       routerLink: 'reports',
+  //       label: 'Generales',
+  //     },
+  //     {
+  //       routerLink: 'reports/fitness',
+  //       label: 'Fitness',
+  //     },
+  //   ],
+  // },
+  // {
+  //   routerLink: 'reports',
+  //   icon: 'fa-solid fa-chart-simple',
+  //   label: 'Reportes',
+  //   expanded: true,
+  //   items: [
+  //     {
+  //       routerLink: 'reports',
+  //       label: 'Generales',
+  //     },
+  //     {
+  //       routerLink: 'reports/fitness',
+  //       label: 'Fitness',
+  //     },
+  //   ],
+  // },
+  // {
+  //   routerLink: 'reports',
+  //   icon: 'fa-solid fa-chart-simple',
+  //   label: 'Reportes',
+  //   expanded: true,
+  //   items: [
+  //     {
+  //       routerLink: 'reports',
+  //       label: 'Generales',
+  //     },
+  //     {
+  //       routerLink: 'reports/fitness',
+  //       label: 'Fitness',
+  //     },
+  //   ],
+  // },
+  // {
+  //   routerLink: 'reports',
+  //   icon: 'fa-solid fa-chart-simple',
+  //   label: 'Reportes',
+  //   expanded: true,
+  //   items: [
+  //     {
+  //       routerLink: 'reports',
+  //       label: 'Generales',
+  //     },
+  //     {
+  //       routerLink: 'reports/fitness',
+  //       label: 'Fitness',
+  //     },
+  //   ],
+  // },
+  // {
+  //   routerLink: 'reports',
+  //   icon: 'fa-solid fa-chart-simple',
+  //   label: 'Reportes',
+  //   expanded: true,
+  //   items: [
+  //     {
+  //       routerLink: 'reports',
+  //       label: 'Generales',
+  //     },
+  //     {
+  //       routerLink: 'reports/fitness',
+  //       label: 'Fitness',
+  //     },
+  //   ],
+  // },
 ];

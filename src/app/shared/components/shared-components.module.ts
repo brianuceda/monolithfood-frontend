@@ -8,6 +8,7 @@ import { PublicNavbarComponent } from './public-navbar/public-navbar.component';
 // Application Page
 import { PrivateNavbarComponent } from './private-navbar/private-navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.component';
 // Components
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     PublicNavbarComponent,
     PrivateNavbarComponent,
     SidebarComponent,
+    SublevelMenuComponent,
   ],
   imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
   exports: [
@@ -25,6 +27,7 @@ import { RouterModule } from '@angular/router';
     PublicNavbarComponent,
     PrivateNavbarComponent,
     SidebarComponent,
+    SublevelMenuComponent,
   ],
 })
 export class SharedComponentsModule {}

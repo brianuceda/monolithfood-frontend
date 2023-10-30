@@ -71,6 +71,14 @@ const routes: Routes = [
       ).then((m) => m.FeatDatabaseModule),
   },
   {
+    path: 'plans',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./features/my-application/feat-plans/feat-plans.module').then(
+        (m) => m.FeatPlansModule
+      ),
+  },
+  {
     path: 'reports',
     canActivate: [AuthGuard],
     loadChildren: () =>
