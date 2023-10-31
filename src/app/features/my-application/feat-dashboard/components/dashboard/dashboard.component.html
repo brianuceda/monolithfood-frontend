@@ -1,13 +1,138 @@
 <div class="container">
-    <div class="div">esto</div>
-    <div class="div"></div>
-    <div class="div">es</div>
-    <div class="div"></div>
-    <div class="div">un</div>
-    <div class="div"></div>
-    <div class="div">ejemplo</div>
-    <div class="div"></div>
-    <div class="div">de</div>
-    <div class="div"></div>
-    <div class="div">flexbox</div>
+    <div class="container-date">
+        <!-- Botón para retroceder un día -->
+        <button mat-icon-button (click)="decreaseDateByOneDay()" class="icon">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <!-- Input para seleccionar la fecha -->
+        <div class="date-input">
+            <mat-form-field class="full-width">
+                <mat-label>Seleccionar fecha</mat-label>
+                <input matInput [formControl]="selectedDate" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <!-- Botón para avanzar un día -->
+        <button mat-icon-button (click)="increaseDateByOneDay()" class="icon">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+    <!-- <span>en consola se muestra el cambio de fecha</span> -->
+    <div class="mat-divider"></div>
+    <div class="container-graphs">
+        <div class="graph calories">
+            <div class="graph__title">
+                <h3>KCalorias</h3>
+            </div>
+            <div class="graph__value calories">
+                <div id="chart">
+                    <div *ngIf="chartOptionsCalories">
+                        <apx-chart [series]="chartOptionsCalories.series" [chart]="chartOptionsCalories.chart"
+                            [plotOptions]="chartOptionsCalories.plotOptions" [labels]="chartOptionsCalories.labels"
+                            [colors]="[colorCalories]"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="graph proteins">
+            <div class="graph__title">
+                <h3>Proteinas</h3>
+            </div>
+            <div class="graph__value proteins">
+                <div id="chart">
+                    <div *ngIf="chartOptionsProteins">
+                        <apx-chart [series]="chartOptionsProteins.series" [chart]="chartOptionsProteins.chart"
+                            [plotOptions]="chartOptionsProteins.plotOptions" [labels]="chartOptionsProteins.labels"
+                            [colors]="[colorProteins]"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="graph calories">
+            <div class="graph__title">
+                <h3>Carbohidratos</h3>
+            </div>
+            <div class="graph__value carbs">
+                <div id="chart">
+                    <div *ngIf="chartOptionsCarbs">
+                        <apx-chart [series]="chartOptionsCarbs.series" [chart]="chartOptionsCarbs.chart"
+                            [plotOptions]="chartOptionsCarbs.plotOptions" [labels]="chartOptionsCarbs.labels"
+                            [colors]="[colorCarbs]"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="graph proteins">
+            <div class="graph__title">
+                <h3>Grasas</h3>
+            </div>
+            <div class="graph__value fats">
+                <div id="chart">
+                    <div *ngIf="chartOptionsFats">
+                        <apx-chart [series]="chartOptionsFats.series" [chart]="chartOptionsFats.chart"
+                            [plotOptions]="chartOptionsFats.plotOptions" [labels]="chartOptionsFats.labels"
+                            [colors]="[colorFats]"></apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-intakes">
+        <div class="desayuno intake">
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+        </div>
+        <div class="almuerzo intake">
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+        </div>
+        <div class="cena intake">
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+            <span>hola</span>
+        </div>
+    </div>
 </div>

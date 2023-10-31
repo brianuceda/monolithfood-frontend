@@ -10,32 +10,116 @@
   padding: 0;
 }
 
+$container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
+
+$width: 200px;
+$title-height: 50px;
+
 .container {
   // Dialog animation
   transition: width 0.3s ease;
   // Window size
   min-width: 100%;
-  min-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
+  min-height: $container-height;
   max-width: 100%;
   height: 100%;
   color: $txt-color;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   // Direccion del Flex
-  flex-direction: row; // column
+  flex-direction: column; // column
+  gap: 60px;
 
-  // Modificaciones del usuario
-  .div {
-    width: 120px;
-    height: 120px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: rgb(184, 184, 184);
-    margin: 5px;
-    border-radius: 50%;
+  > .mat-divider {
+    width: 90%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: -20px 0;
+  }
+
+  .container-date {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+
+    .date-input {
+      margin-bottom: -22px;
+
+      // .full-width {
+      //   width: 180px;
+      // }
+    }
+
+    .icon {
+      border-radius: 50%;
+      background: $txt-color;
+      color: $txt-color-lead;
+    }
+  }
+
+  // Modificaciones del usuario
+  .container-graphs {
+    width: 100%;
+    height: 100%;
+    min-height: calc($width + $title-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    // color: #ffffff;
+    gap: 50px;
+
+    .graph {
+      width: $width;
+      min-width: $width;
+      height: calc($width + $title-height);
+      // background: #fff;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+
+      .graph__title {
+        width: 100%;
+        height: $title-height;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+          margin: 0;
+          font-weight: 400;
+        }
+      }
+
+      .graph__value {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // stroke: #ffffff;
+      }
+    }
+  }
+
+  .container-intakes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+
+    .intake {
+      background-color: #d9d9d949;
+      display: flex;
+      flex-direction: column;
+      width: 380px;
+      min-width: 200px;
+      text-align: center;
+    }
   }
 }
