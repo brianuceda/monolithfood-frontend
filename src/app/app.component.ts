@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.setItem(
       'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXdpZ29kIiwiaWF0IjoxNjk4ODQ0NTYxLCJleHAiOjE2OTk0NDkzNjF9.gtjrsiwCw7uvFigwqiROsI00CRqpRgKpqTcvtuOV4G8'
+      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXJpZGVwYXBlbCIsImlhdCI6MTY5ODg4MDA4NiwiZXhwIjoxNjk5NDg0ODg2fQ.XS1QeUTrWmaFi7iLh8rkx3lpwNS_7JdgThKVIz9mPeY'
     );
     window.location.reload();
   }
