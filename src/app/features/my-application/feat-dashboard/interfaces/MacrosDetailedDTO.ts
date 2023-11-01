@@ -1,6 +1,7 @@
 export interface MacrosDetailedDTO {
   message?: string;
   statusCode?: number;
+  type?: string;
   consumedCalories: number;
   dailyCaloricIntake: number;
   consumedProteins: number;

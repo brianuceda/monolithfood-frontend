@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Material: Forms
+// Forms
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-// Material: Input Components
-import { MatDatepickerModule } from '@angular/material/datepicker';
+// Usefull Components
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+// Input Components
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-// Material: Usefull Components
-import { MatButtonModule } from '@angular/material/button';
-// Material: Visual Components
+// Visual Components
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -22,14 +21,14 @@ import { MatIconModule } from '@angular/material/icon';
     // Material: Forms
     FormsModule,
     ReactiveFormsModule,
-    // Material: Input Components
-    MatDatepickerModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
     // Material: Usefull Components
     MatIconModule,
     MatButtonModule,
+    // Material: Input Components
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     // Material: Visual Components
     MatDialogModule,
   ],

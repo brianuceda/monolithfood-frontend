@@ -12,6 +12,7 @@ import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.com
 // Components
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
+import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     PrivateNavbarComponent,
     SidebarComponent,
     SublevelMenuComponent,
+    CustomSnackbarComponent,
   ],
   imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
   exports: [
@@ -28,6 +30,7 @@ import { RouterModule } from '@angular/router';
     PrivateNavbarComponent,
     SidebarComponent,
     SublevelMenuComponent,
+    CustomSnackbarComponent,
   ],
 })
 export class SharedComponentsModule {}

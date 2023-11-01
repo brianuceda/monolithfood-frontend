@@ -60,18 +60,23 @@ export class DashboardComponent {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     Promise.resolve().then(() => {
       this.globalService.setTitle('Panel de Inicio');
     });
-    this.openDialogBasedOnProfileStage();
-    // Suscripción a los cambios de fecha
-    this.dashboardService.startAndEndDate(this.selectedDate);
-    this.selectedDate.valueChanges.subscribe((date) => {
+    let profileStage = this.getProfileStage();
+    if (profileStage === 'completed') {
+      // Suscripción a los cambios de fecha
       this.dashboardService.startAndEndDate(this.selectedDate);
-    });
-    // Suscribirse al servicio y actualizar la variable data
-    this.getMacrosDetailed();
+      this.selectedDate.valueChanges.subscribe((date) => {
+        this.dashboardService.startAndEndDate(this.selectedDate);
+      });
+      // Suscripción a los cambios de datos
+      this.getMacrosDetailed();
+    } else {
+      // Abre un dialogo si el usuario no ha completado su perfil
+      await this.openDialogBasedOnProfileStage(profileStage);
+    }
   }
 
   getMacrosDetailed(): void {
@@ -109,72 +114,64 @@ export class DashboardComponent {
   }
 
   // Abre un dialogo si el usuario no ha completado su perfil
-  private openDialogBasedOnProfileStage(): void {
-    try {
-      let dialogRef;
-      const token = localStorage.getItem('token')!;
-      const payload = this.authService.decodeJwtPayload(token);
-      const profileStage = payload.profileStage;
+  private openDialogBasedOnProfileStage(profileStage: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        let dialogRef;
 
-      if (
-        profileStage === 'personalInfo' ||
-        profileStage === 'fitnessInfo' ||
-        profileStage === 'objectives' ||
-        profileStage === 'activityLevel'
-      ) {
-        // Configuracion de Dialogos
-        const config = new MatDialogConfig();
-        config.disableClose = true;
-        config.autoFocus = true;
-        config.hasBackdrop = true;
-        config.closeOnNavigation = false;
-        config.width = '1080px';
-        config.height = '650px';
-        config.enterAnimationDuration = 700;
-        config.exitAnimationDuration = 700;
-        config.backdropClass = 'style-css-dialog-background';
-        // Dialogos de Onboarding
-        switch (profileStage) {
-          case 'personalInfo' || 'fitnessInfo':
-            dialogRef = this.dialog.open(SetInformationComponent, config);
-            dialogRef.afterClosed().subscribe((result) => {
-              console.log(`Dialog result: ${result}`);
-            });
-            break;
-          case 'objectives':
-            dialogRef = this.dialog.open(SelectObjectivesComponent, config);
-            dialogRef.afterClosed().subscribe((result) => {
-              console.log(`Dialog result: ${result}`);
-            });
-            break;
-          case 'activityLevel':
-            dialogRef = this.dialog.open(SelectActivityLevelComponent, config);
-            dialogRef.afterClosed().subscribe((result) => {
-              console.log(`Dialog result: ${result}`);
-            });
-            break;
+        if (
+          profileStage === 'information' ||
+          profileStage === 'activity-level' ||
+          profileStage === 'objectives'
+        ) {
+          // Configuracion de Dialogos
+          const config = new MatDialogConfig();
+          config.disableClose = true;
+          config.autoFocus = true;
+          config.hasBackdrop = true;
+          config.closeOnNavigation = false;
+          config.width = '1080px';
+          config.height = '650px';
+          config.enterAnimationDuration = 700;
+          config.exitAnimationDuration = 700;
+          config.backdropClass = 'style-css-dialog-background';
+          // Dialogos de Onboarding
+          switch (profileStage) {
+            case 'information':
+              dialogRef = this.dialog.open(SetInformationComponent, config);
+              dialogRef.afterClosed().subscribe((result) => {
+                console.log(`Dialog result: ${result}`);
+                resolve(); // Resuelve la promesa cuando el diálogo se cierre
+              });
+              break;
+            case 'activity-level':
+              dialogRef = this.dialog.open(
+                SelectActivityLevelComponent,
+                config
+              );
+              dialogRef.afterClosed().subscribe((result) => {
+                console.log(`Dialog result: ${result}`);
+                resolve();
+              });
+              break;
+            case 'objectives':
+              dialogRef = this.dialog.open(SelectObjectivesComponent, config);
+              dialogRef.afterClosed().subscribe((result) => {
+                console.log(`Dialog result: ${result}`);
+                resolve();
+              });
+              break;
+          }
         }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  // Abrir dialogo
-  openDialog(): void {
-    // Configuracion de Dialogos
-    const config = new MatDialogConfig();
-    config.disableClose = false;
-    config.autoFocus = true;
-    config.hasBackdrop = true;
-    config.closeOnNavigation = false;
-    config.width = '550px';
-    config.height = '750px';
-    config.enterAnimationDuration = 700;
-    config.exitAnimationDuration = 700;
-    config.backdropClass = 'style-css-dialog-background';
-    let dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
     });
+  }
+
+  private getProfileStage(): string {
+    const token = localStorage.getItem('token')!;
+    const payload = this.authService.decodeJwtPayload(token);
+    return payload.profileStage;
   }
 }

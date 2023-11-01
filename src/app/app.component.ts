@@ -34,10 +34,11 @@ export class AppComponent implements OnInit {
         this.setActualPath(); // Actualizar el path cada vez que cambia la ruta
       });
     (window as any).app = {
-      setCompletedToken: this.setCompletedToken.bind(this),
-      setPersonalInfoToken: this.setPersonalInfoToken.bind(this),
+      setToken: this.setToken.bind(this),
+      setInfoToken: this.setInfoToken.bind(this),
       setActivityLevelToken: this.setActivityLevelToken.bind(this),
       setObjectivesToken: this.setObjectivesToken.bind(this),
+      setCompletedToken: this.setCompletedToken.bind(this),
     };
   }
 
@@ -73,32 +74,40 @@ export class AppComponent implements OnInit {
       this.actualPath = this.router.url;
     }
   }
-  public setCompletedToken(): void {
+  public setToken(token: string): void {
     localStorage.removeItem('token');
-    localStorage.setItem(
-      'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXJpZGVwYXBlbCIsImlhdCI6MTY5ODgyNTYyMSwiZXhwIjoxNjk5NDMwNDIxfQ.E0pwsTop7anh6DRWDOrwzG5LNTHZHTEy1mizLGXX6dI'
-    );
+    localStorage.setItem('token', token);
   }
-  public setPersonalInfoToken(): void {
+  public setInfoToken(): void {
     localStorage.removeItem('token');
     localStorage.setItem(
       'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJwZXJzb25hbEluZm8iLCJzdWIiOiJraXdpZ29kIiwiaWF0IjoxNjk4MzQ1ODY4LCJleHAiOjE2OTg5NTA2Njh9.N5KTXyHBlxyvLdiiSUElvEOsJTcyOoUdNoPtF8zLFlw'
+      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJpbmZvcm1hdGlvbiIsInN1YiI6Imtpd2lnb2QiLCJpYXQiOjE2OTg4NDAxNDIsImV4cCI6MTY5OTQ0NDk0Mn0.mzeT5-jDgptDDSIwqOcOWvAcTAOanv2DRJr9DGhLHl0'
     );
+    window.location.reload();
   }
   public setActivityLevelToken(): void {
     localStorage.removeItem('token');
     localStorage.setItem(
       'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJhY3Rpdml0eUxldmVsIiwic3ViIjoia2l3aWdvZCIsImlhdCI6MTY5ODM4NDM4OSwiZXhwIjoxNjk4OTg5MTg5fQ.p6bLaNe1skqGgNLGTb65cdKI6piyw5zGB2N8QMKVT04'
+      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJhY3Rpdml0eS1sZXZlbCIsInN1YiI6Imtpd2lnb2QiLCJpYXQiOjE2OTg4NDQwNjIsImV4cCI6MTY5OTQ0ODg2Mn0.OmzaqEmHnNS4ClDF9HqUFVRc2EDGsu71cR0El8vGZtA'
     );
+    window.location.reload();
   }
   public setObjectivesToken(): void {
     localStorage.removeItem('token');
     localStorage.setItem(
       'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJvYmplY3RpdmVzIiwic3ViIjoia2l3aWdvZCIsImlhdCI6MTY5ODM4NDU4OSwiZXhwIjoxNjk4OTg5Mzg5fQ.QMITQE6p9w12N0X33T5xv3Wi8txOr5dL1ivUTdHlIDo'
+      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJvYmplY3RpdmVzIiwic3ViIjoia2l3aWdvZCIsImlhdCI6MTY5ODg0NDE3MywiZXhwIjoxNjk5NDQ4OTczfQ.P32ySXsEFOIsGMBnoTswtwrYwdnyH2kzHKc7CN5NhU0'
     );
+    window.location.reload();
+  }
+  public setCompletedToken(): void {
+    localStorage.removeItem('token');
+    localStorage.setItem(
+      'token',
+      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXdpZ29kIiwiaWF0IjoxNjk4ODQ0NTYxLCJleHAiOjE2OTk0NDkzNjF9.gtjrsiwCw7uvFigwqiROsI00CRqpRgKpqTcvtuOV4G8'
+    );
+    window.location.reload();
   }
 }
