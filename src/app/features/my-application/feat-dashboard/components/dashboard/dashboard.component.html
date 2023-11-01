@@ -20,62 +20,26 @@
     </div>
     <!-- <span>en consola se muestra el cambio de fecha</span> -->
     <div class="mat-divider"></div>
-    <div class="container-graphs">
-        <div class="graph calories">
-            <div class="graph__title">
-                <h3>KCalorias</h3>
-            </div>
-            <div class="graph__value calories">
-                <div id="chart">
-                    <div *ngIf="chartOptionsCalories">
-                        <apx-chart [series]="chartOptionsCalories.series" [chart]="chartOptionsCalories.chart"
-                            [plotOptions]="chartOptionsCalories.plotOptions" [labels]="chartOptionsCalories.labels"
-                            [colors]="[colorCalories]"></apx-chart>
-                    </div>
-                </div>
-            </div>
+    <div class="container-graphs" *ngIf="data$ | async as data">
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'KCalorias'" [consumed]="data.consumedCalories"
+                [dailyIntake]="data.dailyCaloricIntake">
+            </app-basic-graph>
         </div>
-        <div class="graph proteins">
-            <div class="graph__title">
-                <h3>Proteinas</h3>
-            </div>
-            <div class="graph__value proteins">
-                <div id="chart">
-                    <div *ngIf="chartOptionsProteins">
-                        <apx-chart [series]="chartOptionsProteins.series" [chart]="chartOptionsProteins.chart"
-                            [plotOptions]="chartOptionsProteins.plotOptions" [labels]="chartOptionsProteins.labels"
-                            [colors]="[colorProteins]"></apx-chart>
-                    </div>
-                </div>
-            </div>
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'Proteinas'" [consumed]="data.consumedProteins"
+                [dailyIntake]="data.dailyProteinIntake">
+            </app-basic-graph>
         </div>
-        <div class="graph calories">
-            <div class="graph__title">
-                <h3>Carbohidratos</h3>
-            </div>
-            <div class="graph__value carbs">
-                <div id="chart">
-                    <div *ngIf="chartOptionsCarbs">
-                        <apx-chart [series]="chartOptionsCarbs.series" [chart]="chartOptionsCarbs.chart"
-                            [plotOptions]="chartOptionsCarbs.plotOptions" [labels]="chartOptionsCarbs.labels"
-                            [colors]="[colorCarbs]"></apx-chart>
-                    </div>
-                </div>
-            </div>
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'Carbohidratos'" [consumed]="data.consumedCarbohydrates"
+                [dailyIntake]="data.dailyCarbohydrateIntake">
+            </app-basic-graph>
         </div>
-        <div class="graph proteins">
-            <div class="graph__title">
-                <h3>Grasas</h3>
-            </div>
-            <div class="graph__value fats">
-                <div id="chart">
-                    <div *ngIf="chartOptionsFats">
-                        <apx-chart [series]="chartOptionsFats.series" [chart]="chartOptionsFats.chart"
-                            [plotOptions]="chartOptionsFats.plotOptions" [labels]="chartOptionsFats.labels"
-                            [colors]="[colorFats]"></apx-chart>
-                    </div>
-                </div>
-            </div>
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'Grasas'" [consumed]="data.consumedFats"
+                [dailyIntake]="data.dailyFatIntake">
+            </app-basic-graph>
         </div>
     </div>
     <div class="container-intakes">

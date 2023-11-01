@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// Http
-import { HttpClientModule } from '@angular/common/http';
 // Material: Forms
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +19,6 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [],
   imports: [CommonModule],
   exports: [
-    HttpClientModule,
     // Material: Forms
     FormsModule,
     ReactiveFormsModule,
@@ -35,7 +32,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     // Material: Visual Components
     MatDialogModule,
-    MatSnackBarModule,
   ],
 })
 export class AngularMaterialModule {}

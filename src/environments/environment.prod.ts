@@ -1,5 +1,13 @@
 export const environment = {
-    production: true,
-    api: "http://localhost:8080",
-    rscAuth: "/auth",
+  production: true,
+  api: 'http://localhost:8080',
+  rscAuth: '/auth',
+  rscUsers: '/user',
+  rscConfig: '/user/config',
+  rscInfo: '/user/info',
+  rscFoods: '/user/foods',
+  rscSubscriptions: '/user/subscriptions',
+  rscIntakes: '/user/intakes',
+  rscFavorites: '/user/favorites',
+  rscFitness: '/user/fitness',
 };

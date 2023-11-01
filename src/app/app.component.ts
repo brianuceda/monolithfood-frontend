@@ -77,7 +77,7 @@ export class AppComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.setItem(
       'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXdpZ29kIiwiaWF0IjoxNjk4MzUxNjUwLCJleHAiOjE2OTg5NTY0NTB9.z03hSWgBo7AfQZ5Jy1nYyBIVppFpxAfuB0W1krfE1fc'
+      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXJpZGVwYXBlbCIsImlhdCI6MTY5ODgyNTYyMSwiZXhwIjoxNjk5NDMwNDIxfQ.E0pwsTop7anh6DRWDOrwzG5LNTHZHTEy1mizLGXX6dI'
     );
   }
   public setPersonalInfoToken(): void {
