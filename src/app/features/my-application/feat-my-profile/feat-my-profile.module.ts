@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ActivityLevelsComponent } from './components/activity-levels/activity-levels.component';
 import { ObjectivesComponent } from './components/objectives/objectives.component';
+import { AngularMaterialModule } from 'src/app/shared/modules/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,6 @@ import { ObjectivesComponent } from './components/objectives/objectives.componen
     ActivityLevelsComponent,
     ObjectivesComponent,
   ],
-  imports: [CommonModule, FeatMyProfileRoutingModule, MatButtonModule],
+  imports: [CommonModule, FeatMyProfileRoutingModule, MatButtonModule, AngularMaterialModule],
 })
 export class FeatMyProfileModule {}
