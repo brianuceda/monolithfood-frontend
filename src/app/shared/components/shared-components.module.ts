@@ -13,6 +13,7 @@ import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.com
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
+import { AngularMaterialModule } from '../modules/angular-material.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,13 @@ import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.compo
     SublevelMenuComponent,
     CustomSnackbarComponent,
   ],
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    AngularMaterialModule,
+  ],
   exports: [
     ButtonComponent,
     PublicNavbarComponent,

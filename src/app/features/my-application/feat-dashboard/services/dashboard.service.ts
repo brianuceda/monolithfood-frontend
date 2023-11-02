@@ -28,7 +28,13 @@ export class DashboardService {
   ): { startDate: string; endDate: string } | null {
     const dateValue = dateControl.value;
     if (!dateValue) return null;
-    const date = new Date(dateValue).toISOString().slice(0, 11); // Formato: YYYY-MM-DDT
+    // Crear objeto Date
+    const dateObj = new Date(dateValue);
+    // Restar 5 horas para nivelar la fecha de Perú a UTC
+    dateObj.setTime(dateObj.getTime() - 5 * 60 * 60 * 1000);
+    // Convertir a Formato: YYYY-MM-DDT
+    const date = dateObj.toISOString().slice(0, 11);
+    // Obtener fecha de inicio y fecha de fin
     const startDate = date + '00:00:00';
     const endDate = date + '23:59:59.999';
     return {

@@ -3,3 +3,47 @@
 @import "src/assets/scss/colors.scss";
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
+
+$btn-height: 45px;
+$btn-large: 300px;
+$txt-large: 14px;
+
+.btn {
+  margin: 7.5px 0;
+  transition: $btn-transition;
+
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+.large {
+  min-width: $btn-large;
+  height: $btn-height;
+  font-size: $txt-large;
+  font-weight: 400;
+}
+
+.oauth2 {
+  background: #ffffff;
+  color: $txt-color-black;
+  border: 1px solid rgba($txt-color-black, 0.5);
+  border-radius: 3px;
+
+  &:hover {
+    background: rgba($txt-color-black, 0.25);
+    color: $txt-color-black;
+    border: 1px solid rgba($txt-color-black, 0.5);
+  }
+}
+
+.primary {
+  background: #5f27a7;
+  color: $txt-color;
+  border-radius: 5px;
+
+  &:hover {
+    background: #471d86;
+    color: $txt-color;
+  }
+}

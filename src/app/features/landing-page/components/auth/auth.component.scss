@@ -1,0 +1,125 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+$width-card: 300px;
+$height-card: 45px;
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  text-align: center;
+  color: $txt-color-black;
+  background: $bg-auth-page;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container-card {
+    width: 100%;
+    height: 100%;
+    //   Acá va el contenido dentro de la página
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+    .card__title {
+      margin-top: 30px;
+
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .card__inputs {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      max-width: $width-card;
+
+      .caja {
+        text-align: start;
+
+        .caja-txt {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .caja-input {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 0.25rem;
+        }
+      }
+
+      .join__buttons {
+        .extra-btns {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          .lost__pass {
+            text-decoration: none;
+            color: $txt-color-black;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            margin: 10px 0 30px 0;
+
+            &:hover {
+              color: #5f27a7;
+              text-decoration: underline;
+            }
+          }
+
+          .register {
+            text-decoration: none;
+            color: $txt-color-black;
+            cursor: pointer;
+            color: #855fb6;
+            font-weight: 700;
+            transition: all 0.3s ease-in-out;
+            margin: 10px 0 30px 0;
+
+            &:hover {
+              color: #8449d3;
+              // text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.mat-form-field:not(.mat-form-field-has-label) .mat-form-field-infix {
+  border-top-width: 0;
+}
+@media (max-width: $media-query-sm) {
+  .container {
+    background: transparent;
+
+    .container-card {
+      background: $bg-auth-page;
+      width: 100%;
+      height: 100%;
+      margin: 10% 0;
+      border-radius: 10px;
+    }
+  }
+}
