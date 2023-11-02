@@ -13,6 +13,8 @@ import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.com
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.compo
     SublevelMenuComponent,
     CustomSnackbarComponent,
   ],
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule,MatSlideToggleModule],
   exports: [
     ButtonComponent,
     PublicNavbarComponent,

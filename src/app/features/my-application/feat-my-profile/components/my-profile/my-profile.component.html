@@ -1,15 +1,98 @@
 <div class="container">
     <div class="row">
         <div class="d-flex align-items-center">
-            <img src="https://cdn.pixabay.com/photo/2021/12/25/11/57/scary-6892983_1280.png">
+            <img src="https://cdn.pixabay.com/photo/2021/12/25/11/57/scary-6892983_1280.png" alt="avatar"
+                class="avatar">
+            <div class="data-perfil">
+                <span class="name">Kiridepapel</span>
+                <span class="email">brianuceda@gmail.com</span>
+                <span class="folowers"> 7 seguidores - 2 seguidos</span>
+            </div>
+            <div class="d-flex social-media">
+                <i class="fa-brands fa-github"></i>
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+            </div>
 
+            <mat-slide-toggle class="ms-5">
+                <span class="switch-perfil">Perfil Publico</span>
+            </mat-slide-toggle>
+
+            <div class="box"></div>
+            <div class="update-data">
+                <div class="d-flex">
+                    <div class="icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <span>Kiridepapel</span>
+                </div>
+                <button class="mt-2">Actualizar nombre de ususario</button>
+            </div>
+
+            <div class="update- ms-3">
+                <div class="d-flex">
+                    <div class="icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <span>brianuceda@gmail.com</span>
+                </div>
+                <button class="mt-2">Actualizar correo electrónico</button>
+            </div>
         </div>
     </div>
+    <br>
+    <hr>
+    <br>
 
-    <button mat-raised-button color="primary" (click)="openCustomSnackbar('Success', 'SUCCESS')">Success</button>
-    <button mat-raised-button color="primary" (click)="openCustomSnackbar('Warning', 'WARN')">Warning</button>
-    <button mat-raised-button color="primary" (click)="openCustomSnackbar('Info', 'INFO')">Info</button>
-    <button mat-raised-button color="primary"
-        (click)="openCustomSnackbar('Esssssssssssssssssssssssssssssssssssssssssssssssssssssssssssrror', 'ERROR')">Error</button>
-    <button mat-raised-button color="primary" (click)="openCustomSnackbar('Favorite', 'FAVORITE')">Favorite</button>
+    <div class="row">
+        <div class="cold-md-5 ps-5">
+            <div class="input-group">
+                <label>Nombre Completo</label>
+                <input type="text" placeholder="Nombre completo">
+                <i class="fa-solid fa-person"></i>
+            </div>
+
+            <div class="input-group">
+                <label>Género</label>
+                <select>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+                <i class="fa-solid fa-mars-and-venus"></i>
+            </div>
+
+            <div class="input-group">
+                <label>Fecha de Nacimiento</label>
+                <input type="date">
+                <i class="fa-solid fa-calendar"></i>
+            </div>
+
+            <div class="input-group">
+                <label>Localización</label>
+                <input type="text" placeholder="Ingrese su localización">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div class="text-center mt-2">
+                <button>Actualizar</button>
+            </div>
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
 </div>

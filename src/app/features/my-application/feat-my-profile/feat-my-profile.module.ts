@@ -6,6 +6,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { ActivityLevelsComponent } from './components/activity-levels/activity-levels.component';
 import { ObjectivesComponent } from './components/objectives/objectives.component';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material.module';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { AngularMaterialModule } from 'src/app/shared/modules/angular-material.m
     ActivityLevelsComponent,
     ObjectivesComponent,
   ],
-  imports: [CommonModule, FeatMyProfileRoutingModule, MatButtonModule, AngularMaterialModule],
+  imports: [CommonModule, FeatMyProfileRoutingModule, MatButtonModule, AngularMaterialModule,MatSlideToggleModule],
 })
 export class FeatMyProfileModule {}
