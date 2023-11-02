@@ -13,16 +13,16 @@
                 [icon]="'github'"></app-button>
         </div>
         <div class="card__inputs">
-            <form [formGroup]="myForm">
+            <form [formGroup]="registerForm">
                 <!-- Nombre -->
                 <div class="caja validation-available">
                     <span class="caja-txt">Nombre de usuario</span>
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="username">
                     </mat-form-field>
-                    <div *ngIf="myForm.get('username')?.hasError('required') && myForm.get('username')?.touched"
+                    <div *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched"
                         class="has-error">
-                        <!-- <span>Este campo es obligatorio</span> -->
+                        <span>Este campo es obligatorio</span>
                     </div>
                 </div>
                 <div class="caja">
@@ -30,13 +30,13 @@
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="email">
                     </mat-form-field>
-                    <div *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched"
+                    <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched"
                         class="has-error">
-                        <!-- <span>Este campo es obligatorio</span> -->
+                        <span>Este campo es obligatorio</span>
                     </div>
-                    <div *ngIf="myForm.get('email')?.hasError('email') && myForm.get('email')?.touched"
+                    <div *ngIf="registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched"
                         class="has-error">
-                        <!-- <span>El correo electrónico no es válido</span> -->
+                        <span>El correo electrónico no es válido</span>
                     </div>
                 </div>
                 <div class="caja">
@@ -44,9 +44,9 @@
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="password">
                     </mat-form-field>
-                    <div *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched"
+                    <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched"
                         class="has-error">
-                        <!-- <span>Este campo es obligatorio</span> -->
+                        <span>Este campo es obligatorio</span>
                     </div>
                 </div>
                 <div class="caja">
@@ -54,18 +54,18 @@
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="names">
                     </mat-form-field>
-                    <div *ngIf="myForm.get('names')?.hasError('required') && myForm.get('names')?.touched"
+                    <div *ngIf="registerForm.get('names')?.hasError('required') && registerForm.get('names')?.touched"
                         class="has-error">
-                        <!-- <span>Este campo es obligatorio</span> -->
+                        <span>Este campo es obligatorio</span>
                     </div>
                 </div>
                 <!-- (Variable: Agregar o Actualizar) y Cancelar -->
                 <div class="join__buttons">
-                    <app-button [text]="'Crear cuenta'" [type]="'primary'" [width]="'large'" [icon]="'fa fa-sign-in'"
-                        [disabled]="myForm.invalid"></app-button>
+                    <app-button (click)="register()" [text]="'Crear cuenta'" [type]="'primary'" [width]="'large'"
+                        [icon]="'fa fa-sign-in'" [disabled]="registerForm.invalid"></app-button>
                     <div class="extra-btns">
-                        <span href="#" class="new__account">¿Ya tienes una cuenta?
-                            <a href="#" class="register">Inicia sesión</a>
+                        <span class="new__account">¿Ya tienes una cuenta?
+                            <a href="/login" class="register">Inicia sesión</a>
                         </span>
                     </div>
                 </div>

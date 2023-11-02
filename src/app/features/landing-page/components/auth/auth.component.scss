@@ -50,7 +50,8 @@ $height-card: 45px;
 
       .caja {
         text-align: start;
-        margin-bottom: 12px;
+        margin-bottom: 20px;
+        position: relative;
 
         .caja-txt {
           font-size: 14px;
@@ -64,6 +65,23 @@ $height-card: 45px;
           flex-direction: column;
           width: 100%;
           margin-top: 0.25rem;
+
+          input {
+            color: $txt-color-black;
+          }
+        }
+
+        .has-error {
+          position: absolute;
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+
+          span {
+            white-space: nowrap;
+            font-size: 12px;
+            color: $txt-color-red;
+          }
         }
       }
 

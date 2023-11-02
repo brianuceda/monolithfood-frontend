@@ -6,14 +6,7 @@ import {
 } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { CustomSnackbarComponent } from '../components/custom-snackbar/custom-snackbar.component';
-
-enum ResponseType {
-  SUCCESS = 'SUCCESS',
-  INFO = 'INFO',
-  WARN = 'WARN',
-  ERROR = 'ERROR',
-  FAVORITE = 'FAVORITE',
-}
+import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 
 interface CustomSnackbarData {
   type: string;
@@ -62,7 +55,7 @@ export class GlobalService {
     this.isExpandedSubject.next(!this.isExpandedSubject.value);
   }
   // Snackbar: Abrir o cerrar
-  public openCustomSnackbar(message: string, type: string): void {
+  public openCustomSnackbar(message: string, type: ResponseType): void {
     let data: CustomSnackbarData = {
       type: type,
       icon: '',

@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
         const payload = this.authService.decodeJwtPayload(token);
         // Si el token no tiene la estructura correcta, redirigir a '/login'.
         if (!this.authService.isValidTokenStructure(payload)) {
-          localStorage.clear();
+          localStorage.removeItem('token');
           this.router.navigateByUrl('/login');
           return false;
         }
@@ -33,12 +33,12 @@ export class AuthGuard implements CanActivate {
           return false;
         }
       } catch (error) {
-        localStorage.clear();
+        localStorage.removeItem('token');
         this.router.navigateByUrl('/login');
         return false;
       }
     } else {
-      localStorage.clear();
+      localStorage.removeItem('token');
       this.router.navigateByUrl('/login');
       return false;
     }

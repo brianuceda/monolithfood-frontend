@@ -13,16 +13,16 @@
                 [icon]="'github'"></app-button>
         </div>
         <div class="card__inputs">
-            <form [formGroup]="myForm">
+            <form [formGroup]="loginForm">
                 <!-- Nombre -->
                 <div class="caja validation-available">
                     <span class="caja-txt">Nombre de usuario</span>
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="username">
                     </mat-form-field>
-                    <div *ngIf="myForm.get('username')?.hasError('required') && myForm.get('username')?.touched"
+                    <div *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched"
                         class="has-error">
-                        <!-- <span>Este campo es obligatorio</span> -->
+                        <span>Este campo es obligatorio</span>
                     </div>
                 </div>
                 <div class="caja">
@@ -30,19 +30,19 @@
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="password">
                     </mat-form-field>
-                    <div *ngIf="myForm.get('password')?.hasError('required') && myForm.get('password')?.touched"
+                    <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
                         class="has-error">
-                        <!-- <span>Este campo es obligatorio</span> -->
+                        <span>Este campo es obligatorio</span>
                     </div>
                 </div>
                 <!-- (Variable: Agregar o Actualizar) y Cancelar -->
                 <div class="join__buttons">
-                    <app-button [text]="'Ingresar'" [type]="'primary'" [width]="'large'" [icon]="'fa fa-sign-in'"
-                        [disabled]="myForm.invalid"></app-button>
+                    <app-button (click)="login()" [text]="'Ingresar'" [type]="'primary'" [width]="'large'"
+                        [icon]="'fa fa-sign-in'" [disabled]="loginForm.invalid"></app-button>
                     <div class="extra-btns">
-                        <a href="#" class="lost__pass">¿Olvidaste tu contraseña?</a>
-                        <span href="#" class="new__account">¿No tienes una cuenta?
-                            <a href="#" class="register">Regístrate</a>
+                        <a href="/lost-password" class="lost__pass">¿Olvidaste tu contraseña?</a>
+                        <span class="new__account">¿No tienes una cuenta?
+                            <a href="/register" class="register">Regístrate</a>
                         </span>
                     </div>
                 </div>
