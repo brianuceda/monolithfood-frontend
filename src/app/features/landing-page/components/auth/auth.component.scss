@@ -28,8 +28,6 @@ $height-card: 45px;
     flex-direction: column;
 
     .card__title {
-      margin-top: 30px;
-
       h1 {
         font-size: 1.75rem;
         font-weight: 800;
@@ -52,6 +50,7 @@ $height-card: 45px;
 
       .caja {
         text-align: start;
+        margin-bottom: 12px;
 
         .caja-txt {
           font-size: 14px;
@@ -75,41 +74,32 @@ $height-card: 45px;
           align-items: center;
           flex-direction: column;
 
-          .lost__pass {
-            text-decoration: none;
-            color: $txt-color-black;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            margin: 10px 0 30px 0;
-
-            &:hover {
-              color: #5f27a7;
-              text-decoration: underline;
-            }
-          }
-
+          .lost__pass,
           .register {
             text-decoration: none;
             color: $txt-color-black;
             cursor: pointer;
-            color: #855fb6;
-            font-weight: 700;
+            color: #7746b7;
             transition: all 0.3s ease-in-out;
-            margin: 10px 0 30px 0;
 
             &:hover {
-              color: #8449d3;
-              // text-decoration: underline;
+              text-decoration: underline;
             }
+          }
+
+          .lost__pass {
+            margin: 20px 0 10px;
+          }
+
+          .new__account {
+            margin-top: 20px;
           }
         }
       }
     }
   }
 }
-.mat-form-field:not(.mat-form-field-has-label) .mat-form-field-infix {
-  border-top-width: 0;
-}
+
 @media (max-width: $media-query-sm) {
   .container {
     background: transparent;

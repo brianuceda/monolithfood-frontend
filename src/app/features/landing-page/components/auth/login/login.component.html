@@ -15,7 +15,7 @@
         <div class="card__inputs">
             <form [formGroup]="myForm">
                 <!-- Nombre -->
-                <div class="caja" style="font-size: 12px !important;">
+                <div class="caja validation-available">
                     <span class="caja-txt">Nombre de usuario</span>
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="username">
@@ -41,7 +41,9 @@
                         [disabled]="myForm.invalid"></app-button>
                     <div class="extra-btns">
                         <a href="#" class="lost__pass">¿Olvidaste tu contraseña?</a>
-                        <span href="#">¿No tienes una cuenta? <a href="#" class="register">Regístrate</a></span>
+                        <span href="#" class="new__account">¿No tienes una cuenta?
+                            <a href="#" class="register">Regístrate</a>
+                        </span>
                     </div>
                 </div>
             </form>
