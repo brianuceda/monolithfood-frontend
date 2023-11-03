@@ -21,6 +21,6 @@ import { PlansComponent } from './features/my-application/feat-plans/components/
     FeatGeneralModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

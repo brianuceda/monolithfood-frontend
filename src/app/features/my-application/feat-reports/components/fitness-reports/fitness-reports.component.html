@@ -1,13 +1,20 @@
 <div class="container">
-    <div class="div">esto</div>
-    <div class="div"></div>
-    <div class="div">es</div>
-    <div class="div"></div>
-    <div class="div">un</div>
-    <div class="div"></div>
-    <div class="div">ejemplo</div>
-    <div class="div"></div>
-    <div class="div">de</div>
-    <div class="div"></div>
-    <div class="div">flexbox</div>
+  <!-- div de objetives calories -->
+  <div class="div">
+      <div class="div objetives short">objetivos
+          <!-- <mat-progress-bar mode="determinate" value="80" class="progressBar custom-progress-bar" style="width: 90%; height: 20px; margin-top: 10px;"></mat-progress-bar> -->
+      </div>
+      <div class="div calories chart">
+        <apx-chart
+          [series]="chartOptions.series!"
+          [chart]="chartOptions.chart!"
+          [dataLabels]="chartOptions.dataLabels!"
+          [plotOptions]="chartOptions.plotOptions!"
+          [yaxis]="chartOptions.yaxis!"
+          [xaxis]="chartOptions.xaxis!"
+        ></apx-chart>
+      </div>
+  </div>
+  <!-- div de fitness information -->
+  <div class="div"> fitness  information </div>
 </div>
