@@ -14,6 +14,8 @@ export class PrivateNavbarComponent {
   title?: string;
   titleSub?: Subscription;
   isMenuVisible: boolean = false;
+  darkMode: boolean = true;
+  notifications: boolean = false;
 
   constructor(
     private globalService: GlobalService,
@@ -26,6 +28,14 @@ export class PrivateNavbarComponent {
 
   toggleMenu(): void {
     this.isMenuVisible = !this.isMenuVisible;
+  }
+
+  toggleDarkMode(): void {
+    this.darkMode = !this.darkMode;
+  }
+
+  toggleNotifications(): void {
+    this.notifications = !this.notifications;
   }
 
   logout(): void {

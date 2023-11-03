@@ -36,7 +36,6 @@
   }
 
   .profile {
-    cursor: pointer;
     display: flex;
     min-width: 200px;
     justify-content: flex-end;
@@ -66,24 +65,34 @@
       position: absolute;
       top: 100%;
       right: 0;
-      padding: 10px;
+      padding: 10px 30px;
       background: $bg-navbar-color;
       box-shadow: 0 20px 5px rgba(0, 0, 0, 0.2);
       z-index: 10;
       cursor: default;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
       border-bottom-left-radius: 15px;
 
       .btn-expanded {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 10px 40px;
+        padding: 7.5px;
         cursor: pointer;
         text-decoration: none;
         color: $txt-color;
+
+        span {
+          cursor: pointer;
+        }
+
+        &.switch {
+          mat-slide-toggle {
+            color: #fff;
+          }
+        }
 
         &.btn-press {
           transition: 0.5s all ease;

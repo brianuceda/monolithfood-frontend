@@ -2,27 +2,27 @@
     <div class="title">
         <span>{{ title }}</span>
     </div>
-    <div class="profile" (click)="toggleMenu()">
+    <div class="profile">
         <div class="data">
             <span>Kiridepapel</span>
             <span class="money">S/. 0.0</span>
         </div>
-        <img class="img" src="https://i.ibb.co/YZFrN73/example-img.png" alt="Profile image">
+        <img class="img" src="https://i.ibb.co/YZFrN73/example-img.png" alt="Profile image" (click)="toggleMenu()">
         <!-- Menú desplegable -->
         <div class="data-more" *ngIf="isMenuVisible" [@toggle]="isMenuVisible ? 'active' : 'inactive'">
             <a routerLink="/my-profile" class="btn-expanded btn-press">
                 <span>Ver perfil</span>
             </a>
-            <div class="btn-expanded">
+            <div class="btn-expanded" (click)="toggleDarkMode()">
                 <span>Modo oscuro</span>
                 <div class="switch">
-                    <input type="checkbox" id="darkModeSwitch" />
+                    <mat-slide-toggle [color]="'primary'" [checked]="darkMode"></mat-slide-toggle>
                 </div>
             </div>
-            <div class="btn-expanded">
+            <div class="btn-expanded" (click)="toggleNotifications()">
                 <span>Notificaciones</span>
                 <div class="switch">
-                    <input type="checkbox" id="notificationsSwitch" />
+                    <mat-slide-toggle [color]="'primary'" [checked]="notifications"></mat-slide-toggle>
                 </div>
             </div>
             <a (click)="logout()" class="btn-expanded btn-press">

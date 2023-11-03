@@ -86,3 +86,12 @@ $title-height: 50px;
     }
   }
 }
+
+@media (max-width: $media-query-sm) {
+  .container {
+    .container-date {
+      flex-direction: column;
+      // gap: 0;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Usefull Components
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // Input Components
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     // Material: Usefull Components
     MatIconModule,
     MatButtonModule,
+    MatSlideToggleModule,
     // Material: Input Components
     MatInputModule,
     MatFormFieldModule,
