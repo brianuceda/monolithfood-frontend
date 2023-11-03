@@ -2,11 +2,32 @@
     <div class="title">
         <span>{{ title }}</span>
     </div>
-    <div class="profile">
+    <div class="profile" (click)="toggleMenu()">
         <div class="data">
             <span>Kiridepapel</span>
             <span class="money">S/. 0.0</span>
         </div>
         <img class="img" src="https://i.ibb.co/YZFrN73/example-img.png" alt="Profile image">
+        <!-- Menú desplegable -->
+        <div class="data-more" *ngIf="isMenuVisible" [@toggle]="isMenuVisible ? 'active' : 'inactive'">
+            <a routerLink="/my-profile" class="btn-expanded btn-press">
+                <span>Ver perfil</span>
+            </a>
+            <div class="btn-expanded">
+                <span>Modo oscuro</span>
+                <div class="switch">
+                    <input type="checkbox" id="darkModeSwitch" />
+                </div>
+            </div>
+            <div class="btn-expanded">
+                <span>Notificaciones</span>
+                <div class="switch">
+                    <input type="checkbox" id="notificationsSwitch" />
+                </div>
+            </div>
+            <a (click)="logout()" class="btn-expanded btn-press">
+                <span>Cerrar sesión</span>
+            </a>
+        </div>
     </div>
 </div>

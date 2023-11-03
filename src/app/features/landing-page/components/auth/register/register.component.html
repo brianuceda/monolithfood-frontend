@@ -20,9 +20,27 @@
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="username" autocomplete="username">
                     </mat-form-field>
-                    <div *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched"
-                        class="has-error">
-                        <span>Este campo es obligatorio</span>
+                    <div *ngIf="registerForm.get('username')?.touched">
+                        <ng-container *ngIf="registerForm.get('username')?.hasError('required'); else minLengthError">
+                            <div class="has-error">
+                                <span>Este campo es obligatorio</span>
+                            </div>
+                        </ng-container>
+                        <ng-template #minLengthError>
+                            <ng-container
+                                *ngIf="registerForm.get('username')?.hasError('minlength'); else noUpperCaseError">
+                                <div class="has-error">
+                                    <span>Debe tener al menos 6 caracteres</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #noUpperCaseError>
+                            <ng-container *ngIf="registerForm.get('username')?.hasError('hasUpperCase')">
+                                <div class="has-error">
+                                    <span>No debe contener letras mayúsculas</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
                     </div>
                 </div>
                 <!-- Correo electrónico -->

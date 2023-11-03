@@ -81,6 +81,12 @@ export class AuthService {
 
   // * Forgot Password
 
+  // * Logout
+  public logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/login');
+  }
+
   // * Obtener dirección IP
   public getIpAddress(): Observable<string> {
     const storedIp = localStorage.getItem('ipAddress');
