@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, catchError, of } from 'rxjs';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { ResponseType } from '../interfaces/ResponseType';

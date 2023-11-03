@@ -1,11 +1,17 @@
 // login.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { environment } from 'src/environments/environment.prod';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +22,7 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   private oauthUrl: string = environment.oauthUrl;
   disabled: boolean = true;
+  hide = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +38,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, this.passwordStrengthValidator()]],
       names: ['', [Validators.required]],
     });
   }
@@ -67,5 +74,32 @@ export class RegisterComponent implements OnInit {
   }
   githubOauth2(): void {
     window.location.href = this.oauthUrl + '/github';
+  }
+
+  // Método para validar la fuerza de la contraseña
+  private passwordStrengthValidator(): Validators {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value || '';
+      let errors = {};
+      if (value.length < 8) {
+        errors = {
+          ...errors,
+          minlength: { requiredLength: 8, actualLength: value.length },
+        };
+      }
+      if (!/[A-Z]/.test(value)) {
+        errors = { ...errors, hasUpperCase: true };
+      }
+      if (!/[a-z]/.test(value)) {
+        errors = { ...errors, hasLowerCase: true };
+      }
+      if (!/[0-9]/.test(value)) {
+        errors = { ...errors, hasNumeric: true };
+      }
+      if (!/[~!@#\$%\^&\*\(\)_\+\-\=\[\]\{\};',\.\/\|:?><]/.test(value)) {
+        errors = { ...errors, hasSpecialCharacter: true };
+      }
+      return Object.keys(errors).length ? errors : null;
+    };
   }
 }

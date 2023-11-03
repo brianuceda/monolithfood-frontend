@@ -23,9 +23,17 @@ $height-card: 45px;
     height: 100%;
     //   Acá va el contenido dentro de la página
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 5%;
+
+    .card__title,
+    .card__buttons,
+    .card__inputs {
+      width: 100%;
+      padding: 0 10%;
+    }
 
     .card__title {
       h1 {
@@ -41,13 +49,6 @@ $height-card: 45px;
     }
 
     .card__inputs {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      max-width: $width-card;
-
       .caja {
         text-align: start;
         margin-bottom: 20px;
@@ -69,6 +70,14 @@ $height-card: 45px;
           input {
             color: $txt-color-black;
           }
+
+          mat-icon {
+            font-size: 22px;
+            color: $txt-color-lead;
+          }
+          mat-icon:hover {
+            color: $txt-color-black !important;
+          }
         }
 
         .has-error {
@@ -84,34 +93,31 @@ $height-card: 45px;
           }
         }
       }
+      .extra-btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
 
-      .join__buttons {
-        .extra-btns {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+        .lost__pass,
+        .register {
+          text-decoration: none;
+          color: $txt-color-black;
+          cursor: pointer;
+          color: #7746b7;
+          transition: all 0.3s ease-in-out;
 
-          .lost__pass,
-          .register {
-            text-decoration: none;
-            color: $txt-color-black;
-            cursor: pointer;
-            color: #7746b7;
-            transition: all 0.3s ease-in-out;
-
-            &:hover {
-              text-decoration: underline;
-            }
+          &:hover {
+            text-decoration: underline;
           }
+        }
 
-          .lost__pass {
-            margin: 20px 0 10px;
-          }
+        .lost__pass {
+          margin: 20px 0 10px;
+        }
 
-          .new__account {
-            margin-top: 20px;
-          }
+        .new__account {
+          margin-top: 20px;
         }
       }
     }
@@ -121,13 +127,36 @@ $height-card: 45px;
 @media (max-width: $media-query-sm) {
   .container {
     background: transparent;
+    min-height: calc(100vh - $bar-size);
 
     .container-card {
       background: $bg-auth-page;
-      width: 100%;
-      height: 100%;
-      margin: 10% 0;
       border-radius: 10px;
+      gap: 30px;
+      padding: 30px 0;
+
+      .card__title,
+      .card__buttons,
+      .card__inputs {
+        width: 100%;
+        padding: 0 15%;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-ssm) {
+  .container {
+    background: #ffffff;
+
+    .container-card {
+      padding: 0;
+      .card__title,
+      .card__buttons,
+      .card__inputs {
+        width: 100%;
+        padding: 0 5%;
+      }
     }
   }
 }

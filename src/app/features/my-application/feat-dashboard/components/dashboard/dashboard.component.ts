@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { PrivateService } from 'src/app/core/services/private.service';
 // Components
 import { SetInformationComponent } from '../../../feat-onboarding/components/set-information/set-information.component';
 import { SelectObjectivesComponent } from '../../../feat-onboarding/components/select-objectives/select-objectives.component';
@@ -56,7 +56,7 @@ export class DashboardComponent {
   constructor(
     private globalService: GlobalService,
     private dashboardService: DashboardService,
-    private authService: AuthService,
+    private privateService: PrivateService,
     private dialog: MatDialog
   ) {}
 
@@ -171,7 +171,7 @@ export class DashboardComponent {
 
   private getProfileStage(): string {
     const token = localStorage.getItem('token')!;
-    const payload = this.authService.decodeJwtPayload(token);
+    const payload = this.privateService.decodeJwtPayload(token);
     return payload.profileStage;
   }
 }

@@ -1,4 +1,4 @@
-import { AuthService } from 'src/app/core/services/auth.service';
+import { PrivateService } from 'src/app/core/services/private.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { GlobalService } from './shared/services/global.service';
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   actualPath!: string;
 
   constructor(
-    private authService: AuthService,
+    private PrivateService: PrivateService,
     private globalService: GlobalService,
     private router: Router
   ) {
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
   }
   // Si hay algún dashboard abierto, ocultar el overflow del body
   isDialogOpened(): boolean {
-    return this.authService.isDialogOpened();
+    return this.PrivateService.isDialogOpened();
   }
 
   // * Funciones

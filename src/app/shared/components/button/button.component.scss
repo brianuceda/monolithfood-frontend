@@ -5,23 +5,19 @@
 @import "src/assets/scss/animations.scss";
 
 $btn-height: 45px;
-$btn-large: 300px;
 $txt-large: 14px;
 
 .btn {
   margin: 7.5px 0;
+  width: 100%;
   transition: $btn-transition;
+  height: $btn-height;
+  font-size: $txt-large;
+  font-weight: 400;
 
   .icon {
     margin-right: 5px;
   }
-}
-
-.large {
-  min-width: $btn-large;
-  height: $btn-height;
-  font-size: $txt-large;
-  font-weight: 400;
 }
 
 .oauth2 {

@@ -5,26 +5,27 @@
             <p>Registrarse</p>
         </div>
         <div class="card__buttons">
-            <app-button (click)="googleOauth2()" [text]="'Ingresar con Google'" [type]="'oauth2'" [width]="'large'"
+            <app-button (click)="googleOauth2()" [text]="'Ingresar con Google'" [type]="'oauth2'"
                 [icon]="'google'"></app-button>
             <app-button (click)="microsoftOauth2()" [text]="'Ingresar con Microsoft'" [type]="'oauth2'"
-                [width]="'large'" [icon]="'microsoft'"></app-button>
-            <app-button (click)="githubOauth2()" [text]="'Ingresar con GitHub'" [type]="'oauth2'" [width]="'large'"
+                [icon]="'microsoft'"></app-button>
+            <app-button (click)="githubOauth2()" [text]="'Ingresar con GitHub'" [type]="'oauth2'"
                 [icon]="'github'"></app-button>
         </div>
         <div class="card__inputs">
             <form [formGroup]="registerForm">
-                <!-- Nombre -->
+                <!-- Nombre de usuario -->
                 <div class="caja validation-available">
                     <span class="caja-txt">Nombre de usuario</span>
                     <mat-form-field class="caja-input" appearance="outline">
-                        <input matInput formControlName="username">
+                        <input matInput formControlName="username" autocomplete="username">
                     </mat-form-field>
                     <div *ngIf="registerForm.get('username')?.hasError('required') && registerForm.get('username')?.touched"
                         class="has-error">
                         <span>Este campo es obligatorio</span>
                     </div>
                 </div>
+                <!-- Correo electrónico -->
                 <div class="caja">
                     <span class="caja-txt">Correo electrónico</span>
                     <mat-form-field class="caja-input" appearance="outline">
@@ -39,16 +40,65 @@
                         <span>El correo electrónico no es válido</span>
                     </div>
                 </div>
+                <!-- Contraseña -->
                 <div class="caja">
                     <span class="caja-txt">Contraseña</span>
                     <mat-form-field class="caja-input" appearance="outline">
-                        <input matInput formControlName="password">
+                        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+                            autocomplete="current-password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
                     </mat-form-field>
-                    <div *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched"
-                        class="has-error">
-                        <span>Este campo es obligatorio</span>
+                    <div *ngIf="registerForm.get('password')?.touched">
+                        <ng-container *ngIf="registerForm.get('password')?.hasError('required'); else minLengthError">
+                            <div class="has-error">
+                                <span>Este campo es obligatorio</span>
+                            </div>
+                        </ng-container>
+                        <ng-template #minLengthError>
+                            <ng-container
+                                *ngIf="registerForm.get('password')?.hasError('minlength'); else upperCaseError">
+                                <div class="has-error">
+                                    <span>Debe tener al menos 8 caracteres</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #upperCaseError>
+                            <ng-container
+                                *ngIf="registerForm.get('password')?.hasError('hasUpperCase'); else lowerCaseError">
+                                <div class="has-error">
+                                    <span>Debe contener al menos una letra mayúscula</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #lowerCaseError>
+                            <ng-container
+                                *ngIf="registerForm.get('password')?.hasError('hasLowerCase'); else numericError">
+                                <div class="has-error">
+                                    <span>Debe contener al menos una letra minúscula</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #numericError>
+                            <ng-container
+                                *ngIf="registerForm.get('password')?.hasError('hasNumeric'); else specialCharacterError">
+                                <div class="has-error">
+                                    <span>Debe contener al menos un dígito numérico</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
+                        <ng-template #specialCharacterError>
+                            <ng-container *ngIf="registerForm.get('password')?.hasError('hasSpecialCharacter');">
+                                <div class="has-error">
+                                    <span>Debe contener al menos un carácter especial</span>
+                                </div>
+                            </ng-container>
+                        </ng-template>
                     </div>
                 </div>
+                <!-- Nombre completo -->
                 <div class="caja">
                     <span class="caja-txt">Nombre completo</span>
                     <mat-form-field class="caja-input" appearance="outline">
@@ -59,17 +109,15 @@
                         <span>Este campo es obligatorio</span>
                     </div>
                 </div>
-                <!-- (Variable: Agregar o Actualizar) y Cancelar -->
-                <div class="join__buttons">
-                    <app-button (click)="register()" [text]="'Crear cuenta'" [type]="'primary'" [width]="'large'"
-                        [icon]="'fa fa-sign-in'" [disabled]="registerForm.invalid"></app-button>
-                    <div class="extra-btns">
-                        <span class="new__account">¿Ya tienes una cuenta?
-                            <a href="/login" class="register">Inicia sesión</a>
-                        </span>
-                    </div>
-                </div>
+                <app-button (click)="register()" [text]="'Crear cuenta'" [type]="'primary'" [icon]="'fa fa-sign-in'"
+                    [disabled]="registerForm.invalid"></app-button>
             </form>
+            <!-- (Variable: Agregar o Actualizar) y Cancelar -->
+            <div class="extra-btns">
+                <span class="new__account">¿Ya tienes una cuenta?
+                    <a href="/login" class="register">Inicia sesión</a>
+                </span>
+            </div>
         </div>
     </div>
 </div>
