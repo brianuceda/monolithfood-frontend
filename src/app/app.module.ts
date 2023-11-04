@@ -8,6 +8,7 @@ import { SharedComponentsModule } from 'src/app/shared/components/shared-compone
 import { PrincipalModule } from './shared/modules/principal.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     SharedComponentsModule,
     // Imports
     PrincipalModule,
+    MatIconModule,
   ],
   providers: [
     {

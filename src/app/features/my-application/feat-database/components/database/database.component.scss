@@ -3,6 +3,9 @@
 @import "src/assets/scss/colors.scss";
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amaranth&display=swap');
 
 * {
   box-sizing: border-box;
@@ -10,10 +13,46 @@
   padding: 0;
 }
 
+.Filtro {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.Filtro:hover {
+  cursor: pointer;
+}
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+}
+
+.search-container {
+  background-color: #2E1C45;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.50);
+  border-radius: 5px;
+  width: 90%; 
+  height: 40px; 
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+  margin-left: 10px;
+}
+
 .container {
-  // Dialog animation
   transition: width 0.3s ease;
-  // Window size
   min-width: 100%;
   min-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
   max-width: 100%;
@@ -23,19 +62,85 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  // Direccion del Flex
-  flex-direction: row; // column
+  flex-direction: row;
 
-  // Modificaciones del usuario
-  .div {
-    width: 120px;
-    height: 120px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: rgb(184, 184, 184);
-    margin: 5px;
-    border-radius: 50%;
+  .div1 {
+    width: 211px;
+    height: 286px;
+    margin: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.50);
+    background: #2E1C45;
+    box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.25);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+ 
+
+    .typography1 h1 {
+      color: #7DB1FF;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }    
+
+    .comida {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+    }
+
+    .typography3 p{
+      color: #A3A3A3;
+      text-align: center;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .botones {
+      display: flex;
+      gap: 10px; 
+      margin-top: 10px; 
+    }
+    
+    .botones button {
+      background-color: white; 
+      border: none; 
+      padding: 0; 
+      border-radius: 10px;
+    }
+    
+    .botones button svg {
+      fill: white; 
+    }
+
+    .botones .Btn1 {
+      background-color: #65308E; 
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      border-radius: 5px;
+      height: 30px;
+      padding: 5px 10px;
+    }
+    
+    .botones .Btn1:hover {
+      background-color: #3b185b; 
+    }
+
+    .botones .Btn:hover {
+      background-color: #111012; 
+    }
+
   }
+  
+
 }
+
