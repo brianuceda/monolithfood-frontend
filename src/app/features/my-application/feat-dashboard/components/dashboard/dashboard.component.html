@@ -22,81 +22,39 @@
     <div class="mat-divider"></div>
     <div class="container-graphs" *ngIf="data$ | async as data">
         <div class="graph">
-            <app-basic-graph [nutrientName]="'KCalorias'" [consumed]="data.consumedCalories"
-                [dailyIntake]="data.dailyCaloricIntake">
+            <app-basic-graph [nutrientName]="'KCalorias'" [consumed]="data.macros.consumedCalories"
+                [dailyIntake]="data.macros.dailyCaloricIntake">
             </app-basic-graph>
         </div>
         <div class="graph">
-            <app-basic-graph [nutrientName]="'Proteinas'" [consumed]="data.consumedProteins"
-                [dailyIntake]="data.dailyProteinIntake">
+            <app-basic-graph [nutrientName]="'Proteinas'" [consumed]="data.macros.consumedProteins"
+                [dailyIntake]="data.macros.dailyProteinIntake">
             </app-basic-graph>
         </div>
         <div class="graph">
-            <app-basic-graph [nutrientName]="'Carbohidratos'" [consumed]="data.consumedCarbohydrates"
-                [dailyIntake]="data.dailyCarbohydrateIntake">
+            <app-basic-graph [nutrientName]="'Carbohidratos'" [consumed]="data.macros.consumedCarbohydrates"
+                [dailyIntake]="data.macros.dailyCarbohydrateIntake">
             </app-basic-graph>
         </div>
         <div class="graph">
-            <app-basic-graph [nutrientName]="'Grasas'" [consumed]="data.consumedFats"
-                [dailyIntake]="data.dailyFatIntake">
+            <app-basic-graph [nutrientName]="'Grasas'" [consumed]="data.macros.consumedFats"
+                [dailyIntake]="data.macros.dailyFatIntake">
             </app-basic-graph>
         </div>
     </div>
     <div class="container-intakes">
-        <div class="desayuno intake">
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-        </div>
-        <div class="almuerzo intake">
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-        </div>
-        <div class="cena intake">
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-            <span>hola</span>
-        </div>
+        <ng-container *ngIf="data$ | async as data">
+            <div class="intake">
+                <app-category-intake [categoryName]="'Desayuno'"
+                    [details]="data.categories.desayuno"></app-category-intake>
+            </div>
+            <div class="intake">
+                <app-category-intake [categoryName]="'Almuerzo'"
+                    [details]="data.categories.almuerzo"></app-category-intake>
+            </div>
+            <div class="intake">
+                <app-category-intake [categoryName]="'Cena'" [details]="data.categories.cena"></app-category-intake>
+            </div>
+        </ng-container>
     </div>
 </div>

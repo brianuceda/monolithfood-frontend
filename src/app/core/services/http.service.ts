@@ -11,20 +11,23 @@ export class HttpService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
   getSimple<T>(url: string, params?: any): Observable<T> {
-    return this.http.get<T>(url, { params: params || {} }).pipe(
-      catchError((e) => {
-        let errorMessage = 'Ocurrio un error desconocido';
-        let type = ResponseType.ERROR;
-        if (e.status === 0) {
-          errorMessage = 'No se pudo conectar con el servidor';
-          type = ResponseType.ERROR;
-        } else if (e && e.error && e.error.message) {
-          errorMessage = e.error.message;
-          type = e.error.type;
-        }
-        this.globalService.openCustomSnackbar(errorMessage, type);
-        return of();
-      })
-    );
+    return this.http
+      .get<T>(url, { params: params || {} })
+      .pipe(catchError(this.handleError<T>()));
+  }
+
+  private handleError<T>() {
+    return (error: any): Observable<T> => {
+      let errorMessage = 'Ocurrio un error desconocido';
+      let type = ResponseType.ERROR;
+      if (error.status === 0) {
+        errorMessage = 'No se pudo conectar con el servidor';
+      } else if (error?.error?.message) {
+        errorMessage = error.error.message;
+        type = error.error.type;
+      }
+      this.globalService.openCustomSnackbar(errorMessage, type);
+      return of();
+    };
   }
 }

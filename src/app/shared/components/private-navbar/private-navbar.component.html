@@ -25,9 +25,10 @@
                     <mat-slide-toggle [color]="'primary'" [checked]="notifications"></mat-slide-toggle>
                 </div>
             </div>
-            <a (click)="logout()" class="btn-expanded btn-press">
-                <span>Cerrar sesión</span>
-            </a>
+            <!-- <a (click)="logout()" class="btn-expanded btn-press"> -->
+            <app-button (click)="logout()" class="btn-expanded btn-press" [height]="'30px'" [background]="'#ffffff'"
+                [color]="'#000000'" [text]="'Cerrar sesión'"></app-button>
+            <!-- </a> -->
         </div>
     </div>
 </div>

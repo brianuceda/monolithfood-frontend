@@ -48,6 +48,13 @@ $height-card: 45px;
       }
     }
 
+    .card__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
     .card__inputs {
       .caja {
         text-align: start;
@@ -92,7 +99,12 @@ $height-card: 45px;
             color: $txt-color-red;
           }
         }
+
+        &.caja-last {
+          margin-bottom: 30px;
+        }
       }
+
       .extra-btns {
         display: flex;
         justify-content: center;

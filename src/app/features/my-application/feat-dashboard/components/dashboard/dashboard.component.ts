@@ -13,10 +13,15 @@ import {
   ApexPlotOptions,
   ApexChart,
 } from 'ng-apexcharts';
-import { MacrosDetailedDTO } from '../../interfaces/MacrosDetailedDTO';
+import {
+  MacrosConsumedPerCategory,
+  MacrosDetailedDTO,
+  AllMacrosAndIntakesDTO,
+} from '../../interfaces/MacrosDetailedDTO';
 import { FormControl } from '@angular/forms';
 import { DashboardService } from '../../services/dashboard.service';
 import { BehaviorSubject } from 'rxjs';
+import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -41,16 +46,9 @@ export class DashboardComponent {
   public colorFats: string = '';
   selectedDate = new FormControl(new Date());
 
-  private dataSubject = new BehaviorSubject<MacrosDetailedDTO>({
-    consumedCalories: 0,
-    dailyCaloricIntake: 0,
-    consumedProteins: 0,
-    dailyProteinIntake: 0,
-    consumedCarbohydrates: 0,
-    dailyCarbohydrateIntake: 0,
-    consumedFats: 0,
-    dailyFatIntake: 0,
-  });
+  private dataSubject = new BehaviorSubject<AllMacrosAndIntakesDTO | null>(
+    null
+  );
   public data$ = this.dataSubject.asObservable();
 
   constructor(
@@ -80,11 +78,12 @@ export class DashboardComponent {
   }
 
   getMacrosDetailed(): void {
-    this.dashboardService
-      .getMacrosDetailed(this.selectedDate)
-      .subscribe((response) => {
-        this.dataSubject.next(
-          response || {
+    this.dashboardService.getMacrosDetailed(this.selectedDate).subscribe({
+      next: (response) => {
+        if (response) {
+          this.dataSubject.next(response);
+        } else {
+          const defaultMacros: MacrosDetailedDTO = {
             consumedCalories: 0,
             dailyCaloricIntake: 0,
             consumedProteins: 0,
@@ -93,10 +92,40 @@ export class DashboardComponent {
             dailyCarbohydrateIntake: 0,
             consumedFats: 0,
             dailyFatIntake: 0,
-          }
-        );
-        console.log(response);
-      });
+          };
+          const defaultConsumedMacros: MacrosConsumedPerCategory = {
+            consumedCalories: 0,
+            consumedProteins: 0,
+            consumedCarbohydrates: 0,
+            consumedFats: 0,
+          };
+          // Correct declaration of the defaultData object
+          const defaultData: AllMacrosAndIntakesDTO = {
+            statusCode: 0,
+            type: ResponseType.ERROR,
+            macros: defaultMacros,
+            categories: {
+              desayuno: {
+                macrosConsumedPerCategory: defaultConsumedMacros,
+                myIntakes: [],
+              },
+              almuerzo: {
+                macrosConsumedPerCategory: defaultConsumedMacros,
+                myIntakes: [],
+              },
+              cena: {
+                macrosConsumedPerCategory: defaultConsumedMacros,
+                myIntakes: [],
+              },
+            },
+          };
+          // Now we use the defaultData object
+          this.dataSubject.next(defaultData);
+        }
+      },
+      error: (error) =>
+        console.error('An error occurred while fetching data', error),
+    });
   }
 
   decreaseDateByOneDay() {

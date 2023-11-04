@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { MacrosDetailedDTO } from '../interfaces/MacrosDetailedDTO';
+import { AllMacrosAndIntakesDTO } from '../interfaces/MacrosDetailedDTO';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpService } from 'src/app/core/services/http.service';
 
@@ -15,12 +15,25 @@ export class DashboardService {
 
   constructor(private httpService: HttpService) {}
 
+  // public getMacrosDetailed(
+  //   dateControl: FormControl
+  // ): Observable<MacrosDetailedDTO> {
+  //   const api = this.apiUrl + '/macros';
+  //   const params = this.startAndEndDate(dateControl);
+  //   return this.httpService.getSimple<MacrosDetailedDTO>(api, params);
+  // }
+
   public getMacrosDetailed(
     dateControl: FormControl
-  ): Observable<MacrosDetailedDTO> {
-    const api = this.apiUrl + '/macros';
+  ): Observable<AllMacrosAndIntakesDTO | null> {
+    const api = this.apiUrl + '/category/all';
     const params = this.startAndEndDate(dateControl);
-    return this.httpService.getSimple<MacrosDetailedDTO>(api, params);
+    return this.httpService.getSimple<AllMacrosAndIntakesDTO>(api, params).pipe(
+      catchError((error) => {
+        console.error('Error fetching macros detailed:', error);
+        return of(null);
+      })
+    );
   }
 
   public startAndEndDate(

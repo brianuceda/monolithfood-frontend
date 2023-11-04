@@ -8,6 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input() text: string = 'Entrar';
   @Input() type: string = 'primary';
+  @Input() background: string = '#5f27a7';
+  @Input() height: string = '45px';
+  @Input() color: string = '#ffffff';
   @Input() icon: string = '';
   @Input() disabled: boolean = false;
 

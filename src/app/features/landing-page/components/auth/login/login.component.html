@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <!-- Contraseña -->
-                <div class="caja">
+                <div class="caja caja-last">
                     <span class="caja-txt">Contraseña</span>
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
@@ -48,7 +48,7 @@
             <div class="extra-btns">
                 <a href="/lost-password" class="lost__pass">¿Olvidaste tu contraseña?</a>
                 <span class="new__account">¿No tienes una cuenta?
-                    <a href="/register" class="register">Regístrate</a>
+                    <a routerLink="/register" class="register">Regístrate</a>
                 </span>
             </div>
         </div>

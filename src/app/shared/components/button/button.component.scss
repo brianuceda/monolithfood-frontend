@@ -4,16 +4,21 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-$btn-height: 45px;
 $txt-large: 14px;
 
 .btn {
-  margin: 7.5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   transition: $btn-transition;
-  height: $btn-height;
   font-size: $txt-large;
-  font-weight: 400;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 
   .icon {
     margin-right: 5px;
@@ -25,21 +30,11 @@ $txt-large: 14px;
   color: $txt-color-black;
   border: 1px solid rgba($txt-color-black, 0.5);
   border-radius: 3px;
+  font-weight: 400;
 
   &:hover {
-    background: rgba($txt-color-black, 0.25);
+    background: rgba($txt-color-black, 0.15);
     color: $txt-color-black;
     border: 1px solid rgba($txt-color-black, 0.5);
-  }
-}
-
-.primary {
-  background: #5f27a7;
-  color: $txt-color;
-  border-radius: 5px;
-
-  &:hover {
-    background: #471d86;
-    color: $txt-color;
   }
 }

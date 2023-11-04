@@ -1,4 +1,8 @@
-<button [ngClass]="['btn', type]" [disabled]="disabled">
+<button [ngClass]="['btn', type]" [ngStyle]="{ 
+      'background-color': type !== 'oauth2' ? background : null, 
+      'color': type !== 'oauth2' ? color : null, 
+      'height': height 
+    }" [disabled]="disabled">
     <div *ngIf="type === 'primary' || ''">
         <span *ngIf="icon" class="icon">
             <i class="icon" [class]="icon"></i>

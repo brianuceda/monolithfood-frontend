@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <!-- Nombre completo -->
-                <div class="caja">
+                <div class="caja caja-last">
                     <span class="caja-txt">Nombre completo</span>
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="names">
@@ -127,13 +127,13 @@
                         <span>Este campo es obligatorio</span>
                     </div>
                 </div>
-                <app-button (click)="register()" [text]="'Crear cuenta'" [type]="'primary'" [icon]="'fa fa-sign-in'"
-                    [disabled]="registerForm.invalid"></app-button>
+                <app-button class="join-btn" (click)="register()" [text]="'Crear cuenta'" [type]="'primary'"
+                    [icon]="'fa fa-sign-in'" [disabled]="registerForm.invalid"></app-button>
             </form>
             <!-- (Variable: Agregar o Actualizar) y Cancelar -->
             <div class="extra-btns">
                 <span class="new__account">¿Ya tienes una cuenta?
-                    <a href="/login" class="register">Inicia sesión</a>
+                    <a routerLink="/login" class="register">Inicia sesión</a>
                 </span>
             </div>
         </div>
