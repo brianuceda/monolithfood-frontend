@@ -62,10 +62,6 @@
     border: 1px solid #fafafa;
   }
 
-  .input-group select:focus {
-    border: 1px solid #fafafa;
-  }
-
   .input-group select {
     margin-top: 5px;
     width: 100%;
@@ -99,6 +95,43 @@
     border-radius: 50%;
     width: 60px;
     height: 60px;
+  }
+
+  .data-perfil {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .data-perfil .name {
+    font-size: 1.001rem;
+  }
+  
+  .data-perfil .email {
+    color: #c4c4c4;
+  }
+  
+  .data-perfil .folowers {
+    color: #c4c4c4;
+  }
+  
+  .social-media {
+    margin-left: 60px;
+    gap: 10px;
+    font-size: 30px;
+  }
+  .switch-perfil{
+    color: white;
+  }
+  .box{
+    width: 50px;
+  }
+  .icon{
+    background-color: #66308E;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 5px;
+    margin-right: 5px;
   }
 
 
