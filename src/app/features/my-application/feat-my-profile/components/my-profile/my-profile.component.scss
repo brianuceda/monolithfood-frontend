@@ -10,19 +10,18 @@
   padding: 0;
 }
 
-.container {
-  // Dialog animation
-  transition: width 0.3s ease;
-  // Window size
-  min-width: 100%;
-  min-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
-  max-width: 100%;
-  height: 100%;
-  color: $txt-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+.container2 {
+    // Dialog animation
+    transition: width 0.3s ease;
+    // Window size
+    min-width: 100%;
+    min-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
+    max-width: 100%;
+    height: 100%;
+    color: $txt-color;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 
   //!NO TOCAR NADA DE ARRIBA , PROHIBIDO!
 
