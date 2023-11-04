@@ -33,7 +33,6 @@
 
 .search-container {
   background-color: #2E1C45;
-  padding: 10px;
   border: 1px solid rgba(255, 255, 255, 0.50);
   border-radius: 5px;
   width: 90%; 
@@ -49,6 +48,10 @@
   outline: none;
   color: white;
   margin-left: 10px;
+}
+
+.svg-container {
+  margin-left: 10px; 
 }
 
 .container {
