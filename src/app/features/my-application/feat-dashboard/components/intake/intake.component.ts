@@ -50,9 +50,8 @@ export class IntakeComponent {
     console.log('Edit intake');
   }
 
-  delete(id: number): void {
-    console.log('El ID del alimento eliminado es:', id);
-    this.dashboardService.deleteIntake(id).subscribe((response) => {
+  delete(intakeId: number): void {
+    this.dashboardService.deleteIntake(intakeId).subscribe((response) => {
       console.log('Response: ', response);
     });
   }

@@ -48,9 +48,9 @@ export class DashboardService {
     );
   }
 
-  public deleteIntake(id: number): Observable<any> {
+  public deleteIntake(intakeId: number): Observable<any> {
     const api = this.apiUrl + '/delete';
-    return this.httpService.deleteSimple<any>(api, id).pipe(
+    return this.httpService.deleteSimple<any>(api, intakeId).pipe(
       tap(() => {
         this.refreshNeededSubject.next();
       })
