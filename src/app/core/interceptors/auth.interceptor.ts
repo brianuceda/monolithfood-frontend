@@ -28,15 +28,13 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    console.log('Outgoing request to:', authReq.url);
-    console.log('Request headers:', authReq.headers);
+    // console.log('Outgoing request to:', authReq.url);
 
     return next.handle(authReq).pipe(
       tap((evt) => {
         if (evt instanceof HttpResponse) {
-          console.log('Incoming response from:', evt.url);
-          console.log('Response headers:', evt.headers);
-          console.log('Response body:', evt.body);
+          console.log('Esperando respuesta de:', evt.url);
+          console.log('Cuerpo de la solicitud recibida:', evt.body);
         }
       }),
       catchError((error: HttpErrorResponse) => {

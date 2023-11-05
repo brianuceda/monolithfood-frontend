@@ -22,6 +22,7 @@ import { FormControl } from '@angular/forms';
 import { DashboardService } from '../../services/dashboard.service';
 import { BehaviorSubject } from 'rxjs';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -70,7 +71,9 @@ export class DashboardComponent {
         this.dashboardService.startAndEndDate(this.selectedDate);
       });
       // Suscripción a los cambios de datos
-      this.getMacrosDetailed();
+      this.dashboardService.refreshNeeded$.subscribe(() => {
+        this.getMacrosDetailed();
+      });
     } else {
       // Abre un dialogo si el usuario no ha completado su perfil
       await this.openDialogBasedOnProfileStage(profileStage);
@@ -99,7 +102,6 @@ export class DashboardComponent {
             consumedCarbohydrates: 0,
             consumedFats: 0,
           };
-          // Correct declaration of the defaultData object
           const defaultData: AllMacrosAndIntakesDTO = {
             statusCode: 0,
             type: ResponseType.ERROR,
@@ -119,13 +121,18 @@ export class DashboardComponent {
               },
             },
           };
-          // Now we use the defaultData object
           this.dataSubject.next(defaultData);
         }
       },
       error: (error) =>
         console.error('An error occurred while fetching data', error),
     });
+  }
+
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    const newDate = event.value;
+    this.selectedDate.setValue(newDate);
+    this.getMacrosDetailed();
   }
 
   decreaseDateByOneDay() {
@@ -147,23 +154,19 @@ export class DashboardComponent {
     return new Promise((resolve, reject) => {
       try {
         let dialogRef;
-
         if (
           profileStage === 'information' ||
           profileStage === 'activity-level' ||
           profileStage === 'objectives'
         ) {
           // Configuracion de Dialogos
-          const config = new MatDialogConfig();
-          config.disableClose = true;
-          config.autoFocus = true;
-          config.hasBackdrop = true;
-          config.closeOnNavigation = false;
-          config.width = '1080px';
-          config.height = '650px';
-          config.enterAnimationDuration = 700;
-          config.exitAnimationDuration = 700;
-          config.backdropClass = 'style-css-dialog-background';
+          let config = new MatDialogConfig();
+          config = this.dashboardService.getDialogConfig(
+            '1080px',
+            '650px',
+            true,
+            false
+          );
           // Dialogos de Onboarding
           switch (profileStage) {
             case 'information':

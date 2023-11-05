@@ -140,6 +140,7 @@ $height-card: 45px;
   .container {
     background: transparent;
     min-height: calc(100vh - $bar-size);
+    width: 100vw;
 
     .container-card {
       background: $bg-auth-page;

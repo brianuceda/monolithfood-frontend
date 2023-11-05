@@ -1,4 +1,5 @@
 @import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
 
 .intake {
   .intake-cont {
@@ -22,12 +23,32 @@
       height: 32px;
     }
 
-    .icon {
-      cursor: pointer;
-      font-size: 18px;
+    .icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
 
-      &.fa-solid {
-        color: #6e6cd3;
+      .icon {
+        cursor: pointer;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
+
+        &.fa-solid {
+          color: #6e6cd3;
+
+          &.edit {
+            color: #6e6cd3;
+          }
+
+          &.delete {
+            color: #ff6e6e;
+          }
+        }
+
+        &:hover {
+          opacity: 0.5;
+        }
       }
     }
   }
@@ -40,5 +61,13 @@
     align-items: center;
     width: 100%;
     color: $txt-color-gray;
+  }
+}
+
+@media (max-width: $media-query-ssm) {
+  .intake {
+    .intake-cont .data .quantity {
+      display: none;
+    }
   }
 }

@@ -1,8 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  CategoryDetails,
-  MacrosConsumedPerCategory,
-} from '../../interfaces/MacrosDetailedDTO';
+import { CategoryDetails } from '../../interfaces/MacrosDetailedDTO';
 
 @Component({
   selector: 'app-category-intake',
@@ -12,6 +9,4 @@ import {
 export class CategoryIntakeComponent {
   @Input() details!: CategoryDetails;
   @Input() categoryName!: string;
-
-  imgUlr: string = 'https://i.ibb.co/BfvCv5q/no-image.png';
 }

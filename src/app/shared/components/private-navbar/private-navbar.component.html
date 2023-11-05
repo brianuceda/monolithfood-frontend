@@ -10,9 +10,8 @@
         <img class="img" src="https://i.ibb.co/YZFrN73/example-img.png" alt="Profile image" (click)="toggleMenu()">
         <!-- Menú desplegable -->
         <div class="data-more" *ngIf="isMenuVisible" [@toggle]="isMenuVisible ? 'active' : 'inactive'">
-            <a routerLink="/my-profile" class="btn-expanded btn-press">
-                <span>Ver perfil</span>
-            </a>
+            <app-button routerLink="/my-profile" class="btn-expanded btn-press" [height]="'30px'"
+                [background]="'#ffffff'" [color]="'#000000'" [text]="'Mi perfil'"></app-button>
             <div class="btn-expanded" (click)="toggleDarkMode()">
                 <span>Modo oscuro</span>
                 <div class="switch">
@@ -25,10 +24,8 @@
                     <mat-slide-toggle [color]="'primary'" [checked]="notifications"></mat-slide-toggle>
                 </div>
             </div>
-            <!-- <a (click)="logout()" class="btn-expanded btn-press"> -->
             <app-button (click)="logout()" class="btn-expanded btn-press" [height]="'30px'" [background]="'#ffffff'"
                 [color]="'#000000'" [text]="'Cerrar sesión'"></app-button>
-            <!-- </a> -->
         </div>
     </div>
 </div>

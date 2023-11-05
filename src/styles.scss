@@ -38,11 +38,14 @@ body {
   background: transparent !important;
   border-radius: $dialog-border-radius;
 }
+// Background of Dialogs
 .style-css-dialog-background {
-  // Background of Dialog
   background-color: $bg-back-dialog-gradient;
-  backdrop-filter: blur(2px);
+  // backdrop-filter: blur(2px);
 }
+// .style-css-dialog-background-dark {
+//   background-color: $bg-back-dialog-gradient-dark;
+// }
 
 // Material: Input
 .mat-mdc-form-field-bottom-align {

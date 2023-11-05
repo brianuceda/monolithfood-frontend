@@ -8,7 +8,8 @@
         <div class="date-input">
             <mat-form-field class="full-width">
                 <!-- <mat-label>Seleccionar fecha</mat-label> -->
-                <input matInput [formControl]="selectedDate" [matDatepicker]="picker">
+                <input matInput [formControl]="selectedDate" [matDatepicker]="picker"
+                    (dateChange)="onDateChange($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -18,7 +19,6 @@
             <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
     </div>
-    <!-- <span>en consola se muestra el cambio de fecha</span> -->
     <div class="mat-divider"></div>
     <div class="container-graphs" *ngIf="data$ | async as data">
         <div class="graph">
