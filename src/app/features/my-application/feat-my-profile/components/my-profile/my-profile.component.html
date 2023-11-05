@@ -1,11 +1,11 @@
-<div class="container2 container-fluid">
+<form [formGroup]="myForm" class="container2 container-fluid">
     <div class="row">
         <div class="d-flex align-items-center">
             <img src="https://cdn.pixabay.com/photo/2021/12/25/11/57/scary-6892983_1280.png" alt="avatar"
                 class="avatar">
             <div class="data-perfil">
-                <span class="name">Kiridepapel</span>
-                <span class="email">brianuceda@gmail.com</span>
+                <span class="name">{{username}}</span>
+                <span class="email">{{email}}</span>
                 <span class="folowers"> 7 seguidores - 2 seguidos</span>
             </div>
             <div class="d-flex social-media">
@@ -47,13 +47,13 @@
         <div class="col-md-6 ps-5">
             <div class="input-group">
                 <label>Nombre Completo</label>
-                <input type="text" placeholder="Nombre completo">
+                <input formControlName="names" type="text" placeholder="Nombre completo">
                 <i class="fa-solid fa-person"></i>
             </div>
 
             <div class="input-group">
                 <label>Género</label>
-                <select>
+                <select formControlName="gender">
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                 </select>
@@ -62,13 +62,13 @@
 
             <div class="input-group">
                 <label>Fecha de Nacimiento</label>
-                <input type="date">
+                <input formControlName="borndate" type="date">
                 <i class="fa-solid fa-calendar"></i>
             </div>
 
             <div class="input-group">
                 <label>Localización</label>
-                <input type="text" placeholder="Ingrese su localización">
+                <input formControlName="location" type="text" placeholder="Ingrese su localización">
                 <i class="fa-solid fa-lock"></i>
             </div>
 
@@ -81,22 +81,22 @@
             <div class="d-flex">
                 <div class="input-group ms-1">
                     <label>Peso</label>
-                    <input type="text" placeholder="Ingrese ">
+                    <input formControlName="weightKg" type="text" placeholder="Ingrese ">
                     <i class="fa-solid fa-person"></i>
                 </div>
 
                 <div class="input-group ms-1">
                     <label>Altura</label>
-                    <input type="text" placeholder="Ingrese su altura actual">
+                    <input formControlName="heightCm" type="text" placeholder="Ingrese su altura actual">
                     <i class="fa-solid fa-person"></i>
                 </div>
             </div>
-            <button>Actualizar</button>
+            <button (click)="updateMyProfile()">Actualizar</button>
             <div class="input-group mt-3">
                 <label>IMC(Índice de Masa Corporal)</label>
-                <input type="text" placeholder="Ingrese su Masa Corporal">
+                <input formControlName="imc" type="text" placeholder="Ingrese su Masa Corporal">
                 <i class="fa-solid fa-lock"></i>
             </div>
         </div>
     </div>
-</div>
+</form>
