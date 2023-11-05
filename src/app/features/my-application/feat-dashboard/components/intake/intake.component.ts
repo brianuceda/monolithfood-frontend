@@ -50,8 +50,8 @@ export class IntakeComponent {
     console.log('Edit intake');
   }
 
-  delete(intakeId: number): void {
-    this.dashboardService.deleteIntake(intakeId).subscribe((response) => {
+  delete(id: number): void {
+    this.dashboardService.deleteIntake(id).subscribe((response) => {
       console.log('Response: ', response);
     });
   }

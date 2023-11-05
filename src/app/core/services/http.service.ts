@@ -28,15 +28,10 @@ export class HttpService {
     return this.handleResponse(this.http.put<T>(url, body));
   }
 
-  // deleteSimple<T>(url: string, params?: any): Observable<T> {
-  //   const httpParams = new HttpParams({ fromObject: params });
-  //   return this.handleResponse(
-  //     this.http.delete<T>(url, { params: httpParams })
-  //   );
-  // }
-  deleteSimple<T>(url: string, id: number): Observable<T> {
+  deleteSimple<T>(url: string, params?: any): Observable<T> {
+    const httpParams = new HttpParams({ fromObject: params });
     return this.handleResponse(
-      this.http.delete<T>(url, { params: { id: id.toString() } })
+      this.http.delete<T>(url, { params: httpParams })
     );
   }
 
