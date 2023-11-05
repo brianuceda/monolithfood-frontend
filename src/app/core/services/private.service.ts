@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenPayload } from 'src/app/core/interfaces/token-payload.model';
 import { TokenProfileStages } from 'src/app/shared/interfaces/token-profile-stages.model';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +16,19 @@ export class PrivateService {
   public isValidTokenStructure(decoded: any): decoded is TokenPayload {
     return (
       decoded &&
+      Array.isArray(decoded.roles) &&
+      decoded.roles.every(
+        (role: any) =>
+          typeof role === 'object' &&
+          role !== null &&
+          typeof role.authority === 'string'
+      ) &&
       typeof decoded.profileStage === 'string' &&
       typeof decoded.sub === 'string' &&
       typeof decoded.iat === 'number' &&
       typeof decoded.exp === 'number' &&
-      // Asegura que solo hay 4 propiedades en el token
-      Object.keys(decoded).length === 4
+      // Asegura que solo hay 5 propiedades en el token
+      Object.keys(decoded).length === 5
     );
   }
   // Verifica si hay algun Dialog abierto en base al payload del token JWT

@@ -19,6 +19,7 @@
         <app-intake [intakes]="intake"></app-intake>
     </div>
     <div class="mat-divider"></div>
-    <app-button routerLink="/database" [text]="'Agregar alimento'" [type]="'primary'"
+    <!-- <app-button routerLink="/database" [text]="'Agregar alimento'" [type]="'primary'" -->
+    <app-button (click)="addIntake()" [text]="'Agregar alimento'" [type]="'primary'"
         [icon]="'fa-solid fa-circle-plus'"></app-button>
 </div>

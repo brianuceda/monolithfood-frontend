@@ -15,6 +15,7 @@ import { AuthResponse } from 'src/app/core/interfaces/AuthResponse';
 import { LoginRequestDTO } from 'src/app/core/interfaces/LoginRequestDTO';
 import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
+import { HttpService } from 'src/app/core/services/http.service';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -23,11 +24,13 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class AuthService {
   private authApiUrl: string = environment.api + environment.rscAuth;
+  private userApiUrl: string = environment.api + environment.rscUsers;
   private ipApiUrl = 'https://api.country.is';
 
   constructor(
     private globalService: GlobalService,
     private http: HttpClient,
+    private httpService: HttpService,
     private router: Router
   ) {}
 
@@ -36,7 +39,7 @@ export class AuthService {
     return this.getIpAddress().pipe(
       switchMap((ipAddress) => {
         loginData.ipAddress = ipAddress;
-        return this.http.post<AuthResponse>(
+        return this.httpService.postSimple<AuthResponse>(
           this.authApiUrl + '/login',
           loginData
         );
@@ -60,7 +63,7 @@ export class AuthService {
     return this.getIpAddress().pipe(
       switchMap((ipAddress) => {
         registerData.ipAddress = ipAddress;
-        return this.http.post<AuthResponse>(
+        return this.httpService.postSimple<AuthResponse>(
           this.authApiUrl + '/register',
           registerData
         );
@@ -83,8 +86,13 @@ export class AuthService {
 
   // * Logout
   public logout(): void {
-    localStorage.removeItem('token');
-    this.router.navigateByUrl('/login');
+    this.httpService.postSimple(this.userApiUrl + '/logout', {}).subscribe({
+      next: (data) => {
+        console.log(data);
+        localStorage.removeItem('token');
+        this.router.navigateByUrl('/login');
+      },
+    });
   }
 
   // * Obtener dirección IP
