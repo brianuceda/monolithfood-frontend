@@ -37,18 +37,18 @@ export class DatabaseService {
     return this.httoService.getSimple(this.apiFavoritesUrl);
   }
 
-  public addToFavorites(foodId: number): Observable<any> {
+  public addToFavorites(id: number): Observable<any> {
     const api = this.apiFavoritesUrl + '/add';
-    return this.httoService.postSimple(api, { foodId }).pipe(
+    return this.httoService.postSimple(api, { id }).pipe(
       tap(() => {
         this.refreshNeededSubject.next();
       })
     );
   }
 
-  public removeFromFavorites(foodId: number): Observable<any> {
+  public removeFromFavorites(id: number): Observable<any> {
     const api = this.apiFavoritesUrl + '/delete';
-    return this.httoService.deleteSimple(api, { foodId }).pipe(
+    return this.httoService.deleteSimple(api, { id }).pipe(
       tap(() => {
         this.refreshNeededSubject.next();
       })
