@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
 import { AngularMaterialModule } from '../modules/angular-material.module';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CanSeeItemPipe } from './sidebar/extra/can-see-item-pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     SublevelMenuComponent,
     CustomSnackbarComponent,
     ConfirmDialogComponent,
+    // Pipe
+    CanSeeItemPipe,
   ],
   imports: [
     CommonModule,

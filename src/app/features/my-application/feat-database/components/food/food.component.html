@@ -15,8 +15,16 @@
             <i class="fa-solid fa-info"></i>
         </div>
         <button aria-label="select button" (click)="addIntake(details.foodId)" class="main-button">Agregar</button>
-        <div aria-label="favorite button" class="btn">
-            <i class="fa-solid fa-heart" [ngClass]="{'favorite': details.isFavorite}"></i>
+        <div *ngIf="hasRequiredRoles">
+            <div *ngIf="!details.isFavorite; else favoriteTemplate" aria-label="favorite button" class="btn"
+                (click)="addToFavorites(details.foodId)">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <ng-template #favoriteTemplate>
+                <div aria-label="favorite button" class="btn" (click)="removeFromFavorites(details.foodId)">
+                    <i class="fa-solid fa-heart favorite"></i>
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>

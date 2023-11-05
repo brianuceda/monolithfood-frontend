@@ -10,5 +10,5 @@
     </div>
 </div>
 <div class="container">
-    <app-food *ngFor="let food of data.foods" [details]="food"></app-food>
+    <app-food *ngFor="let food of data?.foods" [details]="food" [hasRequiredRoles]="hasRequiredRole"></app-food>
 </div>

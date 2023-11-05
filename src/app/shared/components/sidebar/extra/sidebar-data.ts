@@ -39,6 +39,7 @@ export const sidebarData: ISidebarData[] = [
       {
         routerLink: 'database/favourites',
         label: 'Favoritos',
+        requiredRoles: ['ROLE_ADMIN', 'ROLE_VIP'],
       },
     ],
   },

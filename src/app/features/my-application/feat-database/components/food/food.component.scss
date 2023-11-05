@@ -118,7 +118,15 @@
 
       &.favorite {
         color: #fe3151;
+        animation: beat 0.25s infinite alternate;
+        transform-origin: center;
       }
     }
+  }
+}
+
+@keyframes beat {
+  to {
+    transform: scale(1.2);
   }
 }

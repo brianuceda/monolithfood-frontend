@@ -4,4 +4,5 @@ export interface ISidebarData {
   label: string;
   expanded?: boolean;
   items?: ISidebarData[];
+  requiredRoles?: string[];
 }

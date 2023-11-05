@@ -31,16 +31,6 @@ export class PrivateService {
       Object.keys(decoded).length === 5
     );
   }
-  // Verifica si hay algun Dialog abierto en base al payload del token JWT
-  public isDialogOpened(): boolean {
-    const token = localStorage.getItem('token');
-    if (!token) return false;
-
-    const profileStage = this.decodeJwtPayload(token).profileStage;
-    return TokenProfileStages.some(
-      (stageObj) => stageObj.stage === profileStage
-    );
-  }
   // Decodifica el token y retorna el payload
   public decodeJwtPayload(jwtToken: string): any {
     try {
@@ -51,5 +41,24 @@ export class PrivateService {
       console.error('Error decodificando el token de autenticacion: ', err);
       return null;
     }
+  }
+  // Verifica si hay algun Dialog abierto en base al payload del token JWT
+  public isDialogOpened(): boolean {
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+
+    const profileStage = this.decodeJwtPayload(token).profileStage;
+    return TokenProfileStages.some(
+      (stageObj) => stageObj.stage === profileStage
+    );
+  }
+  public hasRequiredRoles(requiredRoles: string[]): boolean {
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+    const roles = this.decodeJwtPayload(token).roles;
+    // Si alguno de los roles del token coincide con el rol requerido
+    return roles.some((role: { authority: string }) =>
+      requiredRoles.includes(role.authority)
+    );
   }
 }

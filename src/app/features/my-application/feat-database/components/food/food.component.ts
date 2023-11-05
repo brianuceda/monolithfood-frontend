@@ -3,6 +3,7 @@ import { FoodDTO } from '../../interfaces/FoodDTO';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddEditIntakeComponent } from '../../../feat-dashboard/components/add-edit-intake/add-edit-intake.component';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-food',
@@ -11,9 +12,11 @@ import { AddEditIntakeComponent } from '../../../feat-dashboard/components/add-e
 })
 export class FoodComponent {
   @Input() details!: FoodDTO;
+  @Input() hasRequiredRoles!: boolean;
 
   constructor(
     private globalService: GlobalService,
+    private databaseService: DatabaseService,
     private dialog: MatDialog
   ) {}
 
@@ -30,6 +33,22 @@ export class FoodComponent {
     dialogRef = this.dialog.open(AddEditIntakeComponent, config);
     dialogRef.afterClosed().subscribe((result) => {
       // console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  addToFavorites(foodId: number): void {
+    this.databaseService.addToFavorites(foodId).subscribe({
+      next: () => {
+        this.details.isFavorite = true;
+      },
+    });
+  }
+
+  removeFromFavorites(foodId: number): void {
+    this.databaseService.removeFromFavorites(foodId).subscribe({
+      next: () => {
+        this.details.isFavorite = false;
+      },
     });
   }
 }
