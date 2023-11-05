@@ -1,0 +1,22 @@
+<div class="div1">
+    <div class="div2">
+        <div class="typography1">
+            <h1>{{ details.foodName }}</h1>
+        </div>
+        <div class="comida">
+            <img src="{{ details.imgUrl }}" alt="">
+        </div>
+        <div class="typography3">
+            <p>{{ details.information }}</p>
+        </div>
+    </div>
+    <div class="botones">
+        <div aria-label="more information button" class="btn">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <button aria-label="select button" (click)="addIntake(details.foodId)" class="main-button">Agregar</button>
+        <div aria-label="favorite button" class="btn">
+            <i class="fa-solid fa-heart" [ngClass]="{'favorite': details.isFavorite}"></i>
+        </div>
+    </div>
+</div>

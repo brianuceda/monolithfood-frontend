@@ -6,14 +6,8 @@ import {
 } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { CustomSnackbarComponent } from '../components/custom-snackbar/custom-snackbar.component';
-
-enum ResponseType {
-  SUCCESS = 'SUCCESS',
-  INFO = 'INFO',
-  WARN = 'WARN',
-  ERROR = 'ERROR',
-  FAVORITE = 'FAVORITE',
-}
+import { ResponseType } from 'src/app/core/interfaces/ResponseType';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 interface CustomSnackbarData {
   type: string;
@@ -62,13 +56,15 @@ export class GlobalService {
     this.isExpandedSubject.next(!this.isExpandedSubject.value);
   }
   // Snackbar: Abrir o cerrar
-  public openCustomSnackbar(message: string, type: string): void {
+  public openCustomSnackbar(message: string, type: ResponseType): void {
     let data: CustomSnackbarData = {
       type: type,
       icon: '',
       action: 'Cerrar',
     };
+    console.log('data antes de seleccionar automaticamente: ', data.type);
     data = this.selectTypeOfSnackBar(data);
+    console.log('data despues de seleccionar automaticamente: ', data.type);
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       horizontalPosition: this.horizontalPos,
       verticalPosition: this.verticalPos,
@@ -118,5 +114,26 @@ export class GlobalService {
   }
   public closeCustomSnackbar(): void {
     this.snackBar.dismiss();
+  }
+
+  public getDialogConfig(
+    width: string,
+    height: string,
+    disableClose: boolean,
+    closeOnNavigation: boolean,
+    data: any = null
+  ): MatDialogConfig {
+    const config = new MatDialogConfig();
+    config.disableClose = disableClose || false;
+    config.autoFocus = true;
+    config.hasBackdrop = true;
+    config.closeOnNavigation = closeOnNavigation || false;
+    config.width = width || '1080px';
+    config.height = height || '650px';
+    config.enterAnimationDuration = 700;
+    config.exitAnimationDuration = 700;
+    config.backdropClass = 'style-css-dialog-background';
+    config.data = data || null;
+    return config;
   }
 }

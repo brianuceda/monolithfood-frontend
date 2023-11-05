@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { TokenPayload } from 'src/app/shared/models/token-payload.model';
-import { TokenProfileStages } from 'src/app/shared/models/token-profile-stages.model';
+import { TokenPayload } from 'src/app/core/interfaces/token-payload.model';
+import { TokenProfileStages } from 'src/app/core/interfaces/token-profile-stages.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  constructor() {}
-
-  // * Metodos
+export class PrivateService {
+  // * Token
   // Retorna true si el token existe
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
@@ -18,12 +16,19 @@ export class AuthService {
   public isValidTokenStructure(decoded: any): decoded is TokenPayload {
     return (
       decoded &&
+      Array.isArray(decoded.roles) &&
+      decoded.roles.every(
+        (role: any) =>
+          typeof role === 'object' &&
+          role !== null &&
+          typeof role.authority === 'string'
+      ) &&
       typeof decoded.profileStage === 'string' &&
       typeof decoded.sub === 'string' &&
       typeof decoded.iat === 'number' &&
       typeof decoded.exp === 'number' &&
-      // Asegura que solo hay 4 propiedades en el token
-      Object.keys(decoded).length === 4
+      // Asegura que solo hay 5 propiedades en el token
+      Object.keys(decoded).length === 5
     );
   }
   // Verifica si hay algun Dialog abierto en base al payload del token JWT
@@ -36,8 +41,6 @@ export class AuthService {
       (stageObj) => stageObj.stage === profileStage
     );
   }
-
-  // * Function
   // Decodifica el token y retorna el payload
   public decodeJwtPayload(jwtToken: string): any {
     try {

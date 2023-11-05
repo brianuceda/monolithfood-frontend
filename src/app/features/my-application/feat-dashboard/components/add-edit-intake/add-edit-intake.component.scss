@@ -16,4 +16,26 @@
   align-items: center;
   background: $bg-gradient-dialog;
   color: $txt-color;
+  position: relative;
+
+  .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: $txt-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 }

@@ -13,6 +13,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
 
   .logo {
     display: flex;
@@ -40,6 +41,7 @@
     justify-content: flex-end;
     text-align: end;
     z-index: 1;
+    width: 10%;
 
     .data {
       margin-right: 20px;
@@ -58,19 +60,73 @@
         color: $primary-color;
       }
     }
-  }
 
-  .img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    .data-more {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      padding: 10px 30px;
+      background: $bg-navbar-color-solid;
+      box-shadow: -5px 5px 5px rgba(255, 255, 255, 0.1);
+      z-index: 10;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-bottom-left-radius: 15px;
 
-    &:hover {
-      cursor: pointer;
-      animation: rotateInfinite $rotation-img-time linear infinite;
+      .btn-expanded {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 7.5px;
+        cursor: pointer;
+        text-decoration: none;
+        color: $txt-color;
+
+        span {
+          cursor: pointer;
+        }
+
+        &.switch {
+          mat-slide-toggle {
+            color: #fff;
+          }
+        }
+
+        &.btn-press {
+          transition: 0.5s all ease;
+
+          &:hover {
+            // animation: rotateInfinite $rotation-img-time linear infinite;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+
+    .img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+      &:hover {
+        cursor: pointer;
+        animation: rotateInfinite $rotation-img-time linear infinite;
+      }
     }
   }
 }
+
+// @media (max-width: $media-query-ssm) {
+//   .private-navbar {
+//     .profile {
+//       .data-more {
+//         background: $bg-color-base-1;
+//       }
+//     }
+//   }
+// }
 
 @media (max-width: $media-query-md) {
   .private-navbar {

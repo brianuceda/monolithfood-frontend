@@ -4,6 +4,9 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
+$width-card: 300px;
+$height-card: 45px;
+
 .container {
   width: 100%;
   height: 100%;
@@ -19,19 +22,35 @@
     width: 100%;
     height: 100%;
     //   Acá va el contenido dentro de la página
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
   }
 }
 
 @media (max-width: $media-query-sm) {
   .container {
     background: transparent;
+    min-height: calc(100vh - $bar-size);
+    width: 100vw;
 
     .container-card {
       background: $bg-auth-page;
-      width: 100%;
-      height: 100%;
-      margin: 10% 0;
       border-radius: 10px;
+      gap: 30px;
+      padding: 30px 0;
+    }
+  }
+}
+
+@media (max-width: $media-query-ssm) {
+  .container {
+    background: #ffffff;
+
+    .container-card {
+      padding: 0;
     }
   }
 }

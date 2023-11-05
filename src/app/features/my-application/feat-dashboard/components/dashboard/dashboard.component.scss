@@ -12,17 +12,12 @@
 
 $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
 
-$width: 200px;
-$title-height: 50px;
-
 .container {
   // Dialog animation
   transition: width 0.3s ease;
-  // Window size
-  min-width: 100%;
   min-height: $container-height;
-  max-width: 100%;
   height: 100%;
+  min-width: 100%;
   color: $txt-color;
   display: flex;
   justify-content: flex-start;
@@ -30,63 +25,5 @@ $title-height: 50px;
   flex-wrap: wrap;
   // Direccion del Flex
   flex-direction: column; // column
-  gap: 60px;
-
-  > .mat-divider {
-    width: 90%;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: -20px 0;
-  }
-
-  .container-date {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-
-    .date-input {
-      margin-bottom: -22px;
-    }
-
-    .icon {
-      border-radius: 50%;
-      background: $txt-color;
-      color: $txt-color-lead;
-    }
-  }
-
-  .container-graphs {
-    width: 100%;
-    height: 100%;
-    min-height: calc($width + $title-height);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 50px;
-
-    .graph {
-      width: $width;
-      min-width: $width;
-      height: calc($width + $title-height);
-    }
-  }
-
-  .container-intakes {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 100px;
-
-    .intake {
-      background-color: #d9d9d949;
-      display: flex;
-      flex-direction: column;
-      width: 380px;
-      min-width: 200px;
-      text-align: center;
-    }
-  }
+  gap: 50px;
 }

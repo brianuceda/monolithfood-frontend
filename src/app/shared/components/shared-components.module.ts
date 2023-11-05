@@ -13,6 +13,8 @@ import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.com
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
+import { AngularMaterialModule } from '../modules/angular-material.module';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,15 @@ import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.compo
     SidebarComponent,
     SublevelMenuComponent,
     CustomSnackbarComponent,
+    ConfirmDialogComponent,
   ],
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    AngularMaterialModule,
+  ],
   exports: [
     ButtonComponent,
     PublicNavbarComponent,
