@@ -6,7 +6,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private PrivateService: PrivateService) {}
+  constructor(private router: Router, private privateService: PrivateService) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const token = localStorage.getItem('token');
@@ -14,9 +14,9 @@ export class AuthGuard implements CanActivate {
 
     if (token) {
       try {
-        const payload = this.PrivateService.decodeJwtPayload(token);
+        const payload = this.privateService.decodeJwtPayload(token);
         // Si el token no tiene la estructura correcta, redirigir a '/login'.
-        if (!this.PrivateService.isValidTokenStructure(payload)) {
+        if (!this.privateService.isValidTokenStructure(payload)) {
           localStorage.removeItem('token');
           this.router.navigateByUrl('/login');
           return false;

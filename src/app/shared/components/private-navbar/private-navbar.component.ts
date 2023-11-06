@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalService } from '../../services/global.service';
-import { AuthService } from 'src/app/features/landing-page/services/auth.service';
 import { circle } from './navbar.animations';
+import { AuthService } from 'src/app/features/landing-page/services/auth.service';
 
 @Component({
   selector: 'app-private-navbar',

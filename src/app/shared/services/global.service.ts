@@ -7,6 +7,7 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { CustomSnackbarComponent } from '../components/custom-snackbar/custom-snackbar.component';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 interface CustomSnackbarData {
   type: string;
@@ -111,5 +112,26 @@ export class GlobalService {
   }
   public closeCustomSnackbar(): void {
     this.snackBar.dismiss();
+  }
+
+  public getDialogConfig(
+    width: string,
+    height: string,
+    disableClose: boolean,
+    closeOnNavigation: boolean,
+    data: any = null
+  ): MatDialogConfig {
+    const config = new MatDialogConfig();
+    config.disableClose = disableClose || false;
+    config.autoFocus = true;
+    config.hasBackdrop = true;
+    config.closeOnNavigation = closeOnNavigation || false;
+    config.width = width || '1080px';
+    config.height = height || '650px';
+    config.enterAnimationDuration = 700;
+    config.exitAnimationDuration = 700;
+    config.backdropClass = 'style-css-dialog-background';
+    config.data = data || null;
+    return config;
   }
 }

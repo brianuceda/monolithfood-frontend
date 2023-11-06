@@ -25,5 +25,36 @@ $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
   flex-wrap: wrap;
   // Direccion del Flex
   flex-direction: column; // column
-  gap: 50px;
+  gap: 80px;
+  position: relative;
+
+  .txt {
+    text-align: center;
+  }
+
+  .alvl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 50px;
+  }
+
+  .btns {
+    width: 100%;
+
+    .update-btn {
+      max-width: 300px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .count {
+      margin-top: 20px;
+      text-align: center;
+      color: #a1a1a1;
+    }
+  }
 }
