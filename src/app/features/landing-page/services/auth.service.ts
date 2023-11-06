@@ -39,7 +39,7 @@ export class AuthService {
     return this.getIpAddress().pipe(
       switchMap((ipAddress) => {
         loginData.ipAddress = ipAddress;
-        return this.httpService.postSimple<AuthResponse>(
+        return this.httpService.postBodySimple<AuthResponse>(
           this.authApiUrl + '/login',
           loginData
         );
@@ -53,6 +53,7 @@ export class AuthService {
           error.error.message,
           ResponseType.ERROR
         );
+        console.log(error);
         return throwError(() => new Error('Error durante el inicio de sesión'));
       })
     );
@@ -63,7 +64,7 @@ export class AuthService {
     return this.getIpAddress().pipe(
       switchMap((ipAddress) => {
         registerData.ipAddress = ipAddress;
-        return this.httpService.postSimple<AuthResponse>(
+        return this.httpService.postBodySimple<AuthResponse>(
           this.authApiUrl + '/register',
           registerData
         );

@@ -193,14 +193,6 @@
       color: $txt-color;
     }
   }
-  // Sombreado completo
-  // .sublevel-nav-link:hover {
-  //   background-color: $txt-color;
-
-  //   .sublevel-link-text {
-  //     color: $tertiary-color;
-  //   }
-  // }
 }
 
 // Scrollbar
@@ -245,4 +237,20 @@
 .scrollwrap {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+@media (max-width: $media-query-sm) {
+  .sidenav {
+    transition: $sidebar-transition-time;
+    .sidenav-nav,
+    .logo-container {
+      background: $bg-navbar-color;
+    }
+  }
+
+  .sidenav-collapsed {
+    background: $bg-default-gradient-app;
+    width: 100%;
+    z-index: 200;
+  }
 }
