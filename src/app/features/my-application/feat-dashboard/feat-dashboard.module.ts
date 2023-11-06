@@ -7,23 +7,17 @@ import { FeatDashboardRoutingModule } from './feat-dashboard-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 // Other Features
 import { FeatOnboardingModule } from 'src/app/features/my-application/feat-onboarding/feat-onboarding.module';
+import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
 import { AddEditIntakeComponent } from './components/add-edit-intake/add-edit-intake.component';
-import { BasicGraphComponent } from './components/basic-graph/basic-graph.component';
-// Charts
-import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    AddEditIntakeComponent,
-    BasicGraphComponent,
-  ],
+  declarations: [DashboardComponent, AddEditIntakeComponent],
   imports: [
     CommonModule,
     AngularMaterialModule,
     FeatDashboardRoutingModule,
     FeatOnboardingModule,
-    NgApexchartsModule,
+    SharedComponentsModule,
   ],
 })
 export class FeatDashboardModule {}
