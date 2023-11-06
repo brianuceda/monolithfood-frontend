@@ -1,0 +1,11 @@
+<div class="confirm-container" mat-dialog-content>
+    <p class="txt title">{{ data.title }}</p>
+    <!-- <div class="mat-divider"></div> -->
+    <p class="txt">{{ data.msg }}<span>{{ data.object }}</span></p>
+    <div class="mat-divider"></div>
+    <div mat-dialog-actions class="dialog-actions">
+        <app-button (click)="confirm()" [text]="'Confirmar'" [type]="'primary'" [icon]="'fa-solid fa-check'"
+            [background]="'#ff6e6e'"></app-button>
+        <app-button (click)="close()" [text]="'Cancelar'" [type]="'primary'" [icon]="'fa-solid fa-xmark'"></app-button>
+    </div>
+</div>

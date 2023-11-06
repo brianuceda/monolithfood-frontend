@@ -1,17 +1,12 @@
-import { AuthService } from 'src/app/core/services/auth.service';
+import { PrivateService } from 'src/app/core/services/private.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private snackBar: MatSnackBar
-  ) {}
+  constructor(private router: Router, private PrivateService: PrivateService) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const token = localStorage.getItem('token');
@@ -19,10 +14,10 @@ export class AuthGuard implements CanActivate {
 
     if (token) {
       try {
-        const payload = this.authService.decodeJwtPayload(token);
+        const payload = this.PrivateService.decodeJwtPayload(token);
         // Si el token no tiene la estructura correcta, redirigir a '/login'.
-        if (!this.authService.isValidTokenStructure(payload)) {
-          localStorage.clear();
+        if (!this.PrivateService.isValidTokenStructure(payload)) {
+          localStorage.removeItem('token');
           this.router.navigateByUrl('/login');
           return false;
         }
@@ -38,12 +33,12 @@ export class AuthGuard implements CanActivate {
           return false;
         }
       } catch (error) {
-        localStorage.clear();
+        localStorage.removeItem('token');
         this.router.navigateByUrl('/login');
         return false;
       }
     } else {
-      localStorage.clear();
+      localStorage.removeItem('token');
       this.router.navigateByUrl('/login');
       return false;
     }

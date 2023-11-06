@@ -1,0 +1,20 @@
+<div class="intake">
+    <div class="intake-cont" *ngIf="isDetailType(intakes); else messageTemplate">
+        <img class="img" src="{{ intakes.imgUrl }}" alt="">
+        <div class="data">
+            <span>{{ intakes.name }}</span>
+            <span class="quantity">{{ intakes.quantity }}
+                {{convertUnitOfMeasurement(intakes.unitOfMeasurement)}}.</span>
+        </div>
+        <div class="icons">
+            <i class="fa-solid fa-pen icon edit" (click)="edit(intakes.id)"></i>
+            <i class="fa-solid fa-trash icon delete"
+                (click)="showDialog(intakes.id, intakes.quantity, intakes.unitOfMeasurement, intakes.name)"></i>
+        </div>
+    </div>
+    <ng-template #messageTemplate>
+        <div class="no-data" *ngIf="isMessageType(intakes)">
+            <span>{{ intakes.message }}</span>
+        </div>
+    </ng-template>
+</div>

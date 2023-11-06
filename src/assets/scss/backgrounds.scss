@@ -20,6 +20,7 @@ $bg-default-gradient-app: linear-gradient(
 
 // * NavBar
 $bg-navbar-color: rgba(0, 0, 0, 0.2);
+$bg-navbar-color-solid: #0f0d18;
 $bg-auth-navbar-color: rgba(0, 0, 0, 0.75);
 $bg-auth-content-color: rgba(0, 0, 0, 0.5);
 
@@ -27,16 +28,7 @@ $bg-auth-content-color: rgba(0, 0, 0, 0.5);
 $bg-auth-page: #ffffff;
 
 // * Dialogs
-// Opacity Dialog
-$bg-back-dialog-gradient: linear-gradient(
-  90deg,
-  rgba($bg-color-base-1, 0.3) 0%,
-  rgba($bg-color-base-1, 0.3) 30%,
-  rgba($bg-color-base-1, 0.3) 70%,
-  rgba($bg-color-base-2, 0.3) 100%
-);
-// $bg-back-dialog-gradient: rgba(0, 0, 0, 0.6);
-// Dialog
+$bg-back-dialog-gradient: rgba(0, 0, 0, 0.7);
 $bg-gradient-dialog: linear-gradient(
   180deg,
   rgb(54, 23, 83) 0%,

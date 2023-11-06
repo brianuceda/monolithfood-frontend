@@ -3,3 +3,38 @@
 @import "src/assets/scss/colors.scss";
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
+
+$txt-large: 14px;
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: $btn-transition;
+  font-size: $txt-large;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+.oauth2 {
+  background: #ffffff;
+  color: $txt-color-black;
+  border: 1px solid rgba($txt-color-black, 0.5);
+  border-radius: 3px;
+  font-weight: 400;
+
+  &:hover {
+    background: rgba($txt-color-black, 0.15);
+    color: $txt-color-black;
+    border: 1px solid rgba($txt-color-black, 0.5);
+  }
+}
