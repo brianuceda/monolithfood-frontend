@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { GlobalService } from 'src/app/shared/services/global.service';
 
 @Component({
-  selector: 'app-plans',
-  templateUrl: './plans.component.html',
-  styleUrls: ['./plans.component.scss'],
+  selector: 'app-list-plans',
+  templateUrl: './list-plans.component.html',
+  styleUrls: ['./list-plans.component.scss'],
 })
-export class PlansComponent {
+export class ListPlansComponent {
   constructor(private globalService: GlobalService) {}
   ngOnInit(): void {
     Promise.resolve().then(() => {
