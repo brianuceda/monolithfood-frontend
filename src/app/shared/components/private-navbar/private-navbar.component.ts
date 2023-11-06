@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { GlobalService } from '../../services/global.service';
 import { circle } from './navbar.animations';
+import { AuthService } from 'src/app/features/landing-page/services/auth.service';
 
 @Component({
   selector: 'app-private-navbar',
@@ -16,7 +17,10 @@ export class PrivateNavbarComponent {
   darkMode: boolean = true;
   notifications: boolean = false;
 
-  constructor(private globalService: GlobalService) {
+  constructor(
+    private globalService: GlobalService,
+    private authService: AuthService
+  ) {
     this.titleSub = this.globalService.currentTitle$.subscribe(
       (title) => (this.title = title)
     );
@@ -34,5 +38,7 @@ export class PrivateNavbarComponent {
     this.notifications = !this.notifications;
   }
 
-  logout(): void {}
+  logout(): void {
+    this.authService.logout();
+  }
 }

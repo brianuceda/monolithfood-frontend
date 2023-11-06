@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenPayload } from 'src/app/core/interfaces/token-payload.model';
-import { TokenProfileStages } from 'src/app/core/interfaces/token-profile-stages.model';
+import { TokenProfileStages } from 'src/app/shared/interfaces/token-profile-stages.model';
 
 @Injectable({
   providedIn: 'root',

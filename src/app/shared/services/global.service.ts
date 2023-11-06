@@ -62,9 +62,7 @@ export class GlobalService {
       icon: '',
       action: 'Cerrar',
     };
-    console.log('data antes de seleccionar automaticamente: ', data.type);
     data = this.selectTypeOfSnackBar(data);
-    console.log('data despues de seleccionar automaticamente: ', data.type);
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
       horizontalPosition: this.horizontalPos,
       verticalPosition: this.verticalPos,

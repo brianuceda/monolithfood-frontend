@@ -1,0 +1,25 @@
+<div class="container-category-intake">
+    <h2 class="category-title">{{ categoryName }}</h2>
+    <div class="macros-consumed-per-category">
+        <div class="macro">
+            <span>{{ details.macrosConsumedPerCategory.consumedCalories }} kcal.</span>
+        </div>
+        <div class="macro">
+            <span>P: {{ details.macrosConsumedPerCategory.consumedProteins }} g.</span>
+        </div>
+        <div class="macro">
+            <span>C: {{ details.macrosConsumedPerCategory.consumedCarbohydrates }} g.</span>
+        </div>
+        <div class="macro">
+            <span>G: {{ details.macrosConsumedPerCategory.consumedFats }} g.</span>
+        </div>
+    </div>
+    <div class="mat-divider"></div>
+    <div class="intakes" *ngFor="let intake of details.myIntakes">
+        <app-intake [intakes]="intake"></app-intake>
+    </div>
+    <div class="mat-divider"></div>
+    <!-- <app-button routerLink="/database" [text]="'Agregar alimento'" [type]="'primary'" -->
+    <app-button (click)="addIntake()" [text]="'Agregar alimento'" [type]="'primary'"
+        [icon]="'fa-solid fa-circle-plus'"></app-button>
+</div>

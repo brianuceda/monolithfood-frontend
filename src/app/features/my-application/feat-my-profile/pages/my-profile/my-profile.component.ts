@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { GlobalService } from 'src/app/shared/services/global.service';
 
