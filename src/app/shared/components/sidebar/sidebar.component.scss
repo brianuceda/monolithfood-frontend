@@ -11,7 +11,6 @@
   top: 0;
   width: $bar-size;
   height: 100%;
-  // box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
 
   .logo-container {
     display: flex;
@@ -239,18 +238,16 @@
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
 }
 
-@media (max-width: $media-query-sm) {
-  .sidenav {
-    transition: $sidebar-transition-time;
-    .sidenav-nav,
-    .logo-container {
-      background: $bg-navbar-color;
-    }
+@media (max-width: $media-query-lg) {
+  .sidenav-collapsed {
+    background: $bg-default-gradient-app;
+    z-index: 200;
   }
+}
 
+@media (max-width: $media-query-sm) {
   .sidenav-collapsed {
     background: $bg-default-gradient-app;
     width: 100%;
-    z-index: 200;
   }
 }
