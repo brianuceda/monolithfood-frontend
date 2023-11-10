@@ -4,7 +4,6 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-$auth-page-width: 450px;
 $bg-img-login-auth-page: "../assets/images/backgrounds/bg-login-page.png";
 $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
@@ -12,6 +11,7 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 // * Window
@@ -123,7 +123,6 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
       height: calc($bar-size);
       height: 100%;
       position: absolute;
-      z-index: 100;
     }
 
     &.login-auth-page,
