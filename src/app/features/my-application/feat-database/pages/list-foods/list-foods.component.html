@@ -1,16 +1,15 @@
 <!-- list-foods.component.html -->
 <div class="container1">
-    <div class="search-container">
-      <div class="svg-container">
-        <img src="../../../../../../assets/svgs/search-icon.svg" alt="">
-      </div>
-      <input class="search-input" type="text" placeholder="Buscar alimento" (input)="filterFoods($event)">
-      <button aria-label="filter" class="filter">
-        <img src="../../../../../../assets/svgs/filter.svg" alt="">
-      </button>
+  <div class="search-container">
+    <div class="svg-container">
+      <img src="../../../../../../assets/svgs/search-icon.svg" alt="">
     </div>
+    <input class="search-input" type="text" placeholder="Buscar alimento" (input)="filterFoods($event)">
+    <button aria-label="filter" class="filter" (click)="changeFilterCriteria('foodCategory')">
+      <img src="../../../../../../assets/svgs/filter.svg" alt="">
+    </button>
   </div>
-  <div class="container">
-    <app-food *ngFor="let food of filteredFoods" [details]="food" [hasRequiredRoles]="hasRequiredRole"></app-food>
-  </div>
-  
+</div>
+<div class="container">
+  <app-food *ngFor="let food of filteredFoods" [details]="food" [hasRequiredRoles]="hasRequiredRole"></app-food>
+</div>

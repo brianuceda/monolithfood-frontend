@@ -1,6 +1,6 @@
 .div1 {
   width: 211px;
-  min-height: 290px;
+  min-height: 320px;
   // margin: 30px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -21,13 +21,13 @@
     flex-direction: column;
     margin-bottom: 70px;
 
-    .typography1 {
+    .names {
       width: 100%;
       padding: 20px 10px;
       text-align: center;
 
-      h1 {
-        display: inline;
+      .food__name {
+        display: block;
         color: #7db1ff;
         font-family: "Inter", sans-serif;
         font-size: 14px;
@@ -38,6 +38,13 @@
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
+        margin-bottom: 6px;
+      }
+
+      .food__category {
+        display: block;
+        font-size: 11px;
+        color: #c0c0c0;
       }
     }
 

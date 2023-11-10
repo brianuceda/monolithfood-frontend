@@ -14,6 +14,7 @@ export class ListFoodsComponent {
   public data: ListFoodDTO = { foods: [] };
   public hasRequiredRole!: boolean;
   public filteredFoods: any[] = []; // Array para almacenar alimentos filtrados
+  public filterCriteria: string = 'foodName';
 
   constructor(
     private globalService: GlobalService,
@@ -38,23 +39,39 @@ export class ListFoodsComponent {
     });
   }
 
+  changeFilterCriteria(criteria: string): void {
+    this.filterCriteria = criteria;
+  }
+
   filterFoods(event: any): void {
     const searchTerm = event.target.value.toLowerCase();
-  
-    // Filtrar alimentos basados en el término de búsqueda
-    this.filteredFoods = this.data.foods.filter((food) =>
-      food.foodName.toLowerCase().startsWith(searchTerm)
-    );
-  
-    // Ordenar alimentos alfabéticamente
+
+    // Decide si filtrar por nombre o categoría basado en el criterio de filtrado actual
+    if (this.filterCriteria === 'foodName') {
+      this.filteredFoods = this.data.foods.filter((food) =>
+        food.foodName.toLowerCase().startsWith(searchTerm)
+      );
+    } else if (this.filterCriteria === 'foodCategory') {
+      this.filteredFoods = this.data.foods.filter((food) =>
+        food.foodCategory.toLowerCase().startsWith(searchTerm)
+      );
+    }
+
+    // Ordenar alimentos alfabéticamente por el criterio de filtrado
     this.filteredFoods.sort((a, b) => {
-      const nameA = a.foodName.toLowerCase();
-      const nameB = b.foodName.toLowerCase();
-  
-      if (nameA < nameB) {
+      const valueA =
+        this.filterCriteria === 'foodName'
+          ? a.foodName.toLowerCase()
+          : a.foodCategory.toLowerCase();
+      const valueB =
+        this.filterCriteria === 'foodName'
+          ? b.foodName.toLowerCase()
+          : b.foodCategory.toLowerCase();
+
+      if (valueA < valueB) {
         return -1;
       }
-      if (nameA > nameB) {
+      if (valueA > valueB) {
         return 1;
       }
       return 0;

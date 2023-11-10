@@ -1,6 +1,7 @@
 export interface FoodDTO {
   foodId: number;
   foodName: string;
+  foodCategory: string;
   information: string;
   imgUrl: string;
   isFavorite: boolean;
