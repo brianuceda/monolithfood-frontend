@@ -9,7 +9,7 @@
   // width: 100%;
   height: $bar-size;
   padding: 10px;
-  background: $bg-navbar-color;
+  background: $bg-navbar-color-solid;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -65,7 +65,7 @@
       position: absolute;
       top: 100%;
       right: 0;
-      padding: 10px 30px;
+      padding: 20px 30px 25px;
       background: $bg-navbar-color-solid;
       box-shadow: -5px 5px 5px rgba(255, 255, 255, 0.1);
       z-index: 10;
@@ -77,12 +77,13 @@
 
       .btn-expanded {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         padding: 7.5px;
         cursor: pointer;
         text-decoration: none;
         color: $txt-color;
+        width: 180px;
 
         span {
           cursor: pointer;
@@ -123,6 +124,14 @@
     .profile {
       .data {
         display: none;
+      }
+      .data-more {
+        width: calc(100% - 78px);
+        box-shadow: none;
+        border-radius: 0;
+        .btn-expanded {
+          width: auto;
+        }
       }
     }
   }

@@ -72,6 +72,8 @@
 
 .sidenav-collapsed {
   width: $sidebar-expanded-width;
+  background: $bg-default-gradient-app;
+  z-index: 200;
 }
 
 .sidenav-nav {
@@ -236,13 +238,6 @@
 .scrollwrap {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-}
-
-@media (max-width: $media-query-lg) {
-  .sidenav-collapsed {
-    background: $bg-default-gradient-app;
-    z-index: 200;
-  }
 }
 
 @media (max-width: $media-query-sm) {

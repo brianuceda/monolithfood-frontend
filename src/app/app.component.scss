@@ -115,8 +115,8 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
 @media (max-width: $media-query-sm) {
   .all {
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
 
     .in-auth-page {
       width: 100%;

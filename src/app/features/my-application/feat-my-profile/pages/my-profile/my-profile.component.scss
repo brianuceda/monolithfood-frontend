@@ -26,4 +26,8 @@ $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
   // Direccion del Flex
   flex-direction: column; // column
   gap: 50px;
+
+  .btn {
+    z-index: 0;
+  }
 }
