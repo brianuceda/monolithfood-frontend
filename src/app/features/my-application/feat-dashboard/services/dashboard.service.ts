@@ -12,16 +12,16 @@ import {
 } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { AllMacrosAndIntakesDTO } from '../interfaces/MacrosDetailedDTO';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpService } from 'src/app/core/services/http.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { ListNutrientDTO } from '../interfaces/NutritionDTO';
+import { DetailedIntakeDTO } from '../interfaces/NutritionDTO';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
   private apiUrl = `${environment.api}${environment.rscIntakes}`;
+  private apiIntakeUrl = `${environment.api}${environment.rscIntakes}`;
   private apiFoodUrl = `${environment.api}${environment.rscFoods}`;
 
   private refreshNeededSubject = new BehaviorSubject<void>(undefined);
@@ -51,7 +51,14 @@ export class DashboardService {
     );
   }
 
-  getNutrients(foodId: number, quantity: number): Observable<ListNutrientDTO> {
+  public getDetailedIntake(eatId: number): Observable<DetailedIntakeDTO> {
+    return this.httpService.getSimple(this.apiIntakeUrl + '/' + eatId);
+  }
+
+  public getDetailedFood(
+    foodId: number,
+    quantity: number
+  ): Observable<DetailedIntakeDTO> {
     return this.httpService.getSimple(this.apiFoodUrl + '/search/' + foodId, {
       quantity: quantity,
     });

@@ -20,20 +20,4 @@ export class CategoryIntakeComponent {
     private dashboardService: DashboardService,
     private dialog: MatDialog
   ) {}
-
-  // addIntake(): void {
-  //   let dialogRef;
-  //   let config = new MatDialogConfig();
-  //   config = this.dashboardService.getDialogConfig(
-  //     '550px',
-  //     '785px',
-  //     false,
-  //     false
-  //   );
-  //   dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  //   console.log('Add intake');
-  // }
 }
