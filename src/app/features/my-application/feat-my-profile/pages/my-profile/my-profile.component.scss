@@ -30,4 +30,13 @@ $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
   .btn {
     z-index: 0;
   }
+
+  .container-labels {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+  }
 }

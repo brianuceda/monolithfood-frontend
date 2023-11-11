@@ -163,7 +163,7 @@ export class DashboardComponent {
           let config = new MatDialogConfig();
           config = this.dashboardService.getDialogConfig(
             '1080px',
-            '650px',
+            '750px',
             true,
             false
           );

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CategoryIntake } from '../../interfaces/MacrosDetailedDTO';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddEditIntakeComponent } from '../add-edit-intake/add-edit-intake.component';
+import { AddEditIntakeComponent } from '../../pages/add-edit-intake/add-edit-intake.component';
 import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
@@ -22,10 +22,8 @@ export class IntakeComponent {
     id: number;
     name: string;
     imgUrl: string;
-    // categoryFood: string;
     quantity: number;
     unitOfMeasurement: string;
-    // date: string;
   } {
     return (intake as any).id !== undefined;
   }
@@ -34,14 +32,15 @@ export class IntakeComponent {
     return (intake as any).message !== undefined;
   }
 
-  edit(id: number): void {
+  edit(data: CategoryIntake): void {
     let dialogRef;
     let config = new MatDialogConfig();
     config = this.dashboardService.getDialogConfig(
-      '550px',
+      '600px',
       '785px',
       false,
-      false
+      false,
+      { data: data }
     );
     dialogRef = this.dialog.open(AddEditIntakeComponent, config);
     dialogRef.afterClosed().subscribe((result) => {

@@ -1,0 +1,93 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+.dialog-container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: $dialog-border-radius;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background: $bg-gradient-dialog;
+  color: $txt-color;
+  position: relative;
+
+  .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: $txt-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin: 60px 0 10px;
+  }
+
+  .category {
+    color: #a3a3a3;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .data__quantity {
+    color: #a3a3a3;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .container-main-nutrients,
+  .container-other-nutrients {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .container-main-nutrients {
+    margin-bottom: 15px;
+  }
+
+  .container-other-nutrients {
+    margin-top: 15px;
+  }
+
+  .data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+    gap: 40px;
+    margin: 30px 0;
+  }
+}

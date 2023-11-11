@@ -5,11 +5,9 @@
 @import "src/assets/scss/animations.scss";
 
 .private-navbar {
-  // position: fixed;
-  // width: 100%;
   height: $bar-size;
   padding: 10px;
-  background: $bg-navbar-color-solid;
+  background: $bg-navbar-color;
   display: flex;
   justify-content: flex-end;
   align-items: center;

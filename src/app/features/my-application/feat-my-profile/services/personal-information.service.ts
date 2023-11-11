@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.prod';
 import { ListActivityLevelsDTO } from '../interfaces/ActivityLevelDTO';
 import { ListObjectivesDTO, ObjectiveDTO } from '../interfaces/ObjectiveDTO';
 import { HttpParams } from '@angular/common/http';
+import { ListNutrientDTO } from '../../feat-dashboard/interfaces/NutritionDTO';
 
 @Injectable({
   providedIn: 'root',

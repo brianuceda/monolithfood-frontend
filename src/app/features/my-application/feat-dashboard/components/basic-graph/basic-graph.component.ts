@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { ChartOptions } from '../dashboard/dashboard.component';
+import { ChartOptions } from '../../pages/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-basic-graph',

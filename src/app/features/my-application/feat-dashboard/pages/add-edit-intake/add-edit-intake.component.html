@@ -1,0 +1,24 @@
+<div class="dialog-container">
+    <button class="btn" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <h2 class="title">{{ savedData.name }}</h2>
+    <span class="category">xxxxx</span>
+    <span class="data__quantity">Datos por {{ savedData.quantity }} {{ savedData.unitOfMeasurement }}.</span>
+    <div class="container-main-nutrients">
+        <div *ngFor="let nutrient of mainNutrients">
+            <app-nutrition-label [details]="nutrient"></app-nutrition-label>
+        </div>
+    </div>
+    <div class="data">
+        <span>Cantidad</span>
+        <span>Medida</span>
+        <span>Fecha</span>
+        <span>Hora</span>
+    </div>
+    <div class="container-other-nutrients">
+        <div *ngFor="let nutrient of otherNutrients">
+            <app-nutrition-label [details]="nutrient"></app-nutrition-label>
+        </div>
+    </div>
+</div>
