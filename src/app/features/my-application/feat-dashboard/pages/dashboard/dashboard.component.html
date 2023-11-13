@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="container-date">
+        <!-- Botón para retroceder un día -->
+        <button mat-icon-button (click)="decreaseDateByOneDay()" class="icon">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <!-- Input para seleccionar la fecha -->
+        <div class="date-input">
+            <mat-form-field class="full-width">
+                <!-- <mat-label>Seleccionar fecha</mat-label> -->
+                <input matInput [formControl]="selectedDate" [matDatepicker]="picker"
+                    (dateChange)="onDateChange($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <!-- Botón para avanzar un día -->
+        <button mat-icon-button (click)="increaseDateByOneDay()" class="icon">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+    <div class="mat-divider"></div>
+    <div class="container-graphs" *ngIf="data$ | async as data">
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'KCalorias'" [consumed]="data.macros.consumedCalories"
+                [dailyIntake]="data.macros.dailyCaloricIntake">
+            </app-basic-graph>
+        </div>
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'Proteinas'" [consumed]="data.macros.consumedProteins"
+                [dailyIntake]="data.macros.dailyProteinIntake">
+            </app-basic-graph>
+        </div>
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'Carbohidratos'" [consumed]="data.macros.consumedCarbohydrates"
+                [dailyIntake]="data.macros.dailyCarbohydrateIntake">
+            </app-basic-graph>
+        </div>
+        <div class="graph">
+            <app-basic-graph [nutrientName]="'Grasas'" [consumed]="data.macros.consumedFats"
+                [dailyIntake]="data.macros.dailyFatIntake">
+            </app-basic-graph>
+        </div>
+    </div>
+    <div class="container-intakes">
+        <ng-container *ngIf="data$ | async as data">
+            <div class="intake">
+                <app-category-intake [categoryName]="'Desayuno'"
+                    [details]="data.categories.desayuno"></app-category-intake>
+            </div>
+            <div class="intake">
+                <app-category-intake [categoryName]="'Almuerzo'"
+                    [details]="data.categories.almuerzo"></app-category-intake>
+            </div>
+            <div class="intake">
+                <app-category-intake [categoryName]="'Cena'" [details]="data.categories.cena"></app-category-intake>
+            </div>
+        </ng-container>
+    </div>
+</div>

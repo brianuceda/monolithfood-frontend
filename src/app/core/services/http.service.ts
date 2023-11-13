@@ -10,11 +10,13 @@ import { ResponseType } from '../interfaces/ResponseType';
 export class HttpService {
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
+  // * Get
   getSimple<T>(url: string, params?: any): Observable<T> {
     const httpParams = new HttpParams({ fromObject: params });
     return this.handleResponse(this.http.get<T>(url, { params: httpParams }));
   }
 
+  // * Post
   postSimple<T>(url: string, params?: any): Observable<T> {
     const httpParams = new HttpParams({ fromObject: params });
     return this.handleResponse(this.http.post<T>(url, httpParams));
@@ -24,10 +26,17 @@ export class HttpService {
     return this.handleResponse(this.http.post<T>(url, body));
   }
 
-  putSimple<T>(url: string, body?: any): Observable<T> {
+  // * Put
+  putSimple<T>(url: string, body: any, params?: HttpParams): Observable<T> {
+    const options = params ? { params: params } : {};
+    return this.handleResponse(this.http.put<T>(url, body, options));
+  }
+
+  putBodySimple<T>(url: string, body: any): Observable<T> {
     return this.handleResponse(this.http.put<T>(url, body));
   }
 
+  // * Delete
   deleteSimple<T>(url: string, params?: any): Observable<T> {
     const httpParams = new HttpParams({ fromObject: params });
     return this.handleResponse(

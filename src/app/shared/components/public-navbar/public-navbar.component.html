@@ -1,10 +1,10 @@
-<div class="public-navbar" [class.in-auth-page]="isInAuthPage()">
+<div class="public-navbar" id="navbar" [class.in-auth-page]="isInAuthPage()">
     <div class="navbar-title" (click)="route('home')">
         <img class="logo-img" src="assets/images/logo.png" alt="Logo">
         <span class="logo-txt">Monolith Food</span>
     </div>
-    <div>
-        <mat-icon id="menu" (click)="toggleMenu()">menu</mat-icon>
+    <div class="menu-icon" (click)="toggleMenu()">
+        <mat-icon id="menu">menu</mat-icon>
     </div>
     <div class="navbar-buttons">
         <a type="button" class="btn" (click)="route('')" [ngClass]="{'active-route': isActive('/')}">Inicio</a>

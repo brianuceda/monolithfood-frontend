@@ -1,0 +1,101 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+* {
+  width: 100%;
+}
+
+.container-category-intake {
+  width: 100%;
+  // height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  //   background-color: #d9d9d949;
+  text-align: center;
+  gap: 20px;
+
+  .category-title {
+    margin: 0;
+    padding: 0;
+  }
+
+  .macros-consumed-per-category {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+
+    .macro {
+      span {
+        font-size: 14px;
+        font-weight: 500;
+        color: $txt-color-gray;
+      }
+    }
+  }
+
+  > .mat-divider {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .intakes {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-intake {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    max-width: 300px;
+    height: 32px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 10px;
+    gap: 10px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $txt-color;
+
+      .icon {
+        &.fa-solid {
+          color: $txt-color-black;
+        }
+      }
+
+      span {
+        color: $txt-color-black;
+      }
+    }
+
+    .icon {
+      cursor: pointer;
+      font-size: 22px;
+
+      &.fa-solid {
+        color: $txt-color-gray;
+      }
+    }
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      color: $txt-color-gray;
+    }
+  }
+}

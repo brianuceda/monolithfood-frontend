@@ -33,29 +33,23 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-// Material: Dialog
+// * Dialog
 .mat-mdc-dialog-surface {
   background: transparent !important;
   border-radius: $dialog-border-radius;
 }
-// Background of Dialogs
 .style-css-dialog-background {
   background-color: $bg-back-dialog-gradient;
   // backdrop-filter: blur(2px);
 }
-// .style-css-dialog-background-dark {
-//   background-color: $bg-back-dialog-gradient-dark;
-// }
 
-// Material: Input
+// * Input
 .mat-mdc-form-field-bottom-align {
-  // Remove the underline
   display: none !important;
 }
 .mat-mdc-text-field-wrapper,
 .mat-mdc-form-field-flex,
 .mat-mdc-form-field-infix {
-  // Height of the input
   height: $input-height !important;
   min-height: $input-height !important;
   display: flex !important;

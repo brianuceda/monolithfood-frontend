@@ -1,5 +1,56 @@
 <div class="container">
     <div class="container-card">
-        <span>hola</span>
+        <div class="card__title">
+            <h1>Monolith Food</h1>
+            <p>Iniciar sesión</p>
+        </div>
+        <div class="card__buttons">
+            <app-button (click)="googleOauth2()" [text]="'Ingresar con Google'" [type]="'oauth2'"
+                [icon]="'google'"></app-button>
+            <app-button (click)="microsoftOauth2()" [text]="'Ingresar con Microsoft'" [type]="'oauth2'"
+                [icon]="'microsoft'"></app-button>
+            <app-button (click)="githubOauth2()" [text]="'Ingresar con GitHub'" [type]="'oauth2'"
+                [icon]="'github'"></app-button>
+        </div>
+        <div class="card__inputs">
+            <form [formGroup]="loginForm">
+                <!-- Nombre de usuario -->
+                <div class="caja validation-available">
+                    <span class="caja-txt">Nombre de usuario</span>
+                    <mat-form-field class="caja-input" appearance="outline">
+                        <input matInput formControlName="username" autocomplete="username">
+                    </mat-form-field>
+                    <div *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched"
+                        class="has-error">
+                        <span>Este campo es obligatorio</span>
+                    </div>
+                </div>
+                <!-- Contraseña -->
+                <div class="caja caja-last">
+                    <span class="caja-txt">Contraseña</span>
+                    <mat-form-field class="caja-input" appearance="outline">
+                        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+                            autocomplete="current-password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <div *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched"
+                        class="has-error">
+                        <span>Este campo es obligatorio</span>
+                    </div>
+                </div>
+                <app-button (click)="login()" [text]="'Ingresar'" [type]="'primary'" [icon]="'fa fa-sign-in'"
+                    [disabled]="loginForm.invalid"></app-button>
+            </form>
+            <!-- (Variable: Agregar o Actualizar) y Cancelar -->
+            <div class="extra-btns">
+                <a href="/lost-password" class="lost__pass">¿Olvidaste tu contraseña?</a>
+                <span class="new__account">¿No tienes una cuenta?
+                    <a routerLink="/register" class="register">Regístrate</a>
+                </span>
+            </div>
+        </div>
     </div>
 </div>

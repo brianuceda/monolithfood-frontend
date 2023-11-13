@@ -4,7 +4,6 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-$auth-page-width: 450px;
 $bg-img-login-auth-page: "../assets/images/backgrounds/bg-login-page.png";
 $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
@@ -12,16 +11,15 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-// [1] Pantalla en general
+// * Window
 .all {
   width: 100%;
-  // max-width: 100vw;
-  // height: 100%;
   color: $txt-color;
 
-  // [X] Oculta el scroll cuando se abre un dialog
+  // Oculta el scroll cuando se abre un dialog
   &.is-in-dialog {
     overflow: hidden;
   }
@@ -117,15 +115,14 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
 @media (max-width: $media-query-sm) {
   .all {
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
 
     .in-auth-page {
       width: 100%;
       height: calc($bar-size);
       height: 100%;
       position: absolute;
-      z-index: 100;
     }
 
     &.login-auth-page,

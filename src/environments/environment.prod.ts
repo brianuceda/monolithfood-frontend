@@ -7,8 +7,8 @@ export const environment = {
   rscConfig: '/user/config',
   rscInfo: '/user/info',
   rscFoods: '/user/foods',
-  rscSubscriptions: '/user/subscriptions',
   rscIntakes: '/user/intakes',
+  rscSubscriptions: '/user/subscriptions',
   rscFavorites: '/user/favorites',
   rscFitness: '/user/fitness',
 };
