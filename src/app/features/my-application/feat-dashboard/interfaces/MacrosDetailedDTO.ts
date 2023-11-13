@@ -42,6 +42,7 @@ export type CategoryIntake =
       imgUrl: string;
       quantity: number;
       unitOfMeasurement: string;
+      createdAt: string;
     }
   | {
       message: string;

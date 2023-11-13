@@ -18,6 +18,7 @@
   background: $bg-gradient-dialog;
   color: $txt-color;
   position: relative;
+  cursor: auto;
 
   .btn {
     position: absolute;
@@ -46,7 +47,7 @@
     margin: 0;
     padding: 0;
     text-align: center;
-    margin: 60px 0 10px;
+    margin: 50px 0 10px;
   }
 
   .category {
@@ -55,7 +56,7 @@
     margin-bottom: 30px;
   }
 
-  .data__quantity {
+  .quantity {
     color: #a3a3a3;
     text-align: center;
     margin-bottom: 15px;
@@ -77,15 +78,7 @@
     margin-bottom: 15px;
   }
 
-  .container-other-nutrients {
-    margin-top: 15px;
-  }
-
-  .container-buttons {
-    margin: 50px 0;
-  }
-
-  .data {
+  .container-data {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,11 +88,11 @@
     gap: 20px;
     margin: 30px 0;
 
-    .data-item {
+    .data-item,
+    .data-subitem {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 70%;
       gap: 10px;
 
       .icon {
@@ -118,6 +111,38 @@
 
         mat-select {
           font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .container-other-nutrients {
+    margin-top: 25px;
+    padding-bottom: 50px;
+  }
+
+  .container-buttons {
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .button-final {
+      width: 85%;
+    }
+  }
+}
+
+@media screen and (max-width: $media-query-msm) {
+  .dialog-container {
+    .container-data {
+      .data-item {
+        flex-direction: column;
+        width: 100%;
+
+        mat-form-field {
+          width: 85%;
         }
       }
     }

@@ -1,9 +1,13 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
-import { DetailedIntakeDTO, NutritionDTO } from '../../interfaces/NutritionDTO';
+import {
+  DetailedIntakeDTO,
+  NutritionDTO,
+  AddIntakeDTO,
+  EditIntakeDTO,
+} from '../../interfaces/NutritionDTO';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CategoryIntake } from '../../interfaces/MacrosDetailedDTO';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -29,7 +33,8 @@ export class AddEditIntakeComponent implements OnInit {
   constructor(
     private dialogRef: DialogRef<AddEditIntakeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dashboardService: DashboardService
   ) {}
 
   ngOnInit(): void {
@@ -39,18 +44,65 @@ export class AddEditIntakeComponent implements OnInit {
     this.initializeNutrientData(this.savedData.nutrients);
     this.reactiveForm();
     this.setDefaultDateTime();
-    this.updateNutrientQuantities();
     this.processNutrientData(this.savedData.nutrients);
+    this.updateNutrientQuantities();
   }
 
-  saveOrEdit(): void {}
+  // Inicializa el formulario reactivo
+  reactiveForm(): void {
+    this.myForm = this.formBuilder.group({
+      quantity: ['', [Validators.required, Validators.min(0)]],
+      unitOfMeasurement: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      time: ['', [Validators.required]],
+      categoryIntake: ['', [Validators.required]],
+    });
+  }
+
+  // Agrega o edita un registro de ingesta
+  confirmSaveOrEdit(savedData: DetailedIntakeDTO): void {
+    if (this.isAdding) {
+      const combinedDateTime = this.combineDateTime(
+        this.savedData.date,
+        this.time,
+        'Add'
+      );
+      // Agregar ingesta
+      let addIntake: AddIntakeDTO = {
+        foodId: savedData.id,
+        quantity: savedData.quantity,
+        unitOfMeasurement: savedData.unitOfMeasurement,
+        date: combinedDateTime,
+      };
+      this.dashboardService.addIntake(addIntake).subscribe(() => {
+        this.closeDialog();
+      });
+    } else {
+      const combinedDateTime = this.combineDateTime(
+        this.savedData.date,
+        this.time,
+        'Edit'
+      );
+      // Editar ingesta
+      let editIntake: EditIntakeDTO = {
+        eatId: savedData.id,
+        quantity: savedData.quantity,
+        unitOfMeasurement: savedData.unitOfMeasurement,
+        date: combinedDateTime,
+      };
+      this.dashboardService.updateIntake(editIntake).subscribe(() => {
+        this.closeDialog();
+      });
+    }
+    this.dashboardService;
+  }
 
   // Verifica si se está agregando o editando un registro de ingesta
   isAddingIntake(): boolean {
     return this.savedData.date === undefined;
   }
 
-  // Inicializar los valores de los nutrientes
+  // Inicializa los valores de los nutrientes
   initializeNutrientData(nutrients: NutritionDTO[]): void {
     this.mainNutrients = nutrients.filter((nutrient) =>
       [1, 2, 3, 4].includes(nutrient.id)
@@ -65,7 +117,7 @@ export class AddEditIntakeComponent implements OnInit {
     );
   }
 
-  //
+  // Actualiza los valores de los nutrientes en base a la cantidad
   updateNutrientQuantities(): void {
     const factor = this.savedData.quantity;
 
@@ -84,22 +136,27 @@ export class AddEditIntakeComponent implements OnInit {
     }));
   }
 
-  // Método para separar y formatear fecha y hora
-  separateAndFormatDate(): void {
-    const dateTimeString = this.savedData.date;
-    const datePart = dateTimeString.split('T')[0];
-    let timePart = dateTimeString.split('T')[1].split('+')[0];
-    // Mantener solo la hora y los minutos
-    timePart = timePart.substring(0, 5);
-    this.savedData.date = datePart;
-    this.time = timePart;
+  private combineDateTime(date: string, time: string, type: string): string {
+    const dateTime = new Date(date + 'T' + time);
+    const offset = dateTime.getTimezoneOffset() * 60000;
+    const localDateTime = new Date(dateTime.getTime() - offset);
+    if (type === 'Add') {
+      return localDateTime.toISOString();
+    } else if (type === 'Edit') {
+      localDateTime.setHours(localDateTime.getHours() - 5);
+      return localDateTime.toISOString();
+    }
+    return localDateTime.toISOString();
   }
 
-  // Método para establecer valores por defecto de fecha y hora
+  // Metodo para establecer la fecha y hora por defecto en el formulario
   setDefaultDateTime(): void {
     const currentDate = new Date();
     if (!this.savedData.date) {
-      this.savedData.date = currentDate.toISOString().split('T')[0];
+      const newCurrentDate = new Date();
+      newCurrentDate.setHours(currentDate.getHours() - 5);
+      const localDate = newCurrentDate.toISOString().split('T')[0];
+      this.savedData.date = localDate;
     } else {
       this.separateAndFormatDate();
     }
@@ -109,19 +166,20 @@ export class AddEditIntakeComponent implements OnInit {
     }
   }
 
-  reactiveForm(): void {
-    this.myForm = this.formBuilder.group({
-      quantity: ['', [Validators.required, Validators.min(0)]],
-      unitOfMeasurement: ['', [Validators.required]],
-      date: ['', [Validators.required]],
-      time: ['', [Validators.required]],
-      categoryIntake: ['', [Validators.required]],
-    });
+  // Método para separar y formatear fecha y hora que vienen juntas del backend
+  separateAndFormatDate(): void {
+    const dateTimeString = this.savedData.date;
+    const dateTime = new Date(dateTimeString);
+    dateTime.setHours(dateTime.getHours() + 5);
+    const datePart = dateTime.toISOString().split('T')[0];
+    let timePart = dateTime.toISOString().split('T')[1];
+    timePart = timePart.substring(0, 5);
+    this.savedData.date = datePart;
+    this.time = timePart;
   }
 
   onTimeChange(): void {
     const hours = parseInt(this.time.split(':')[0], 10);
-
     if (hours > 2 && hours < 12) {
       this.savedData.categoryIntake = 'DESAYUNO';
     } else if (hours >= 12 && hours < 19) {

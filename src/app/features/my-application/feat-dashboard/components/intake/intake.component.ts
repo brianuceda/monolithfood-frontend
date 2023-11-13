@@ -24,6 +24,7 @@ export class IntakeComponent {
     imgUrl: string;
     quantity: number;
     unitOfMeasurement: string;
+    createdAt: string;
   } {
     return (intake as any).id !== undefined;
   }
@@ -32,9 +33,9 @@ export class IntakeComponent {
     return (intake as any).message !== undefined;
   }
 
-  add(id: number): void {
+  addIntake(id: number): void {
     let dialogRef;
-    let quantity: number = 1;
+    let quantity: number = 100;
     let config = new MatDialogConfig();
     this.dashboardService.getDetailedFood(id, quantity).subscribe((data) => {
       config = this.dashboardService.getDialogConfig(
@@ -52,7 +53,7 @@ export class IntakeComponent {
     console.log('Add intake');
   }
 
-  edit(id: number): void {
+  editIntake(id: number): void {
     let dialogRef;
     let config = new MatDialogConfig();
     this.dashboardService.getDetailedIntake(id).subscribe((data) => {
@@ -110,5 +111,14 @@ export class IntakeComponent {
           this.delete(id);
         }
       });
+  }
+
+  calcTime(fechaIso: string): string {
+    const fecha = new Date(fechaIso);
+    fecha.setHours(fecha.getHours() + 5);
+    const horas = fecha.getHours().toString().padStart(2, '0');
+    const minutos = fecha.getMinutes().toString().padStart(2, '0');
+    return `${horas}:${minutos}`;
+    return fechaIso;
   }
 }

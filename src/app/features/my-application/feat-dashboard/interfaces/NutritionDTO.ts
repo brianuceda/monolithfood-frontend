@@ -21,6 +21,21 @@ export interface DetailedFoodDTO {
   nutrients: NutritionDTO[];
 }
 
+export interface AddIntakeDTO {
+  foodId: number;
+  quantity: number;
+  unitOfMeasurement: string;
+  date: string;
+}
+
+export interface EditIntakeDTO {
+  eatId: number;
+  foodId?: number;
+  quantity: number;
+  unitOfMeasurement: string;
+  date: string;
+}
+
 // Nutrients
 export interface NutritionDTO {
   id: number;

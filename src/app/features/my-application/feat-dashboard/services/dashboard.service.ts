@@ -14,7 +14,11 @@ import { environment } from 'src/environments/environment.prod';
 import { AllMacrosAndIntakesDTO } from '../interfaces/MacrosDetailedDTO';
 import { HttpService } from 'src/app/core/services/http.service';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { DetailedIntakeDTO } from '../interfaces/NutritionDTO';
+import {
+  AddIntakeDTO,
+  DetailedIntakeDTO,
+  EditIntakeDTO,
+} from '../interfaces/NutritionDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +42,24 @@ export class DashboardService {
       catchError((error) => {
         console.error('Error fetching macros detailed:', error);
         return of(null);
+      })
+    );
+  }
+
+  public addIntake(newIntake: AddIntakeDTO): Observable<any> {
+    const api = this.apiUrl + '/add';
+    return this.httpService.postBodySimple<any>(api, newIntake).pipe(
+      tap(() => {
+        this.refreshNeededSubject.next();
+      })
+    );
+  }
+
+  public updateIntake(intake: EditIntakeDTO): Observable<any> {
+    const api = this.apiUrl + '/update';
+    return this.httpService.putBodySimple<any>(api, intake).pipe(
+      tap(() => {
+        this.refreshNeededSubject.next();
       })
     );
   }
