@@ -33,26 +33,6 @@ export class IntakeComponent {
     return (intake as any).message !== undefined;
   }
 
-  addIntake(id: number): void {
-    let dialogRef;
-    let quantity: number = 100;
-    let config = new MatDialogConfig();
-    this.dashboardService.getDetailedFood(id, quantity).subscribe((data) => {
-      config = this.dashboardService.getDialogConfig(
-        '600px',
-        '785px',
-        false,
-        false,
-        { data }
-      );
-      dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-      // dialogRef.afterClosed().subscribe((result) => {
-      //   console.log(`Dialog result: ${result}`);
-      // });
-    });
-    console.log('Add intake');
-  }
-
   editIntake(id: number): void {
     let dialogRef;
     let config = new MatDialogConfig();
@@ -65,9 +45,6 @@ export class IntakeComponent {
         { data }
       );
       dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-      // dialogRef.afterClosed().subscribe((result) => {
-      //   console.log(`Dialog result: ${result}`);
-      // });
     });
     console.log('Edit intake');
   }

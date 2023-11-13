@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FoodDTO } from '../../interfaces/FoodDTO';
-import { GlobalService } from 'src/app/shared/services/global.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddEditIntakeComponent } from '../../../feat-dashboard/components/add-edit-intake/add-edit-intake.component';
+import { AddEditIntakeComponent } from '../../../feat-dashboard/pages/add-edit-intake/add-edit-intake.component';
 import { DatabaseService } from '../../services/database.service';
+import { DashboardService } from '../../../feat-dashboard/services/dashboard.service';
 
 @Component({
   selector: 'app-food',
@@ -15,25 +15,26 @@ export class FoodComponent {
   @Input() hasRequiredRoles!: boolean;
 
   constructor(
-    private globalService: GlobalService,
+    private dashboardService: DashboardService,
     private databaseService: DatabaseService,
     private dialog: MatDialog
   ) {}
 
-  addIntake(foodId: number): void {
+  addIntake(id: number): void {
     let dialogRef;
+    let quantity: number = 100;
     let config = new MatDialogConfig();
-    config = this.globalService.getDialogConfig(
-      '550px',
-      '785px',
-      false,
-      false,
-      foodId
-    );
-    dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-    dialogRef.afterClosed().subscribe((result) => {
-      // console.log(`Dialog result: ${result}`);
+    this.dashboardService.getDetailedFood(id, quantity).subscribe((data) => {
+      config = this.dashboardService.getDialogConfig(
+        '600px',
+        '785px',
+        false,
+        false,
+        { data }
+      );
+      dialogRef = this.dialog.open(AddEditIntakeComponent, config);
     });
+    console.log('Add intake');
   }
 
   addToFavorites(foodId: number): void {
