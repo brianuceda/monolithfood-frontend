@@ -172,7 +172,6 @@ export class DashboardComponent {
             case 'information':
               dialogRef = this.dialog.open(SetInformationComponent, config);
               dialogRef.afterClosed().subscribe((result) => {
-                console.log(`Dialog result: ${result}`);
                 resolve(); // Resuelve la promesa cuando el diálogo se cierre
               });
               break;
@@ -182,14 +181,12 @@ export class DashboardComponent {
                 config
               );
               dialogRef.afterClosed().subscribe((result) => {
-                console.log(`Dialog result: ${result}`);
                 resolve();
               });
               break;
             case 'objectives':
               dialogRef = this.dialog.open(SelectObjectivesComponent, config);
               dialogRef.afterClosed().subscribe((result) => {
-                console.log(`Dialog result: ${result}`);
                 resolve();
               });
               break;

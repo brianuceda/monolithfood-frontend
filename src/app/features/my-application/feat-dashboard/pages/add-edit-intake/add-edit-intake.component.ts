@@ -140,6 +140,7 @@ export class AddEditIntakeComponent implements OnInit {
     const dateTime = new Date(date + 'T' + time);
     const offset = dateTime.getTimezoneOffset() * 60000;
     const localDateTime = new Date(dateTime.getTime() - offset);
+
     if (type === 'Add') {
       return localDateTime.toISOString();
     } else if (type === 'Edit') {
@@ -170,7 +171,6 @@ export class AddEditIntakeComponent implements OnInit {
   separateAndFormatDate(): void {
     const dateTimeString = this.savedData.date;
     const dateTime = new Date(dateTimeString);
-    dateTime.setHours(dateTime.getHours() + 5);
     const datePart = dateTime.toISOString().split('T')[0];
     let timePart = dateTime.toISOString().split('T')[1];
     timePart = timePart.substring(0, 5);

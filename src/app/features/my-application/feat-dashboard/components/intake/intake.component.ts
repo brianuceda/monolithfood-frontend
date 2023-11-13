@@ -46,9 +46,9 @@ export class IntakeComponent {
         { data }
       );
       dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
-      });
+      // dialogRef.afterClosed().subscribe((result) => {
+      //   console.log(`Dialog result: ${result}`);
+      // });
     });
     console.log('Add intake');
   }
@@ -65,17 +65,15 @@ export class IntakeComponent {
         { data }
       );
       dialogRef = this.dialog.open(AddEditIntakeComponent, config);
-      dialogRef.afterClosed().subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
-      });
+      // dialogRef.afterClosed().subscribe((result) => {
+      //   console.log(`Dialog result: ${result}`);
+      // });
     });
     console.log('Edit intake');
   }
 
   delete(id: number): void {
-    this.dashboardService.deleteIntake(id).subscribe((response) => {
-      console.log('Response: ', response);
-    });
+    this.dashboardService.deleteIntake(id).subscribe();
   }
 
   convertUnitOfMeasurement(unit: string): string {
