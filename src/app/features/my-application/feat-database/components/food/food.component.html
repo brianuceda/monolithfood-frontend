@@ -1,0 +1,31 @@
+<div class="div1">
+    <div class="div2">
+        <div class="names">
+            <h1 class="food__name">{{ details.foodName }}</h1>
+            <span class="food__category">{{ details.foodCategory }}</span>
+        </div>
+        <div class="comida">
+            <img src="{{ details.imgUrl }}" alt="">
+        </div>
+        <div class="typography3">
+            <p>{{ details.information }}</p>
+        </div>
+    </div>
+    <div class="botones">
+        <div aria-label="more information button" class="btn">
+            <i class="fa-solid fa-info"></i>
+        </div>
+        <button aria-label="select button" (click)="addIntake(details.foodId)" class="main-button">Agregar</button>
+        <div *ngIf="hasRequiredRoles">
+            <div *ngIf="!details.isFavorite; else favoriteTemplate" aria-label="favorite button" class="btn"
+                (click)="addToFavorites(details.foodId)">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <ng-template #favoriteTemplate>
+                <div aria-label="favorite button" class="btn" (click)="removeFromFavorites(details.foodId)">
+                    <i class="fa-solid fa-heart favorite"></i>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
