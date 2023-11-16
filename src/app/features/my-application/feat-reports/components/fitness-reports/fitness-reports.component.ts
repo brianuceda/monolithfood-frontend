@@ -3,7 +3,6 @@ import { GlobalService } from 'src/app/shared/services/global.service';
 import {
   ApexAxisChartSeries,
   ApexChart,
-  ChartComponent,
   ApexDataLabels,
   ApexPlotOptions,
   ApexYAxis,
@@ -11,8 +10,10 @@ import {
   ApexXAxis,
   ApexFill
 } from "ng-apexcharts";
-//IMPORTACION
+//IMPORTACION progress bar
 import { MessageService } from 'primeng/api';
+//import echart for graphig
+import { EChartsOption } from 'echarts';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -29,134 +30,76 @@ export type ChartOptions = {
   selector: 'app-fitness-reports',
   templateUrl: './fitness-reports.component.html',
   styleUrls: ['./fitness-reports.component.scss'],
-  //agregado
+  //message for progress bar completed
   providers: [MessageService]
 })
 
 //SE AGREGÓ EL EXTEND
 export class FitnessReportsComponent implements OnInit {
-  @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
 
-   //AGREGADO
+   //progress bar
     value: number = 0; 
     title='progress-bar';
+    //echart 
+    title1 = 'Angular charts';
+  constructor(private messageService: MessageService) {}
 
-
-  constructor(private globalService: GlobalService, private messageService: MessageService) 
-  {
-    this.chartOptions = {
-      series: [
-        {
-          name: "Inflation",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 8.7]
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "bar"
-      },
-      //posicion de los numeros de porcentaje
-      plotOptions: {
-        bar: {
-          borderRadius: 5,
-          dataLabels: {
-            position: "top", // top, center, bottom
-          }
-        }
-      },
-       //distancia de los numeros de porcentaje de la barra
-       //colore los numeros de porcentaje
-       //tamaño de fuente de los numeros de porcentaje
-      dataLabels: {
-        enabled: true,
-        formatter: function(val) {
-          return val + "%";
-        },
-        //distancia
-        offsetY: -20,
-        style: {
-          fontSize: "12px",
-          colors: ["#304758"]
-        }
-      },
-
-      //letras de arriba del grafico 
-      xaxis: {
-        categories: [
-          "Lun",
-          "Mar",
-          "Mie",
-          "Jue",
-          "Vie",
-          "Sab",
-          "Dom",
+  //echart options 
+  option: EChartsOption={
+    //title
+    tooltip: {
+      trigger: 'axis'
+    },
+    legend: {
+      //legend is used to show the name of the graph
+      data: ['calories']
+    },
+    toolbox: {
+      show: true,
+      feature: {
+        dataView: { show: true, readOnly: false },
+        magicType: { show: true, type: ['line', 'bar'] },
+        restore: { show: true },
+        saveAsImage: { show: true }
+      }
+    },
+    calculable: true,
+    xAxis: [
+      {
+        type: 'category',
+        // prettier-ignore
+        data: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab']
+      }
+    ],
+    yAxis: [
+      {
+        type: 'value'
+      }
+    ],
+    series: [
+      {
+        name: 'calories',
+        type: 'bar',
+        data: [
+          2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6
         ],
-        position: "top",
-        labels: {
-          offsetY: 160,
-          
+        markPoint: {
+          data: [
+            { type: 'max', name: 'Max' },
+            { type: 'min', name: 'Min' }
+          ]
         },
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false,
-        },
-        crosshairs: {
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#BED1E6",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.6
-            }
-          }
-        },
-        tooltip: {
-          enabled: true,
-          offsetY: 40
+        //promedio de los datos
+        markLine: {
+          data: [{ type: 'average', name: 'Avg' }]
         }
       },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shade: "light",
-          type: "horizontal",
-          shadeIntensity: 0.25,
-          gradientToColors: undefined,
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [50, 0, 100, 100]
-        }
-      },
-      yaxis: {
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        labels: {
-          show: false,
-          formatter: function(val) {
-            return val + "%";
-          }
-        }
-      },
-    };
-  }
+      
+    ]
+  };
+  //progress bar
   ngOnInit(): void {
-    Promise.resolve().then(() => {
-      this.globalService.setTitle('Reportes Fitness');
-    });
-
-
-    //agrergado
-
+  //progress bar
     let interval = setInterval(() => {
       this.value = this.value + Math.floor(Math.random() * 10) + 1;
       if (this.value >= 100) {

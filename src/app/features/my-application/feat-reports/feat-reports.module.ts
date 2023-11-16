@@ -9,6 +9,9 @@ import { ProgressBarModule } from 'primeng/progressbar';
 // For dynamic progressbar demo
 import { ToastModule } from 'primeng/toast';
 
+///import echart for graphig
+import { NgxEchartsModule } from 'ngx-echarts';
+
 @NgModule({
   declarations: [FitnessReportsComponent],
   imports: [
@@ -18,7 +21,11 @@ import { ToastModule } from 'primeng/toast';
     ReactiveFormsModule,
     NgApexchartsModule,
     ProgressBarModule,
-    ToastModule
+    ToastModule,
+    //import echart for graphig
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'), 
+    }),
   ],
 })
 export class FeatReportsModule { }

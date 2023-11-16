@@ -3,9 +3,8 @@
 @import "src/assets/scss/colors.scss";
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
-///importaciones para el progress bar
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
+
+
 
 
 //para la pantalla 
@@ -35,6 +34,7 @@ $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
 
   // Modificaciones del usuario
   .div {
+    gap:10px;
     width: 50%;
     height:$container-height;
     // background-color: rgba(0, 0, 0, 0.2);
@@ -48,20 +48,31 @@ $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
     align-items: center;
     // border-color: rgb(30, 30, 199);
       .objetives, .calories{
-        //background-color: aquamarine; 
+        //background-color: aquamarine;
+        align-items: center;
+        justify-content: center;
         width: 100%;  
-        margin: 5px;
         background-color: rgba(0, 0, 0, 0.2);
         //solo a la clase que tiene objetives y short
         &.short{
-          height: 50%;
+            height: 30%;
         }
+
+        .demo-chart {
+          width: 90%;
+        }
+
 
         .card{
           width: 90%;
           margin-top: 1%;
         }
       }
+      .calories{
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
+
     
   }
 }

@@ -9,15 +9,8 @@
             <p-progressBar [value]="60"></p-progressBar>
           </div>
         </div>
-      <div class="div calories chart">
-        <apx-chart
-          [series]="chartOptions.series!"
-          [chart]="chartOptions.chart!"
-          [dataLabels]="chartOptions.dataLabels!"
-          [plotOptions]="chartOptions.plotOptions!"
-          [yaxis]="chartOptions.yaxis!"
-          [xaxis]="chartOptions.xaxis!"
-        ></apx-chart>
+      <div class="div calories ">
+        <div echarts [options]="option" class="demo-chart"></div>
       </div>
   </div>
   <!-- div de fitness information -->
