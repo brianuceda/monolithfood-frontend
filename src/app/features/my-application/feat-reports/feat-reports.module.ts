@@ -4,6 +4,10 @@ import { FeatReportsRoutingModule } from './feat-reports-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FitnessReportsComponent } from './components/fitness-reports/fitness-reports.component';
+//progress bar import 
+import { ProgressBarModule } from 'primeng/progressbar';
+// For dynamic progressbar demo
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [FitnessReportsComponent],
@@ -12,7 +16,9 @@ import { FitnessReportsComponent } from './components/fitness-reports/fitness-re
     FeatReportsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    ProgressBarModule,
+    ToastModule
   ],
 })
 export class FeatReportsModule { }

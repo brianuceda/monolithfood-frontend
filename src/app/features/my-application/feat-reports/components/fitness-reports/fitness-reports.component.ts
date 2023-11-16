@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,ViewChild, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import {
   ApexAxisChartSeries,
@@ -11,6 +11,8 @@ import {
   ApexXAxis,
   ApexFill
 } from "ng-apexcharts";
+//IMPORTACION
+import { MessageService } from 'primeng/api';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -27,12 +29,21 @@ export type ChartOptions = {
   selector: 'app-fitness-reports',
   templateUrl: './fitness-reports.component.html',
   styleUrls: ['./fitness-reports.component.scss'],
+  //agregado
+  providers: [MessageService]
 })
-export class FitnessReportsComponent {
+
+//SE AGREGÓ EL EXTEND
+export class FitnessReportsComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor(private globalService: GlobalService) 
+   //AGREGADO
+    value: number = 0; 
+    title='progress-bar';
+
+
+  constructor(private globalService: GlobalService, private messageService: MessageService) 
   {
     this.chartOptions = {
       series: [
@@ -142,5 +153,18 @@ export class FitnessReportsComponent {
     Promise.resolve().then(() => {
       this.globalService.setTitle('Reportes Fitness');
     });
-  }
+
+
+    //agrergado
+
+    let interval = setInterval(() => {
+      this.value = this.value + Math.floor(Math.random() * 10) + 1;
+      if (this.value >= 100) {
+          this.value = 100;
+          this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Process Completed' });
+          clearInterval(interval);
+      }
+  }, 2000);
+  }  
+
 }

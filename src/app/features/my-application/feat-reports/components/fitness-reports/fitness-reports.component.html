@@ -1,9 +1,14 @@
 <div class="container">
   <!-- div de objetives calories -->
   <div class="div">
-      <div class="div objetives short">objetivos
+      <div class="div objetives short"> objetives calories 
           <!-- <mat-progress-bar mode="determinate" value="80" class="progressBar custom-progress-bar" style="width: 90%; height: 20px; margin-top: 10px;"></mat-progress-bar> -->
-      </div>
+          <!-- progress-bar -->
+          <div class="card">
+            <p-toast></p-toast>
+            <p-progressBar [value]="60"></p-progressBar>
+          </div>
+        </div>
       <div class="div calories chart">
         <apx-chart
           [series]="chartOptions.series!"
