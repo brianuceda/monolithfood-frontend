@@ -13,6 +13,8 @@
   padding: 0;
 }
 
+
+
 .container {
   min-width: 100%;
   min-height: calc(100vh - ($bar-size + $content-padding-tb));
@@ -28,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; 
+    max-width: 1200px;
 
     .image {
       max-width: 100%;
@@ -60,10 +62,9 @@
         cursor: pointer;
         margin-top: 10px;
         border-radius: 5px;
-        border: 2px solid rgba(255, 255, 255, 0.20);
-
+        border: none;
       }
-      
+
       p {
         margin-top: 20px;
         color: #555;
@@ -71,7 +72,60 @@
       }
     }
   }
+
+
+  @media screen and (max-width: 768px) {
+    .content {
+      flex-direction: column;
+
+      .image {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+
+      .text {
+        text-align: center;
+      }
+    }
+  }
 }
+
+
+
+
+.container4 {
+  display: flex;
+  justify-content: center;
+}
+
+.quienes-somos-section {
+  background-color: #3d3d3d28; 
+  color: #fff; 
+  padding: 50px;
+  text-align: center; 
+  box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.25);
+}
+
+.quienes-somos-content {
+  max-width: 800px; 
+  margin: 0 auto; 
+}
+
+.quienes-somos-title {
+  font-size: 2em;
+}
+
+.quienes-somos-description {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+.quienes-somos-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 8px; 
+}
+
 
 .container3 {
   margin-top: 150px;
@@ -248,7 +302,7 @@ h2{
 .div2 {
   width: 480px;
   height: 600px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.038);
   margin: 89px;
   border-radius: 5%;
   display: flex;
@@ -392,131 +446,213 @@ h2{
   }
 
 }
-  .container2 {
-    margin-top: 150px;
+.container2 {
+  margin-top: 150px;
 
-      h1{
-        color: #ffffff;
-        text-align: center;
-        font-size: 35px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 55px;
-      }
- 
-  .card-container {
-    display: flex;
-    justify-content: center;
+  h1 {
+      color: #ffffff;
+      text-align: center;
+      font-size: 35px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 55px;
+      margin-bottom: 35px;
   }
-  
-  .card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 300px;
+
+  h2{
+    color: #9A9A9A;
     text-align: center;
-    padding: 16px;
-    margin: 16px;
-    box-shadow: 0px 0px 50px 5px rgba(0, 179, 255, 0.325);
-  
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      margin-bottom: 12px;
+    font-size: 18px;
+    font-style: normal;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+  p{
+    color: #000;
+  }
+
+  ::selection{
+    background: rgba(23,162,184,0.3);
+  }
+  .wrapper{
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.50);
+  }
+  .wrapper .box{
+    background: #fff;
+    width: calc(33% - 10px);
+    padding: 25px;
+    border-radius: 3px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+  }
+  .wrapper .box i.quote{
+    font-size: 20px;
+    color: #17a2b8;
+  }
+  .wrapper .box .content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+  }
+  .box .info .name{
+    font-weight: 600;
+    font-size: 17px;
+    color: #17a2b8;
+  }
+
+  .box .info .stars{
+    margin-top: 2px;
+  }
+  .box .info .stars i{
+    color: #17a2b8;
+  }
+  .box .content .image{
+    height: 75px;
+    width: 75px;
+    padding: 3px;
+    background: #17a2b8;
+    border-radius: 50%;
+  }
+  .content .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+  .box:hover .content .image img{
+    border-color: #fff;
+  }
+  @media (max-width: 1045px) {
+    .wrapper .box{
+      width: calc(50% - 10px);
+      margin: 10px 0;
     }
-  
-    p {
-      color: #000000;
-      text-align: left;
+  }
+  @media (max-width: 702px) {
+    .wrapper .box{
+      width: 100%;
     }
   }
 }
 
-.container4{
-  margin-top: 150px;
-  section {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
 
-    h2 {
-        color: #292929;
-    }
-
-    p {
-        line-height: 1.6;
-        color: #000;
-    }
-    }
 
     .container5 {
       margin-top: 150px;
       margin-bottom: 20px;
+      text-align: center;
 
-      .features-container {
+      .card-container {
+        margin-top: 50px;
         display: flex;
-        overflow-x: auto; /* Permite el desplazamiento horizontal */
-        gap: 30px;
-        padding: 20px; /* Añade un espacio adicional alrededor de las características */
+        justify-content: center;
+        flex-wrap: wrap;
       }
-      
-      .feature {
-        width: 400px;
-        max-width: 100%;
-        min-height: 555px;
-        background-color:  #191924;
+
+      .cardBox {
+        width: 320px;
+        height: 400px;
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
         border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 10px 0px, rgba(0, 0, 0, 0.5) 0px 2px 25px 0px;
+        background-size: cover;
+        background-position: center;
+        margin: 0 10px 20px;
+        box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.25);
+      }
+    
+      
+      .card {
+        position: absolute;
+        width: 95%;
+        height: 95%;
+        background: #000814;
+        border-radius: 20px;
+        z-index: 5;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 20px;
-        box-sizing: border-box;
-        box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.50);
-      }
-      
-      .feature .feature-div {
-        display: flex;
-        justify-content: center;
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+        color: #ffffff;
+        overflow: hidden;
+        padding: 20px;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 60px -12px inset,
+          rgba(0, 0, 0, 0.5) 0px 18px 36px -18px inset;
       }
       
-      .feature img {
-        width: 100%;
-        height: 300px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      
-      .section__title {
-        font-size: 32px;
-        font-family: cursive;
+      .card .h4 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
         font-weight: 800;
-        color: var(--main-color);
-        text-align: center;
-        margin-bottom: 40px;
+        pointer-events: none;
+        opacity: .5;
       }
       
-      .feature h3 {
-        font-size: 28px;
-        font-weight: bold;
-        margin-top: 20px;
-        color: #ffffff;
-        text-align: center;
+      .card .content .h3 {
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 10px;
       }
       
-      .feature p {
-        font-size: 16px;
-        font-weight: 350;
-        margin-top: 10px;
-        text-align: center;
-        color: #ffffff;
+      .card .content p {
+        font-size: 14px;
+        line-height: 1.4em;
+      }
+      
+      .card .content {
+        transform: translateY(100%);
+        opacity: 0;
+        transition: 0.3s ease-in-out;
+      }
+      
+      .card:hover .content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .card:hover .h4 {
+        opacity: 0;
+      }
+      
+      .cardBox::before {
+        content: "";
+        position: absolute;
+        width: 40%;
+        height: 150%;
+        background: #40E0D0;
+        background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+        background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+        transform-origin: center;
+        animation: glowing_401 5s linear infinite;
+      }
+
+      
+      @keyframes glowing_401 {
+        0% {
+          transform: rotate(0);
+        }
+      
+        100% {
+          transform: rotate(360deg);
+        }
       }
       
     }
