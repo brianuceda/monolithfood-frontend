@@ -5,6 +5,7 @@ import {
   PutMyProfile,
 } from './../../interfaces/my-profile';
 import { Component } from '@angular/core';
+import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -86,5 +87,9 @@ export class MyProfileComponent {
       .subscribe((error: any) => {
         console.log(error);
       });
+  }
+
+  openCustomSnackbar(msg: string, type: ResponseType): void {
+    this.globalService.openCustomSnackbar(msg, type);
   }
 }
