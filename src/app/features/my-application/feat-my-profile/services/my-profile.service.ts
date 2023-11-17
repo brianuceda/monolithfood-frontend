@@ -1,4 +1,8 @@
-import { MyProfile, PutMyProfile } from './../interfaces/my-profile';
+import {
+  HeightAndWeight,
+  MyProfile,
+  PutMyProfile,
+} from './../interfaces/my-profile';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
@@ -21,6 +25,13 @@ export class MyProfileService {
     return this.httpService.putBodySimple<any>(
       this.apiPersonalInfo + '/update',
       putMyProfile
+    );
+  }
+
+  public updateHeightAndWeight(handw: HeightAndWeight) {
+    return this.httpService.putBodySimple<any>(
+      this.apiPersonalInfo + '/update-weight-height',
+      handw
     );
   }
 }

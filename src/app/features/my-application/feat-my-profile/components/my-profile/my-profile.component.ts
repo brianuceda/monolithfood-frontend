@@ -1,5 +1,9 @@
 import { MyProfileService } from './../../services/my-profile.service';
-import { MyProfile, PutMyProfile } from './../../interfaces/my-profile';
+import {
+  HeightAndWeight,
+  MyProfile,
+  PutMyProfile,
+} from './../../interfaces/my-profile';
 import { Component } from '@angular/core';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -11,8 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class MyProfileComponent {
   myForm!: FormGroup;
-  username!: string;
-  email!: string;
+  data!: MyProfile;
 
   constructor(
     private globalService: GlobalService,
@@ -43,6 +46,7 @@ export class MyProfileComponent {
   getMyProfile(): void {
     this.myProfileService.getPersonalInfo().subscribe(
       (data: MyProfile) => {
+        this.data = data;
         this.myForm.get('names')?.setValue(data.names);
         this.myForm.get('gender')?.setValue(data.gender);
         const date = new Date(data.borndate);
@@ -53,8 +57,6 @@ export class MyProfileComponent {
         this.myForm.get('weightKg')?.setValue(data.weightKg);
         this.myForm.get('heightCm')?.setValue(data.heightCm);
         this.myForm.get('imc')?.setValue(data.imc);
-        this.username = data.username;
-        this.email = data.email;
         console.log(data);
       },
       (error) => {
@@ -72,5 +74,17 @@ export class MyProfileComponent {
     this.myProfileService.updatePersonalInfo(data).subscribe((error: any) => {
       console.log(error);
     });
+  }
+
+  updateHeightAndWeight() {
+    let data: HeightAndWeight = {
+      weightKg: this.myForm.get('weightKg')?.value,
+      heightCm: this.myForm.get('heightCm')?.value,
+    };
+    this.myProfileService
+      .updateHeightAndWeight(data)
+      .subscribe((error: any) => {
+        console.log(error);
+      });
   }
 }

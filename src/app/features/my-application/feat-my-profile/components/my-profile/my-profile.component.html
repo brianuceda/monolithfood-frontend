@@ -1,42 +1,43 @@
 <form [formGroup]="myForm" class="container container-fluid">
     <div class="row">
-        <div class="row-2 d-flex align-items-center">
-            <img src="https://cdn.pixabay.com/photo/2021/12/25/11/57/scary-6892983_1280.png" alt="avatar"
-                class="avatar">
-            <div class="data-perfil">
-                <span class="name">{{username}}</span>
-                <span class="email">{{email}}</span>
-                <span class="folowers"> 7 seguidores - 2 seguidos</span>
-            </div>
-            <div class="d-flex social-media">
-                <i class="fa-brands fa-github"></i>
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-            </div>
-
-            <mat-slide-toggle class="ms-5">
-                <span class="switch-perfil">Perfil Publico</span>
-            </mat-slide-toggle>
-
-            <div class="box"></div>
-            <div class="update-data">
-                <div class="d-flex">
-                    <div class="icon">
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    <span>Kiridepapel</span>
+        <div class="row-2 d-flex align-items-center gil">
+            <div class="row-2 d-flex align-items-center box first">
+                <img src="{{data.profileImg}}" alt="avatar" class="avatar">
+                <div class="data-perfil">
+                    <span class="name">{{data.username}}</span>
+                    <span class="email">{{data.email}}</span>
+                    <span class="folowers">{{data.currencySymbol}} {{data.currency}}</span>
                 </div>
-                <button class="mt-2">Actualizar nombre de ususario</button>
-            </div>
-
-            <div class="update- ms-3">
-                <div class="d-flex">
-                    <div class="icon">
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                    <span>brianuceda@gmail.com</span>
+                <div class="d-flex social-media">
+                    <i class="fa-brands fa-github"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
                 </div>
-                <button class="mt-2">Actualizar correo electrónico</button>
+
+                <mat-slide-toggle class="ms-5 mattoggle">
+                    <span class="switch-perfil">Perfil Publico</span>
+                </mat-slide-toggle>
+            </div>
+            <div class="row-2 d-flex align-items-center box second">
+                <div class="update-data">
+                    <div class="d-flex">
+                        <div class="icon">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <span>Kiridepapel</span>
+                    </div>
+                    <button class="mt-2">Actualizar nombre de ususario</button>
+                </div>
+
+                <div class="update-data ms-3" style="margin: 0 !important;">
+                    <div class="d-flex">
+                        <div class="icon">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <span>brianuceda@gmail.com</span>
+                    </div>
+                    <button class="mt-2">Actualizar correo electrónico</button>
+                </div>
             </div>
         </div>
     </div>
@@ -44,7 +45,7 @@
     <hr>
     <br>
     <div class="row">
-        <div class="col-md-6 ps-5">
+        <div class="col-md-6 ps-5 super">
             <mat-form-field class="input-group">
                 <input matInput formControlName="names" placeholder="Nombre completo">
                 <mat-icon>person</mat-icon>
@@ -74,20 +75,21 @@
 
         </div>
 
-        <div class="col-md-6 ps-5 antes-divs">
+        <div class="col-md-6 ps-5 antes-divs super">
             <div class="d-flex calc-divs">
                 <mat-form-field class="input-group ms-1">
-                    <input matInput formControlName="weightKg" placeholder="Ingrese su peso">
+                    <input matInput type="number" formControlName="weightKg" placeholder="Ingrese su peso"> kg.
                     <mat-icon>person</mat-icon>
                 </mat-form-field>
 
                 <mat-form-field class="input-group ms-1">
-                    <input matInput formControlName="heightCm" placeholder="Ingrese su altura actual">
+                    <input matInput type="number" formControlName="heightCm" placeholder="Ingrese su altura actual"> cm.
                     <mat-icon>person</mat-icon>
                 </mat-form-field>
             </div>
 
-            <app-button [text]="'Actualizar'" [type]="'primary'" [icon]="''"></app-button>
+            <app-button (click)="updateHeightAndWeight()" [text]="'Actualizar'" [type]="'primary'"
+                [icon]="''"></app-button>
 
             <mat-form-field class="input-group mt-1">
                 <mat-icon class="icon-first">lock</mat-icon>
