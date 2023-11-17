@@ -1,7 +1,6 @@
 import { MyProfileService } from './../../services/my-profile.service';
-import { MyProfile } from './../../interfaces/my-profile';
+import { MyProfile, PutMyProfile } from './../../interfaces/my-profile';
 import { Component } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -11,15 +10,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./my-profile.component.scss'],
 })
 export class MyProfileComponent {
-  myForm!: FormGroup;  
+  myForm!: FormGroup;
   username!: string;
   email!: string;
 
   constructor(
     private globalService: GlobalService,
-    private snackBar: MatSnackBar,
     private myProfileService: MyProfileService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -32,27 +30,25 @@ export class MyProfileComponent {
 
   reactiveForm(): void {
     this.myForm = this.formBuilder.group({
-      names: [""],
-      gender: [""],
-      borndate: [""],
-      location: [""],
-      weightKg: [""],
-      heightCm: [""],
-      imc: [""],
-    })
-  }
-
-  openCustomSnackbar(msg: string, type: string): void {
-    this.globalService.openCustomSnackbar(msg, type);
+      names: [''],
+      gender: [''],
+      borndate: [''],
+      location: [{ value: '', disabled: true }],
+      weightKg: [''],
+      heightCm: [''],
+      imc: [{ value: '', disabled: true }],
+    });
   }
 
   getMyProfile(): void {
     this.myProfileService.getPersonalInfo().subscribe(
       (data: MyProfile) => {
-        this.myForm.get('names')?.setValue(data.names); 
-        this.myForm.get('gender')?.setValue(data.gender); 
+        this.myForm.get('names')?.setValue(data.names);
+        this.myForm.get('gender')?.setValue(data.gender);
         const date = new Date(data.borndate);
-        this.myForm.get('borndate')?.setValue(date.toISOString().substring(0, 10));
+        this.myForm
+          .get('borndate')
+          ?.setValue(date.toISOString().substring(0, 10));
         this.myForm.get('location')?.setValue(data.location);
         this.myForm.get('weightKg')?.setValue(data.weightKg);
         this.myForm.get('heightCm')?.setValue(data.heightCm);
@@ -67,28 +63,14 @@ export class MyProfileComponent {
     );
   }
 
- 
   updateMyProfile(): void {
-    console.log("actualizando datos");
-    const data: any = {
-      weightKg: this.myForm.get('weightKg')?.value,
-      heightCm: this.myForm.get('heightCm')?.value,
+    const data: PutMyProfile = {
+      names: this.myForm.get('names')?.value,
+      gender: this.myForm.get('gender')?.value,
+      borndate: this.myForm.get('borndate')?.value,
     };
-    this.myProfileService.updatePersonalInfo(data).subscribe(
-      (data: MyProfile) => {
-        this.openCustomSnackbar('Datos actualizados correctamente', 'success');
-        this.getMyProfile();
-      },
-      (error:any) => {
-        console.log(error);
-      }
-    );
+    this.myProfileService.updatePersonalInfo(data).subscribe((error: any) => {
+      console.log(error);
+    });
   }
-
-
-
-
-
-
-
 }

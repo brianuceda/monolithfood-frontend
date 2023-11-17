@@ -1,1 +1,16 @@
-<p>button works!</p>
+<button [ngClass]="['btn', type]" [ngStyle]="{ 
+      'background-color': type !== 'oauth2' ? background : null, 
+      'color': type !== 'oauth2' ? color : null, 
+      'height': height 
+    }" [disabled]="disabled">
+    <div *ngIf="type === 'primary' || ''">
+        <span *ngIf="icon" class="icon">
+            <i class="icon" [class]="icon"></i>
+        </span> {{ text }}
+    </div>
+    <div *ngIf="type === 'oauth2'">
+        <span *ngIf="icon" class="icon">
+            <img class="icon" [src]="icon" alt="{{ text }}">
+        </span> {{ text }}
+    </div>
+</button>

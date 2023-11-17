@@ -1,6 +1,6 @@
-<form [formGroup]="myForm" class="container2 container-fluid">
+<form [formGroup]="myForm" class="container container-fluid">
     <div class="row">
-        <div class="d-flex align-items-center">
+        <div class="row-2 d-flex align-items-center">
             <img src="https://cdn.pixabay.com/photo/2021/12/25/11/57/scary-6892983_1280.png" alt="avatar"
                 class="avatar">
             <div class="data-perfil">
@@ -45,58 +45,55 @@
     <br>
     <div class="row">
         <div class="col-md-6 ps-5">
-            <div class="input-group">
-                <label>Nombre Completo</label>
-                <input formControlName="names" type="text" placeholder="Nombre completo">
-                <i class="fa-solid fa-person"></i>
-            </div>
+            <mat-form-field class="input-group">
+                <input matInput formControlName="names" placeholder="Nombre completo">
+                <mat-icon>person</mat-icon>
+            </mat-form-field>
 
-            <div class="input-group">
-                <label>Género</label>
-                <select formControlName="gender">
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
-                </select>
-                <i class="fa-solid fa-mars-and-venus"></i>
-            </div>
+            <mat-form-field class="input-group">
+                <mat-select formControlName="gender">
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Femenino</mat-option>
+                </mat-select>
+                <mat-icon>mars_and_venus</mat-icon>
+            </mat-form-field>
 
-            <div class="input-group">
-                <label>Fecha de Nacimiento</label>
-                <input formControlName="borndate" type="date">
-                <i class="fa-solid fa-calendar"></i>
-            </div>
+            <mat-form-field class="input-group">
+                <input matInput formControlName="borndate" type="date">
+                <mat-icon>calendar_today</mat-icon>
+            </mat-form-field>
 
-            <div class="input-group">
-                <label>Localización</label>
-                <input formControlName="location" type="text" placeholder="Ingrese su localización">
-                <i class="fa-solid fa-lock"></i>
-            </div>
+            <mat-form-field class="input-group">
+                <mat-icon class="icon-first">lock</mat-icon>
+                <input class="espaciado" matInput formControlName="location" placeholder="Analizando localización...">
+                <mat-icon>location_on</mat-icon>
+            </mat-form-field>
 
-            <div class="text-center mt-2">
-                <button>Actualizar</button>
-            </div>
+            <app-button (click)="updateMyProfile()" style="margin-top: 10px;" [text]="'Actualizar'" [type]="'primary'"
+                [icon]="''"></app-button>
+
         </div>
 
-        <div class="col-md-6 ps-5">
-            <div class="d-flex">
-                <div class="input-group ms-1">
-                    <label>Peso</label>
-                    <input formControlName="weightKg" type="text" placeholder="Ingrese ">
-                    <i class="fa-solid fa-person"></i>
-                </div>
+        <div class="col-md-6 ps-5 antes-divs">
+            <div class="d-flex calc-divs">
+                <mat-form-field class="input-group ms-1">
+                    <input matInput formControlName="weightKg" placeholder="Ingrese su peso">
+                    <mat-icon>person</mat-icon>
+                </mat-form-field>
 
-                <div class="input-group ms-1">
-                    <label>Altura</label>
-                    <input formControlName="heightCm" type="text" placeholder="Ingrese su altura actual">
-                    <i class="fa-solid fa-person"></i>
-                </div>
+                <mat-form-field class="input-group ms-1">
+                    <input matInput formControlName="heightCm" placeholder="Ingrese su altura actual">
+                    <mat-icon>person</mat-icon>
+                </mat-form-field>
             </div>
-            <button (click)="updateMyProfile()">Actualizar</button>
-            <div class="input-group mt-3">
-                <label>IMC(Índice de Masa Corporal)</label>
-                <input formControlName="imc" type="text" placeholder="Ingrese su Masa Corporal">
-                <i class="fa-solid fa-lock"></i>
-            </div>
+
+            <app-button [text]="'Actualizar'" [type]="'primary'" [icon]="''"></app-button>
+
+            <mat-form-field class="input-group mt-1">
+                <mat-icon class="icon-first">lock</mat-icon>
+                <input class="espaciado" matInput formControlName="imc" placeholder="Calculando su IMC...">
+                <mat-icon>assessment</mat-icon>
+            </mat-form-field>
         </div>
     </div>
 </form>

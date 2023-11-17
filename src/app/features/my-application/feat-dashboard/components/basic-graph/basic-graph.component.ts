@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { ChartOptions } from '../dashboard/dashboard.component';
+import { ChartOptions } from '../../pages/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-basic-graph',
@@ -32,11 +32,16 @@ export class BasicGraphComponent implements OnInit, OnChanges {
 
   // Obtiene el color en base al porcentaje
   getColorBasedOnPercentage(percentage: number): string {
-    if (percentage <= 10) return '#EC6C6C';
-    else if (percentage <= 30) return '#EC956C';
-    else if (percentage <= 50) return '#E6ECA5';
-    else if (percentage <= 70) return '#96DD99';
-    else return '#6CECAF';
+    if (percentage <= 10) return '#EC6C6C'; // Rojo más oscuro
+    else if (percentage <= 30) return '#EC956C'; // Rojo-naranja
+    else if (percentage <= 50) return '#E6ECA5'; // Amarillo-verde
+    else if (percentage <= 70) return '#96DD99'; // Verde claro
+    else if (percentage <= 150) return '#6CECAF'; // Verde-azul
+    else if (percentage <= 160) return '#96DD99'; // Verde claro
+    else if (percentage <= 170) return '#E6ECA5'; // Amarillo-verde
+    else if (percentage <= 180) return '#EC956C'; // Rojo-naranja
+    else if (percentage <= 200) return '#EC6C6C'; // Rojo oscuro
+    else return '#EC6C6C'; // Rojo oscuro
   }
 
   // Configuracion del grafico: https://apexcharts.com/docs/options/plotoptions/radialbar/

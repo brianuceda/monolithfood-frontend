@@ -13,8 +13,9 @@ import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.com
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { AngularMaterialModule } from '../modules/angular-material.module';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CanSeeItemPipe } from './sidebar/extra/can-see-item-pipe';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     SidebarComponent,
     SublevelMenuComponent,
     CustomSnackbarComponent,
+    ConfirmDialogComponent,
+    // Pipe
+    CanSeeItemPipe,
   ],
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule,MatSlideToggleModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    AngularMaterialModule,
+  ],
   exports: [
     ButtonComponent,
     PublicNavbarComponent,

@@ -12,21 +12,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   // Scrollbar
   ::-webkit-scrollbar {
     width: 10px;
   }
-
   ::-webkit-scrollbar-track {
     background: $bg-color-base-1;
   }
-
   ::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
   }
-
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
   }
@@ -37,13 +33,46 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-// Dialog
+// * Dialog
 .mat-mdc-dialog-surface {
   background: transparent !important;
   border-radius: $dialog-border-radius;
 }
-// Background of Dialog
 .style-css-dialog-background {
   background-color: $bg-back-dialog-gradient;
-  backdrop-filter: blur(2px);
+  // backdrop-filter: blur(2px);
+}
+
+// * Input
+.mat-mdc-form-field-bottom-align {
+  display: none !important;
+}
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-flex,
+.mat-mdc-form-field-infix {
+  height: 100% !important;
+  min-height: $input-height !important;
+  display: flex !important;
+}
+.validation-available {
+  .mat-mdc-text-field-wrapper {
+    padding: 0 70px 0 16px !important;
+  }
+}
+.mat-mdc-form-field-infix {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+}
+.mat-mdc-form-field-input-control {
+  height: calc($input-height - (27.78% + 27.78%)) !important;
+  font-size: 14px !important;
+}
+.mdc-text-field--filled {
+  color: #2f1c44 !important;
+  background: #f3f3f3 !important;
+}
+
+.mat-datepicker-input {
+  color: #b8b7bb !important;
 }

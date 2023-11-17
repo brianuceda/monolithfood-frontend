@@ -1,4 +1,4 @@
-import { AuthService } from 'src/app/core/services/auth.service';
+import { PrivateService } from 'src/app/core/services/private.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { GlobalService } from './shared/services/global.service';
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   actualPath!: string;
 
   constructor(
-    private authService: AuthService,
+    private PrivateService: PrivateService,
     private globalService: GlobalService,
     private router: Router
   ) {
@@ -38,7 +38,8 @@ export class AppComponent implements OnInit {
       setInfoToken: this.setInfoToken.bind(this),
       setActivityLevelToken: this.setActivityLevelToken.bind(this),
       setObjectivesToken: this.setObjectivesToken.bind(this),
-      setCompletedToken: this.setCompletedToken.bind(this),
+      setCompletedTokenRoleUser: this.setCompletedTokenRoleUser.bind(this),
+      setCompletedTokenRoleVip: this.setCompletedTokenRoleVip.bind(this),
     };
   }
 
@@ -61,7 +62,7 @@ export class AppComponent implements OnInit {
   }
   // Si hay algún dashboard abierto, ocultar el overflow del body
   isDialogOpened(): boolean {
-    return this.authService.isDialogOpened();
+    return this.PrivateService.isDialogOpened();
   }
 
   // * Funciones
@@ -102,11 +103,19 @@ export class AppComponent implements OnInit {
     );
     window.location.reload();
   }
-  public setCompletedToken(): void {
+  public setCompletedTokenRoleUser(): void {
     localStorage.removeItem('token');
     localStorage.setItem(
       'token',
-      'eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXJpZGVwYXBlbCIsImlhdCI6MTY5ODg4MDA4NiwiZXhwIjoxNjk5NDg0ODg2fQ.XS1QeUTrWmaFi7iLh8rkx3lpwNS_7JdgThKVIz9mPeY'
+      'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJwcm9maWxlU3RhZ2UiOiJjb21wbGV0ZWQiLCJzdWIiOiJraXJpZGVwYXBlbCIsImlhdCI6MTY5OTE5MjQ0MCwiZXhwIjoxNjk5Nzk3MjQwfQ.PULJSntCo-qGGIqozYhhfmIk-NctZW3h0J0Ly410kG0'
+    );
+    window.location.reload();
+  }
+  public setCompletedTokenRoleVip(): void {
+    localStorage.removeItem('token');
+    localStorage.setItem(
+      'token',
+      'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9WSVAifSx7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwicHJvZmlsZVN0YWdlIjoiY29tcGxldGVkIiwic3ViIjoia2lyaWRlcGFwZWwiLCJpYXQiOjE2OTkxOTUyMzMsImV4cCI6MTY5OTgwMDAzM30.ipWTaUiZG0WmP9l-uyziyzOnkJXBsPd3YUrhKjYs_14'
     );
     window.location.reload();
   }

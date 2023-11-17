@@ -1,34 +1,26 @@
-import { MyProfile } from './../interfaces/my-profile';
+import { MyProfile, PutMyProfile } from './../interfaces/my-profile';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
-import { FormControl } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpService } from 'src/app/core/services/http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MyProfileService {
   private apiUrl = `${environment.api}`;
+  private apiPersonalInfo = `${environment.api}/user/info`;
 
+  constructor(private httpService: HttpService) {}
 
-  constructor(private  httpClient: HttpClient) { }
-
-  public getPersonalInfo(
-  ): Observable<MyProfile> {
-    const api = this.apiUrl + '/user/info';
-    return this.httpClient.get<MyProfile>(api);
+  public getPersonalInfo(): Observable<MyProfile> {
+    return this.httpService.getSimple(this.apiPersonalInfo);
   }
 
-  public updatePersonalInfo( myProfile: any
-  ): any {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYXlkZSIsImlhdCI6MTY5NTg2MDM3NiwiZXhwIjoxNjk1OTQ2Nzc2fQ.brw2wGr9HwDxkZUGAWw7L6qyu8AE4OqF5XEq3gkYz1s"}`
-      })
-    };
-    const api = this.apiUrl + '/user/info/update-weight-height';
-    return this.httpClient.put(api, myProfile, httpOptions);
+  public updatePersonalInfo(putMyProfile: PutMyProfile): any {
+    return this.httpService.putBodySimple<any>(
+      this.apiPersonalInfo + '/update',
+      putMyProfile
+    );
   }
-
 }
