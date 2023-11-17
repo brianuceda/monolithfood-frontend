@@ -455,61 +455,80 @@ h2{
     }
     }
 
-  .container5 {
-    margin-top: 150px;
-    margin-bottom: 20px;
-      h1{
-        color: #ffffff;
-        text-align: center;
-        font-size: 35px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 55px;
+    .container5 {
+      margin-top: 150px;
+      margin-bottom: 20px;
+
+      .features-container {
+        display: flex;
+        overflow-x: auto; /* Permite el desplazamiento horizontal */
+        gap: 30px;
+        padding: 20px; /* Añade un espacio adicional alrededor de las características */
       }
- 
-      .card-container {
+      
+      .feature {
+        width: 400px;
+        max-width: 100%;
+        min-height: 555px;
+        background-color:  #191924;
+        border-radius: 20px;
         display: flex;
         justify-content: center;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 25px 0px rgba(255, 255, 255, 0.50);
       }
-      .card {
-        perspective: 1000px;
-        margin: 10px;
-        width: 200px;
+      
+      .feature .feature-div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .feature img {
+        width: 100%;
         height: 300px;
-        cursor: pointer;
-        box-shadow: 0px 0px 10px 5px rgba(0, 178, 255, 0.50);
-    
-        .card-inner {
-          width: 100%;
-          height: 100%;
-          transform-style: preserve-3d;
-          transition: transform 0.5s;
-        }
-    
-        .card:hover .card-inner {
-          transform: rotateY(180deg);
-        }
-    
-        .card-front,
-        .card-back {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          backface-visibility: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 1px solid #ccc;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    
-        .card-front {
-          transform: rotateY(0deg);
-        }
-    
-        .card-back {
-          transform: rotateY(180deg);
-        }
+        border-radius: 50%;
+        object-fit: cover;
       }
+      
+      .section__title {
+        font-size: 32px;
+        font-family: cursive;
+        font-weight: 800;
+        color: var(--main-color);
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .feature h3 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #ffffff;
+        text-align: center;
+      }
+      
+      .feature p {
+        font-size: 16px;
+        font-weight: 350;
+        margin-top: 10px;
+        text-align: center;
+        color: #ffffff;
+      }
+      
     }
+    
+    .container5 h1 {
+      color: #ffffff;
+      text-align: center;
+      font-size: 35px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 55px;
+    }
+    
+    
     
