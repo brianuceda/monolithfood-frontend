@@ -8,9 +8,14 @@ import { GlobalService } from 'src/app/shared/services/global.service';
 })
 export class ListPlansComponent {
   constructor(private globalService: GlobalService) {}
+
   ngOnInit(): void {
     Promise.resolve().then(() => {
       this.globalService.setTitle('Planes de Suscripción');
     });
+  }
+
+  pucharse(plan: string): void {
+    console.log(plan);
   }
 }

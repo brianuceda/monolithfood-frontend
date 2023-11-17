@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { GlobalService } from '../../services/global.service';
 import { circle } from './navbar.animations';
 import { AuthService } from 'src/app/features/landing-page/services/auth.service';
+import { GetUser } from '../../interfaces/GetUser';
+import { HttpService } from 'src/app/core/services/http.service';
 
 @Component({
   selector: 'app-private-navbar',
@@ -11,6 +13,7 @@ import { AuthService } from 'src/app/features/landing-page/services/auth.service
   animations: [circle],
 })
 export class PrivateNavbarComponent {
+  data!: GetUser;
   title?: string;
   titleSub?: Subscription;
   isMenuVisible: boolean = false;
@@ -19,10 +22,22 @@ export class PrivateNavbarComponent {
 
   constructor(
     private globalService: GlobalService,
+    private httpService: HttpService,
     private authService: AuthService
   ) {
     this.titleSub = this.globalService.currentTitle$.subscribe(
       (title) => (this.title = title)
+    );
+  }
+
+  ngOnInit(): void {
+    this.httpService.getUser().subscribe(
+      (data: GetUser) => {
+        this.data = data;
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
 

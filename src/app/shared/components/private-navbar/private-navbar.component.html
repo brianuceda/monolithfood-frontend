@@ -4,10 +4,10 @@
     </div>
     <div class="profile">
         <div class="data">
-            <span>Kiridepapel</span>
-            <span class="money">S/. 0.0</span>
+            <span>{{ data.username }}</span>
+            <span class="money">{{data.currencySymbol}} {{data.currency}}</span>
         </div>
-        <img class="img" src="https://i.ibb.co/YZFrN73/example-img.png" alt="Profile image" (click)="toggleMenu()">
+        <img class="img" src="{{data.profileImg}}" alt="Profile image" (click)="toggleMenu()">
         <!-- Menú desplegable -->
         <div class="data-more" *ngIf="isMenuVisible" [@toggle]="isMenuVisible ? 'active' : 'inactive'">
             <app-button routerLink="/my-profile" class="btn-expanded btn-press" [height]="'30px'"
