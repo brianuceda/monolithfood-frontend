@@ -1,0 +1,30 @@
+@import "src/assets/scss/colors.scss";
+
+.cus-snakebar {
+  // padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  min-width: 400px;
+
+  .txt-snakebar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 500;
+
+    mat-icon {
+      font-size: 2rem;
+      height: 2rem;
+      width: 2rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .btn {
+    margin-left: 2rem;
+    align-self: flex-end;
+    color: $txt-color;
+  }
+}

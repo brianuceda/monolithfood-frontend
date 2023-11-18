@@ -12,6 +12,10 @@ import { SublevelMenuComponent } from './sidebar/sublevel-menu/sublevel-menu.com
 // Components
 import { ButtonComponent } from './button/button.component';
 import { RouterModule } from '@angular/router';
+import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
+import { AngularMaterialModule } from '../modules/angular-material.module';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { CanSeeItemPipe } from './sidebar/extra/can-see-item-pipe';
 
 @NgModule({
   declarations: [
@@ -20,14 +24,25 @@ import { RouterModule } from '@angular/router';
     PrivateNavbarComponent,
     SidebarComponent,
     SublevelMenuComponent,
+    CustomSnackbarComponent,
+    ConfirmDialogComponent,
+    // Pipe
+    CanSeeItemPipe,
   ],
-  imports: [CommonModule, MatButtonModule, MatIconModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    AngularMaterialModule,
+  ],
   exports: [
     ButtonComponent,
     PublicNavbarComponent,
     PrivateNavbarComponent,
     SidebarComponent,
     SublevelMenuComponent,
+    CustomSnackbarComponent,
   ],
 })
 export class SharedComponentsModule {}

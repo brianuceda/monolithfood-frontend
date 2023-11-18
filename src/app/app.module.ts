@@ -1,26 +1,32 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from 'src/app/app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// Components
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
-import { FaqComponent } from './features/my-application/feat-general/components/faq/faq.component';
-import { ErrorComponent } from './features/my-application/feat-general/components/error/error.component';
-import { FeatGeneralModule } from './features/my-application/feat-general/feat-general.module';
-import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
-import { PlansComponent } from './features/my-application/feat-plans/components/plans/plans.component';
+import { PrincipalModule } from './shared/modules/principal.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
-  declarations: [AppComponent, FaqComponent, ErrorComponent, PlansComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModule,
+    AppRoutingModule,
+    // Components
     SharedComponentsModule,
-    FeatGeneralModule,
+    // Imports
+    PrincipalModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,6 +4,11 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   min-width: 100%;
   min-height: calc(100vh - ($bar-size + $content-padding-tb));

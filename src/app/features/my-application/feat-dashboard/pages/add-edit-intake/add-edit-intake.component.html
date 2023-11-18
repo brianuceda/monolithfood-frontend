@@ -1,0 +1,87 @@
+<div class="dialog-container">
+    <button class="btn" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <h2 class="title">{{ savedData.name }}</h2>
+    <span class="category">{{ savedData.categoryFood }}</span>
+    <span class="quantity">Datos por {{ savedData.quantity }} g.</span>
+    <div class="container-main-nutrients">
+        <div *ngFor="let nutrient of mainNutrients">
+            <app-nutrition-label [details]="nutrient"></app-nutrition-label>
+        </div>
+    </div>
+    <div class="container-data">
+        <!-- Cantidad -->
+        <div class="data-item">
+            <div class="data-subitem">
+                <img src="../../../../../../assets/svgs/bascula.svg" alt="Cantidad" class="icon">
+                <span class="text-label">Cantidad</span>
+            </div>
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="savedData.quantity"
+                    (ngModelChange)="updateNutrientQuantities()">
+            </mat-form-field>
+        </div>
+        <!-- Medida -->
+        <div class="data-item">
+            <div class="data-subitem">
+                <img src="../../../../../../assets/svgs/medida.svg" alt="Medida" class="icon">
+                <span class="text-label">Medida</span>
+            </div>
+            <mat-form-field>
+                <mat-select disabled [(ngModel)]="savedData.unitOfMeasurement">
+                    <mat-option value="KCAL">Kilocalorías</mat-option>
+                    <mat-option value="G">Gramos</mat-option>
+                    <mat-option value="MG">Miligramos</mat-option>
+                    <mat-option value="L">Litros</mat-option>
+                    <mat-option value="ML">Mililitros</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <!-- Fecha -->
+        <div class="data-item">
+            <div class="data-subitem">
+                <img src="../../../../../../assets/svgs/calendario.svg" alt="Fecha" class="icon">
+                <span class="text-label">Fecha</span>
+            </div>
+            <mat-form-field>
+                <input matInput type="date" [(ngModel)]="savedData.date">
+            </mat-form-field>
+        </div>
+        <!-- Hora -->
+        <div class="data-item">
+            <div class="data-subitem">
+                <img src="../../../../../../assets/svgs/clock.svg" alt="Hora" class="icon">
+                <span class="text-label">Hora</span>
+            </div>
+            <mat-form-field>
+                <input matInput type="time" [(ngModel)]="time" (ngModelChange)="onTimeChange()">
+            </mat-form-field>
+        </div>
+        <!-- Categoría -->
+        <div class="data-item">
+            <div class="data-subitem">
+                <img src="../../../../../../assets/svgs/cloud.svg" alt="Categoría" class="icon">
+                <span class="text-label">Categoría</span>
+            </div>
+            <mat-form-field>
+                <mat-select [(ngModel)]="savedData.categoryIntake" (ngModelChange)="onCategoryChange()">
+                    <mat-option value="DESAYUNO">Desayuno</mat-option>
+                    <mat-option value="ALMUERZO">Almuerzo</mat-option>
+                    <mat-option value="CENA">Cena</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="container-buttons">
+        <app-button class="button-final" (click)="confirmSaveOrEdit(savedData)" [text]="addOrEditText"
+            [type]="'primary'" [icon]="'fa-solid fa-check'"></app-button>
+        <app-button class="button-final" (click)="closeDialog()" [text]="'Cancelar'" [type]="'primary'"
+            [icon]="'fa-solid fa-xmark'" [background]="'#ff6e6e'"></app-button>
+    </div>
+    <div class="container-other-nutrients">
+        <div *ngFor="let nutrient of otherNutrients">
+            <app-nutrition-label [details]="nutrient"></app-nutrition-label>
+        </div>
+    </div>
+</div>

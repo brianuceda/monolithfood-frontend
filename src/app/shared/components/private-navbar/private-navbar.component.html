@@ -4,9 +4,28 @@
     </div>
     <div class="profile">
         <div class="data">
-            <span>Kiridepapel</span>
-            <span class="money">S/. 0.0</span>
+            <span>{{ data.username }}</span>
+            <span class="money">{{data.currencySymbol}} {{data.currency}}</span>
         </div>
-        <img class="img" src="https://i.ibb.co/YZFrN73/example-img.png" alt="Profile image">
+        <img class="img" src="{{data.profileImg}}" alt="Profile image" (click)="toggleMenu()">
+        <!-- Menú desplegable -->
+        <div class="data-more" *ngIf="isMenuVisible" [@toggle]="isMenuVisible ? 'active' : 'inactive'">
+            <app-button routerLink="/my-profile" class="btn-expanded btn-press" [height]="'30px'"
+                [background]="'#ffffff'" [color]="'#000000'" [text]="'Mi perfil'"></app-button>
+            <div class="btn-expanded" (click)="toggleDarkMode()">
+                <span>Modo oscuro</span>
+                <div class="switch">
+                    <mat-slide-toggle [color]="'primary'" [checked]="darkMode"></mat-slide-toggle>
+                </div>
+            </div>
+            <div class="btn-expanded" (click)="toggleNotifications()">
+                <span>Notificaciones</span>
+                <div class="switch">
+                    <mat-slide-toggle [color]="'primary'" [checked]="notifications"></mat-slide-toggle>
+                </div>
+            </div>
+            <app-button (click)="logout()" class="btn-expanded btn-press" [height]="'30px'" [background]="'#ffffff'"
+                [color]="'#000000'" [text]="'Cerrar sesión'"></app-button>
+        </div>
     </div>
 </div>

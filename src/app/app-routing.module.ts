@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { PermissionGuard } from './core/guards/permission.guard';
 
 const routes: Routes = [
   // Landing page routes
@@ -48,7 +49,7 @@ const routes: Routes = [
   // Application routes
   {
     path: 'dashboard',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, PermissionGuard],
     loadChildren: () =>
       import(
         './features/my-application/feat-dashboard/feat-dashboard.module'
@@ -56,7 +57,7 @@ const routes: Routes = [
   },
   {
     path: 'my-profile',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, PermissionGuard],
     loadChildren: () =>
       import(
         './features/my-application/feat-my-profile/feat-my-profile.module'
@@ -64,7 +65,7 @@ const routes: Routes = [
   },
   {
     path: 'database',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, PermissionGuard],
     loadChildren: () =>
       import(
         './features/my-application/feat-database/feat-database.module'
@@ -72,7 +73,7 @@ const routes: Routes = [
   },
   {
     path: 'plans',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, PermissionGuard],
     loadChildren: () =>
       import('./features/my-application/feat-plans/feat-plans.module').then(
         (m) => m.FeatPlansModule
@@ -80,7 +81,7 @@ const routes: Routes = [
   },
   {
     path: 'reports',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, PermissionGuard],
     loadChildren: () =>
       import('./features/my-application/feat-reports/feat-reports.module').then(
         (m) => m.FeatReportsModule

@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow-x: hidden;
 
   // [1.1] Superposición de oscuridad a imagen de fondo de la pagina de autenticacion (login / register)
   &.in-auth-page {
@@ -90,6 +91,67 @@
 
     .navbar-buttons {
       display: none;
+    }
+
+    &.responsive-on {
+      // position: static;
+      .navbar-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: $bar-size;
+        left: 0;
+        width: 100%;
+        height: calc(100% - $bar-size);
+        background: $bg-default-gradient-landing;
+        padding: 10px 0;
+        animation: $sidebar-transition-time;
+        z-index: 300;
+        gap: 20px;
+        padding-bottom: $bar-size;
+
+        a {
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    &.in-auth-page {
+      &.responsive-on {
+        .navbar-buttons {
+          width: calc(100% - $auth-page-width);
+          background: $bg-auth-navbar-color;
+          padding-bottom: $bar-size;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-md) {
+  .public-navbar {
+    &.in-auth-page {
+      &.responsive-on {
+        .navbar-buttons {
+          width: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-sm) {
+  .public-navbar {
+    &.in-auth-page {
+      &.responsive-on {
+        .navbar-buttons {
+          width: 100%;
+          background-color: #000;
+        }
+      }
     }
   }
 }

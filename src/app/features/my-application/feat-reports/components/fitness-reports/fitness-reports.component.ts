@@ -1,5 +1,4 @@
-import { Component,ViewChild, OnInit } from '@angular/core';
-import { GlobalService } from 'src/app/shared/services/global.service';
+import { Component } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -8,12 +7,16 @@ import {
   ApexYAxis,
   ApexTitleSubtitle,
   ApexXAxis,
-  ApexFill
-} from "ng-apexcharts";
-//IMPORTACION progress bar
+  ApexFill,
+} from 'ng-apexcharts';
 import { MessageService } from 'primeng/api';
-//import echart for graphig
 import { EChartsOption } from 'echarts';
+import { ReportsService } from '../../services/reports.service';
+import {
+  FitnessDataDTO,
+  FitnessProgressDTO,
+} from '../../interfaces/FitnessDataDTO';
+import { DatePipe } from '@angular/common';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -30,29 +33,65 @@ export type ChartOptions = {
   selector: 'app-fitness-reports',
   templateUrl: './fitness-reports.component.html',
   styleUrls: ['./fitness-reports.component.scss'],
-  //message for progress bar completed
-  providers: [MessageService]
+  providers: [MessageService],
 })
+export class FitnessReportsComponent {
+  fitnessData!: FitnessDataDTO;
+  fitnessProgress!: FitnessProgressDTO;
+  private datePipe: DatePipe = new DatePipe('en-US');
 
-//SE AGREGÓ EL EXTEND
-export class FitnessReportsComponent implements OnInit {
+  constructor(private reportsService: ReportsService) {}
 
-   //progress bar
-    value: number = 0; 
-    title='progress-bar';
-    //echart 
-    title1 = 'Angular charts';
-  constructor(private messageService: MessageService) {}
+  ngOnInit(): void {
+    this.getFitnessProgress();
+    this.getFitnessData();
+  }
 
-  //echart options 
-  option: EChartsOption={
-    //title
+  private getFitnessProgress(): void {
+    this.reportsService.getProgressWeight().subscribe(
+      (data: any) => {
+        this.fitnessProgress = data;
+        this.fitnessProgress.percentence = parseFloat(
+          this.fitnessProgress.percentence.toFixed(0)
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  private getFitnessData(): void {
+    this.reportsService.calcFitnessInfo().subscribe(
+      (data: any) => {
+        this.fitnessData = data;
+        this.setFitnessData();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  setFitnessData(): void {
+    if ((this.fitnessData.gender = 'M')) {
+      this.fitnessData.gender = 'Masculino';
+    } else {
+      this.fitnessData.gender = 'Femenino';
+    }
+    this.fitnessData.targetDate = this.formatDate(this.fitnessData.targetDate);
+  }
+
+  private formatDate(dateString: string): string {
+    return this.datePipe.transform(dateString, 'dd/MM/yyyy') || '';
+  }
+
+  option: EChartsOption = {
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
     },
     legend: {
-      //legend is used to show the name of the graph
-      data: ['calories']
+      data: ['calories'],
     },
     toolbox: {
       show: true,
@@ -60,54 +99,37 @@ export class FitnessReportsComponent implements OnInit {
         dataView: { show: true, readOnly: false },
         magicType: { show: true, type: ['line', 'bar'] },
         restore: { show: true },
-        saveAsImage: { show: true }
-      }
+        saveAsImage: { show: true },
+      },
     },
     calculable: true,
     xAxis: [
       {
         type: 'category',
-        // prettier-ignore
-        data: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab']
-      }
+        data: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+      },
     ],
     yAxis: [
       {
-        type: 'value'
-      }
+        type: 'value',
+      },
     ],
     series: [
       {
         name: 'calories',
         type: 'bar',
-        data: [
-          2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6
-        ],
+        data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6],
         markPoint: {
           data: [
             { type: 'max', name: 'Max' },
-            { type: 'min', name: 'Min' }
-          ]
+            { type: 'min', name: 'Min' },
+          ],
         },
         //promedio de los datos
         markLine: {
-          data: [{ type: 'average', name: 'Avg' }]
-        }
+          data: [{ type: 'average', name: 'Avg' }],
+        },
       },
-      
-    ]
+    ],
   };
-  //progress bar
-  ngOnInit(): void {
-  //progress bar
-    let interval = setInterval(() => {
-      this.value = this.value + Math.floor(Math.random() * 10) + 1;
-      if (this.value >= 100) {
-          this.value = 100;
-          this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Process Completed' });
-          clearInterval(interval);
-      }
-  }, 2000);
-  }  
-
 }

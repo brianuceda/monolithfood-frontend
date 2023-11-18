@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { sidebarData } from './sidebar-data';
-import { fadeInOut, rotate } from './sidebar.animations';
-import { ISidebarData } from './helper';
+import { Component, HostListener } from '@angular/core';
+import { sidebarData } from './extra/sidebar-data';
+import { fadeInOut, rotate } from './extra/sidebar.animations';
+import { ISidebarData } from './extra/helper';
 import { Router } from '@angular/router';
 
 @Component({
@@ -52,5 +52,10 @@ export class SidebarComponent {
     if (!this.collapsed && Date.now() - this.lastCloseTime > 100) {
       this.toggleCollapse();
     }
+  }
+
+  @HostListener('window:keydown.escape', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.closeSidenav();
   }
 }

@@ -21,7 +21,7 @@ export class PublicAuthGuard implements CanActivate {
           return true;
         }
       } catch (error) {
-        localStorage.clear();
+        localStorage.removeItem('token');
         this.router.navigateByUrl('/login');
         return false;
       }

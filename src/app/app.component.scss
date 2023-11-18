@@ -4,7 +4,6 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
-$auth-page-width: 450px;
 $bg-img-login-auth-page: "../assets/images/backgrounds/bg-login-page.png";
 $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
@@ -12,17 +11,15 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-// [1] Pantalla en general
+// * Window
 .all {
-  width: 100vw;
-  max-width: 100%;
-  height: 100%;
-  min-height: 100vh;
+  width: 100%;
   color: $txt-color;
 
-  // [X] Oculta el scroll cuando se abre un dialog
+  // Oculta el scroll cuando se abre un dialog
   &.is-in-dialog {
     overflow: hidden;
   }
@@ -42,7 +39,7 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
     // Sidebar
     margin-left: $bar-size;
     // Contenido tomando en cuenta el navbar
-    height: 100%;
+    // height: 100%;
     padding: $content-padding-tb $content-padding-lr;
 
     // [2.2] Modificaciones para el contenido de la landing page
@@ -64,6 +61,8 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
     display: inline-block;
     width: calc(100% - $auth-page-width);
     background: $bg-auth-content-color;
+    min-height: 100vh;
+    overflow: hidden;
   }
 
   // [3.1] Contenido modificable en una pagina de autenticacion (login / register)
@@ -116,23 +115,26 @@ $bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
 
 @media (max-width: $media-query-sm) {
   .all {
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
 
     .in-auth-page {
       width: 100%;
       height: calc($bar-size);
       height: 100%;
       position: absolute;
-      z-index: 100;
     }
 
     &.login-auth-page,
     &.register-auth-page {
+      align-items: center;
       .content {
+        display: flex;
         width: 100%;
+        max-width: 540px;
         margin-top: $bar-size;
-        height: calc(100vh - $bar-size);
+        height: 100%;
+        min-height: calc(100vh - $bar-size);
         z-index: 200;
       }
     }
