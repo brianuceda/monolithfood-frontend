@@ -180,13 +180,16 @@ export class AddEditIntakeComponent implements OnInit {
 
   onTimeChange(): void {
     const hours = parseInt(this.time.split(':')[0], 10);
-    if (hours > 2 && hours < 12) {
+    if (hours < 12) {
       this.savedData.categoryIntake = 'DESAYUNO';
     } else if (hours >= 12 && hours < 19) {
       this.savedData.categoryIntake = 'ALMUERZO';
     } else {
       this.savedData.categoryIntake = 'CENA';
     }
+    // Desayuno: 0:00 hasta las 11:59
+    // Almuerzo: 12:00 hasta las 18:59
+    // Cena: 19:00 hasta las 23:59
   }
 
   onCategoryChange(): void {

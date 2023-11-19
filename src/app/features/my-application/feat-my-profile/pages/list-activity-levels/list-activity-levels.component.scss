@@ -19,12 +19,12 @@ $container-height: calc(100vh - ($bar-size + (2 * $content-padding-tb)));
   height: 100%;
   min-width: 100%;
   color: $txt-color;
+  // Direccion del Flex
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  // Direccion del Flex
-  flex-direction: column; // column
   gap: 80px;
   position: relative;
 

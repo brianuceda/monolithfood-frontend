@@ -83,6 +83,11 @@ export class AuthService {
     );
   }
 
+  // * OAuth2
+  public loginOAuth2(provider: string): void {
+    window.location.href = this.authApiUrl + '/oauth2/authorize/' + provider;
+  }
+
   // * Forgot Password
 
   // * Logout

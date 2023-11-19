@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http.service';
 import { environment } from 'src/environments/environment.prod';
@@ -10,7 +10,6 @@ import { HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PersonalInformationService {
-  // * APIs
   private apiActivityLevelsUrl = `${environment.api}${environment.rscFitness}/activity-levels`;
   private apiObjectivesUrl = `${environment.api}${environment.rscFitness}/objectives`;
 

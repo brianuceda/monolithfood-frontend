@@ -14,7 +14,7 @@ export class ListFoodsComponent {
   public data: ListFoodDTO = { foods: [] };
   public hasRequiredRole!: boolean;
   public filteredFoods: any[] = [];
-  public filterCriteria: keyof ListFoodDTO['foods'][number] = 'foodName'; 
+  public filterCriteria: keyof ListFoodDTO['foods'][number] = 'foodName';
   public showFilterOptions: boolean = false;
   public activeFilter: string | null = null;
 
@@ -47,16 +47,13 @@ export class ListFoodsComponent {
 
   filterFoods(event: any): void {
     const searchTerm = event.target.value.toLowerCase();
-
     // Filtrar alimentos basados en el término de búsqueda y criterio de filtrado
     this.filteredFoods = this.data.foods.filter((food) => {
       const filterValue = food[this.filterCriteria];
-
       // Comprobación de tipo antes de llamar a toLowerCase
       if (typeof filterValue === 'string') {
         return filterValue.toLowerCase().startsWith(searchTerm);
       }
-
       // Puedes agregar más lógica aquí según sea necesario para otros tipos
       return false;
     });
@@ -65,7 +62,6 @@ export class ListFoodsComponent {
     this.filteredFoods.sort((a, b) => {
       const valueA = a[this.filterCriteria].toLowerCase();
       const valueB = b[this.filterCriteria].toLowerCase();
-
       if (valueA < valueB) {
         return -1;
       }
@@ -79,5 +75,4 @@ export class ListFoodsComponent {
   toggleFilterOptions(): void {
     this.showFilterOptions = !this.showFilterOptions;
   }
-
 }

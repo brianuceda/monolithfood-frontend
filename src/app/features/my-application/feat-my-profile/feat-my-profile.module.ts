@@ -5,9 +5,8 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 import { ListActivityLevelsComponent } from './pages/list-activity-levels/list-activity-levels.component';
 import { ListObjectivesComponent } from './pages/list-objectives/list-objectives.component';
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
-import { ActivityLevelComponent } from './components/activity-level/activity-level.component';
-import { ObjectiveComponent } from './components/objective/objective.component';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material.module';
+import { SharedMyProfileComponentsModule } from './shared-my-profile-components.module';
 
 @NgModule({
   declarations: [
@@ -15,15 +14,13 @@ import { AngularMaterialModule } from 'src/app/shared/modules/angular-material.m
     MyProfileComponent,
     ListActivityLevelsComponent,
     ListObjectivesComponent,
-    // Components
-    ActivityLevelComponent,
-    ObjectiveComponent,
   ],
   imports: [
     CommonModule,
     FeatMyProfileRoutingModule,
     AngularMaterialModule,
     SharedComponentsModule,
+    SharedMyProfileComponentsModule,
   ],
 })
 export class FeatMyProfileModule {}

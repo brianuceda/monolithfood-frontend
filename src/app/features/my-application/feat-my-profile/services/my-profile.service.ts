@@ -12,8 +12,8 @@ import { HttpService } from 'src/app/core/services/http.service';
   providedIn: 'root',
 })
 export class MyProfileService {
-  private apiUrl = `${environment.api}`;
-  private apiPersonalInfo = `${environment.api}/user/info`;
+  private apiUrl = environment.api;
+  private apiPersonalInfo = this.apiUrl + environment.rscInfo;
 
   constructor(private httpService: HttpService) {}
 
