@@ -57,12 +57,14 @@ export class LoginComponent implements OnInit {
   }
 
   googleOauth2(): void {
-    window.location.href = this.oauthUrl + '/google';
+    this.authService.googleOauth2();
   }
-  microsoftOauth2(): void {
-    window.location.href = this.oauthUrl + '/microsoft';
-  }
+
   githubOauth2(): void {
-    window.location.href = this.oauthUrl + '/github';
+    this.authService.githubOauth2();
+  }
+
+  microsoftOauth2(): void {
+    this.authService.microsoftOauth2();
   }
 }

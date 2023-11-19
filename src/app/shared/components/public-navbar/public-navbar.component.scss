@@ -4,15 +4,24 @@
 @import "src/assets/scss/values.scss";
 @import "src/assets/scss/animations.scss";
 
+$bg-navbar-color-base: #13101e; // un color de fondo sin opacidad como negro
+$default-opacity: 0.5; // opacidad total
+
 .public-navbar {
   position: fixed;
   width: 100%;
   padding: 0 10%;
-  background: $bg-navbar-color;
+  // background: $bg-navbar-color;
+  background: rgba(
+    $bg-navbar-color-base,
+    $default-opacity
+  ); // Usar las variables aquí
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow-x: hidden;
+  transition: all 0.5 ease;
+  z-index: 2000;
 
   // [1.1] Superposición de oscuridad a imagen de fondo de la pagina de autenticacion (login / register)
   &.in-auth-page {

@@ -7,12 +7,10 @@
         <mat-icon id="menu">menu</mat-icon>
     </div>
     <div class="navbar-buttons">
-        <a type="button" class="btn" (click)="route('')" [ngClass]="{'active-route': isActive('/')}">Inicio</a>
-        <a type="button" class="btn" (click)="route('about-us')"
-            [ngClass]="{'active-route': isActive('/about-us')}">Nosotros</a>
-        <a type="button" class="btn" (click)="route('login')"
-            [ngClass]="{'active-route': isActive('/login')}">Ingresar</a>
-        <a type="button" class="btn" (click)="route('register')"
+        <a type="button" class="btn" href="/" [ngClass]="{'active-route': isActive('/')}">Inicio</a>
+        <a type="button" class="btn" href="/about-us" [ngClass]="{'active-route': isActive('/about-us')}">Nosotros</a>
+        <a type="button" class="btn" href="/login" [ngClass]="{'active-route': isActive('/login')}">Ingresar</a>
+        <a type="button" class="btn" href="/register"
             [ngClass]="{'active-route': isActive('/register')}">Registrarse</a>
     </div>
 </div>
