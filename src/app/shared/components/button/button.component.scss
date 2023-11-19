@@ -14,6 +14,9 @@ $txt-large: 14px;
   transition: $btn-transition;
   font-size: $txt-large;
   font-weight: 500;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
 
   &:hover {
     cursor: pointer;

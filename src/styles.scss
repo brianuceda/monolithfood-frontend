@@ -50,7 +50,7 @@ body {
 .mat-mdc-text-field-wrapper,
 .mat-mdc-form-field-flex,
 .mat-mdc-form-field-infix {
-  height: $input-height !important;
+  height: 100% !important;
   min-height: $input-height !important;
   display: flex !important;
 }
@@ -71,3 +71,12 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+=======
+.mdc-text-field--filled {
+  color: rgba(#000, 0.8) !important;
+  background: #dadada !important;
+}
+
+.mat-datepicker-input {
+  color: rgba(#000, 0.8) !important;
+}

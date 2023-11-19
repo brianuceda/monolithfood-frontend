@@ -133,28 +133,6 @@ export class AuthService {
       return '';
     }
   }
-  // public getIpAddress(): string {
-  //   const storedIp = localStorage.getItem('ipAddress');
-  //   if (storedIp) {
-  //     // Si la IP ya está almacenada, la devuelve como un observable
-  //     return of(storedIp);
-  //   } else {
-  //     // Si la IP no está almacenada, realiza la solicitud HTTP
-  //     return this.http.get<{ ip: string }>(this.ipApiUrl).pipe(
-  //       map((response) => {
-  //         localStorage.setItem('ipAddress', response.ip);
-  //         return response.ip;
-  //       }),
-  //       catchError((error) => {
-  //         this.globalService.openCustomSnackbar(
-  //           'Error obteniendo su IP',
-  //           ResponseType.ERROR
-  //         );
-  //         return throwError(() => new Error('Error obtaining IP address'));
-  //       })
-  //     );
-  //   }
-  // }
 
   private saveToken(token: string): void {
     localStorage.setItem('token', token);

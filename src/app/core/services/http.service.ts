@@ -3,11 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError, tap } from 'rxjs';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { ResponseType } from '../interfaces/ResponseType';
+import { GetUser } from 'src/app/shared/interfaces/GetUser';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
+  private apiUrl = `${environment.api}`;
+
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 
   // * Get
@@ -69,5 +73,9 @@ export class HttpService {
         return throwError(() => error);
       })
     );
+  }
+
+  public getUser(): Observable<GetUser> {
+    return this.getSimple(this.apiUrl + '/user');
   }
 }

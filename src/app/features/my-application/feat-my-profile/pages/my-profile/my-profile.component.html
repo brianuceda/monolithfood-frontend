@@ -1,12 +1,100 @@
-<div class="container">
-    <button class="btn" mat-raised-button color="primary"
-        (click)="openCustomSnackbar('Alimento registrado exitosamente', ResponseType.SUCCESS)">Success</button>
-    <button class="btn" mat-raised-button color="primary"
-        (click)="openCustomSnackbar('No se ha confirmado la compra', ResponseType.WARN)">Warning</button>
-    <button class="btn" mat-raised-button color="primary"
-        (click)="openCustomSnackbar('El alimento ya está en tus favoritos', ResponseType.INFO)">Info</button>
-    <button class="btn" mat-raised-button color="primary"
-        (click)="openCustomSnackbar('Ya tienes un nivel registrado', ResponseType.ERROR)">Error</button>
-    <button class="btn" mat-raised-button color="primary"
-        (click)="openCustomSnackbar('Alimento agregado a favoritos', ResponseType.FAVORITE)">Favorite</button>
-</div>
+<form [formGroup]="myForm" class="container container-fluid">
+    <div class="row">
+        <div class="row-2 d-flex align-items-center gil">
+            <div class="row-2 d-flex align-items-center box first">
+                <img src="{{data.profileImg}}" alt="avatar" class="avatar">
+                <div class="data-perfil">
+                    <span class="name">{{data.username}}</span>
+                    <span class="email">{{data.email}}</span>
+                    <span class="folowers">{{data.currencySymbol}} {{data.currency}}</span>
+                </div>
+                <div class="d-flex social-media">
+                    <i class="fa-brands fa-github"></i>
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+
+                <mat-slide-toggle class="ms-5 mattoggle">
+                    <span class="switch-perfil">Perfil Publico</span>
+                </mat-slide-toggle>
+            </div>
+            <div class="row-2 d-flex align-items-center box second">
+                <div class="update-data">
+                    <div class="d-flex">
+                        <div class="icon">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <span>Kiridepapel</span>
+                    </div>
+                    <button class="mt-2">Actualizar nombre de ususario</button>
+                </div>
+
+                <div class="update-data ms-3" style="margin: 0 !important;">
+                    <div class="d-flex">
+                        <div class="icon">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <span>brianuceda@gmail.com</span>
+                    </div>
+                    <button class="mt-2">Actualizar correo electrónico</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-md-6 ps-5 super">
+            <mat-form-field class="input-group">
+                <input matInput formControlName="names" placeholder="Nombre completo">
+                <mat-icon>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="input-group">
+                <mat-select formControlName="gender">
+                    <mat-option value="M">Masculino</mat-option>
+                    <mat-option value="F">Femenino</mat-option>
+                </mat-select>
+                <mat-icon>mars_and_venus</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="input-group">
+                <input matInput formControlName="borndate" type="date">
+                <mat-icon>calendar_today</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="input-group">
+                <mat-icon class="icon-first">lock</mat-icon>
+                <input class="espaciado" matInput formControlName="location" placeholder="Analizando localización...">
+                <mat-icon>location_on</mat-icon>
+            </mat-form-field>
+
+            <app-button (click)="updateMyProfile()" style="margin-top: 10px;" [text]="'Actualizar'" [type]="'primary'"
+                [icon]="''"></app-button>
+        </div>
+
+        <div class="col-md-6 ps-5 antes-divs super">
+            <div class="d-flex calc-divs">
+                <mat-form-field class="input-group ms-1">
+                    <input matInput type="number" formControlName="weightKg" placeholder="Ingrese su peso"> kg.
+                    <mat-icon>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="input-group ms-1">
+                    <input matInput type="number" formControlName="heightCm" placeholder="Ingrese su altura actual"> cm.
+                    <mat-icon>person</mat-icon>
+                </mat-form-field>
+            </div>
+
+            <app-button (click)="updateHeightAndWeight()" [text]="'Actualizar'" [type]="'primary'"
+                [icon]="''"></app-button>
+
+            <mat-form-field class="input-group mt-1">
+                <mat-icon class="icon-first">lock</mat-icon>
+                <input class="espaciado" matInput formControlName="imc" placeholder="Calculando su IMC...">
+                <mat-icon>assessment</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+</form>

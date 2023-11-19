@@ -159,33 +159,52 @@ export class DashboardComponent {
           profileStage === 'activity-level' ||
           profileStage === 'objectives'
         ) {
-          // Configuracion de Dialogos
-          let config = new MatDialogConfig();
-          config = this.dashboardService.getDialogConfig(
-            '1080px',
-            '750px',
-            true,
-            false
-          );
           // Dialogos de Onboarding
           switch (profileStage) {
             case 'information':
-              dialogRef = this.dialog.open(SetInformationComponent, config);
+              let informationConfig = new MatDialogConfig();
+              informationConfig = this.dashboardService.getDialogConfig(
+                '500px',
+                '750px',
+                true,
+                false
+              );
+              dialogRef = this.dialog.open(
+                SetInformationComponent,
+                informationConfig
+              );
               dialogRef.afterClosed().subscribe((result) => {
-                resolve(); // Resuelve la promesa cuando el diálogo se cierre
+                resolve();
               });
               break;
             case 'activity-level':
+              let activityLevelConfig = new MatDialogConfig();
+              activityLevelConfig = this.dashboardService.getDialogConfig(
+                '1450px',
+                '750px',
+                true,
+                false
+              );
               dialogRef = this.dialog.open(
                 SelectActivityLevelComponent,
-                config
+                activityLevelConfig
               );
               dialogRef.afterClosed().subscribe((result) => {
                 resolve();
               });
               break;
             case 'objectives':
-              dialogRef = this.dialog.open(SelectObjectivesComponent, config);
+              let objectivesConfig = new MatDialogConfig();
+              objectivesConfig = this.dashboardService.getDialogConfig(
+                '1450px',
+                '850px',
+                true,
+                false
+              );
+              dialogRef = this.dialog.open(
+                SelectObjectivesComponent,
+                objectivesConfig
+              );
               dialogRef.afterClosed().subscribe((result) => {
                 resolve();
               });

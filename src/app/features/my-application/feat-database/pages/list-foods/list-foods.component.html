@@ -11,8 +11,10 @@
       </button>
       <!-- Opciones de filtro -->
       <div *ngIf="showFilterOptions" class="filter-options">
-        <button (click)="changeFilterCriteria('foodCategory')" [class.active]="filterCriteria === 'foodCategory'">Categoría</button>
-        <button (click)="changeFilterCriteria('foodName')" [class.active]="filterCriteria === 'foodName'">Nombre</button>
+        <button (click)="changeFilterCriteria('foodName')"
+          [class.active]="filterCriteria === 'foodName'">Nombre</button>
+        <button (click)="changeFilterCriteria('foodCategory')"
+          [class.active]="filterCriteria === 'foodCategory'">Categoría</button>
       </div>
     </div>
   </div>

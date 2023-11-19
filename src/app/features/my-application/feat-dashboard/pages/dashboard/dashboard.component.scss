@@ -50,8 +50,12 @@ $title-height: 50px;
 
     .icon {
       border-radius: 50%;
-      background: $txt-color;
-      color: $txt-color-lead;
+      background: #5f27a7;
+      color: #ffffff !important;
+    }
+
+    mat-datepicker-toggle {
+      color: #5f27a7;
     }
   }
 
