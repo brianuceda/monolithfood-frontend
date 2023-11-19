@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { PermissionGuard } from './core/guards/permission.guard';
+import { OauthCallbackComponent } from './features/landing-page/components/oauth-callback/oauth-callback.component';
 
 const routes: Routes = [
   // Landing page routes
@@ -23,6 +24,10 @@ const routes: Routes = [
       import('./features/landing-page/landing-page.module').then(
         (m) => m.LandingPageModule
       ),
+  },
+  {
+    path: 'oauth-callback',
+    component: OauthCallbackComponent,
   },
   {
     path: 'login',

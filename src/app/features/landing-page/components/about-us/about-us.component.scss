@@ -15,8 +15,6 @@
   flex-direction: column;
 }
 
-
-
 :root {
   /* COLORS */
   --main-color: #2ec78c;
@@ -82,21 +80,21 @@ html {
   align-items: center;
 }
 
-
-
 /* SECTIONS */
 
 .section {
-  padding: 80px;
-  color:#fff;
+  padding: 80px 0;
+  color: #fff;
 }
 
 .section_title {
-  color:#2ec78c;
+  color: #2ec78c;
+  font-size: 24px;
 }
 
 .section_subtitle {
   color: #3bc48f;
+  font-size: 20px;
 }
 
 .section div {
@@ -116,11 +114,11 @@ main .section:nth-child(3) {
 }
 
 main .section:nth-child(4) {
-  background:transparent;
+  background: transparent;
 }
 
 main .section:nth-child(5) {
-  background:#212121 ;
+  background: #212121;
 }
 
 main .section:nth-child(6) {
@@ -134,8 +132,6 @@ main .section:nth-child(6) {
 }
 
 /* !==================== CONTENIDO ====================!  */
-
-
 
 /* *===== BRIAN ======* */
 /* ?===== ABOUT US ======? */
@@ -161,6 +157,7 @@ main .section:nth-child(6) {
   display: flex;
   margin: 0.8rem 0 1.8rem;
   line-height: 1.7;
+  font-size: 16px;
 }
 
 .resume-img {
@@ -191,6 +188,7 @@ main .section:nth-child(6) {
 
 .vac__item {
   margin: 10px 0;
+  font-size: 16px;
 }
 
 .vac-img {
@@ -229,7 +227,7 @@ main .section:nth-child(6) {
 }
 
 .box {
-  background:#1d1d1d;
+  background: #1d1d1d;
   text-align: center;
   padding: 20px 20px;
   border-radius: 15px;
@@ -280,7 +278,6 @@ main .section:nth-child(6) {
   font-size: 2rem;
 }
 
-
 /* RESPONSIVE */
 @media (max-width: 1560px) {
   :root {
@@ -295,7 +292,6 @@ main .section:nth-child(6) {
 }
 
 @media (max-width: 1350px) {
-
   .home,
   .resume {
     grid-template-columns: 1fr;
@@ -342,10 +338,10 @@ main .section:nth-child(6) {
   }
 }
 
-@media (max-width: 960px) {}
+@media (max-width: 960px) {
+}
 
 @media (max-width: 720px) {
-
   .home,
   .resume {
     grid-template-columns: 1fr;

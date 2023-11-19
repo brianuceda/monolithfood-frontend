@@ -7,6 +7,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { AngularMaterialModule } from 'src/app/shared/modules/angular-material.module';
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
+import { OauthCallbackComponent } from './components/oauth-callback/oauth-callback.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SharedComponentsModule } from 'src/app/shared/components/shared-compone
     AboutUsComponent,
     LoginComponent,
     RegisterComponent,
+    OauthCallbackComponent,
   ],
   imports: [
     CommonModule,

@@ -18,8 +18,10 @@ export class HttpService {
 
   // * Post
   postSimple<T>(url: string, params?: any): Observable<T> {
-    const httpParams = new HttpParams({ fromObject: params });
-    return this.handleResponse(this.http.post<T>(url, httpParams));
+    const httpOptions = params
+      ? { params: new HttpParams({ fromObject: params }) }
+      : {};
+    return this.handleResponse(this.http.post<T>(url, null, httpOptions));
   }
 
   postBodySimple<T>(url: string, body?: any): Observable<T> {
