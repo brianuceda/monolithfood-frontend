@@ -1,3 +1,25 @@
+# Librerias necesarias
+
+```powershell
+npm install
+```
+
+```powershell
+npm install apexcharts ng-apexcharts
+```
+
+```powershell
+npm install echarts -S
+```
+
+```powershell
+npm install ngx-echarts -S
+```
+
+```powershell
+npm install primeng
+```
+
 # Ver tus Versiones Instaladas
 
 Ejecuta el siguiente comando en un [CMD]() para ver las versiones instaladas de [Angular, Node y NPM]():
@@ -18,16 +40,6 @@ ng version
 | @angular-devkit/core       | 16.1.4 (cli-only)   |
 | @angular-devkit/schematics | 16.1.4 (cli-only)   |
 | @schematics/angular        | 16.1.4 (cli-only)   |
-
-## Instalaciones necesarias
-
-Ejecutar el siguiente comando para instalar las dependencias necesarias.
-
-> Nota: Aprenderlo de memoria.
-
-```powershell
-npm install
-```
 
 ## Servidor
 
