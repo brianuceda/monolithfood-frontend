@@ -21,7 +21,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 20px;
+  padding: 50px 20px;
 
   .content {
     display: flex;
@@ -76,7 +76,7 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media (max-width: $media-query-xl) {
     .content {
       flex-direction: column;
 
