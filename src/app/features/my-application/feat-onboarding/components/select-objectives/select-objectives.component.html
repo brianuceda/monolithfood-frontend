@@ -1,0 +1,15 @@
+<div class="dialog-container">
+    <h1 class="txt">Selecciona tus Objetivos nutricionales</h1>
+    <div class="alvl">
+        <div *ngFor="let objective of data?.objectives" (click)="selectObjective(objective)">
+            <app-objective [data]="objective"></app-objective>
+        </div>
+    </div>
+    <div class="btns">
+        <div class="update-btn">
+            <app-button (click)="setNewObjectives()" [text]="'Confirmar'" [type]="'primary'" [icon]="''"
+                [disabled]="selectedObjectivesCount > maxObjectives"></app-button>
+        </div>
+        <p class="count">Has seleccionado {{ selectedObjectivesCount }} / {{ maxObjectives }} objetivos</p>
+    </div>
+</div>

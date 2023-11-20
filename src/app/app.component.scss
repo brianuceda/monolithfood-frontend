@@ -1,0 +1,142 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+$bg-img-login-auth-page: "../assets/images/backgrounds/bg-login-page.png";
+$bg-img-register-auth-page: "../assets/images/backgrounds/bg-register-page.png";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+// * Window
+.all {
+  width: 100%;
+  color: $txt-color;
+
+  // Oculta el scroll cuando se abre un dialog
+  &.is-in-dialog {
+    overflow: hidden;
+  }
+
+  // [1.1] Color de fondo de la landing page
+  &.all-landing {
+    background: $bg-default-gradient-landing;
+  }
+
+  // [1.2] Color de fondo de la app
+  &.all-app {
+    background: $bg-default-gradient-app;
+  }
+
+  // [2.1] Espacio para el contenido de la app tomando en cuenta el navbar y el sidebar
+  .content {
+    // Sidebar
+    margin-left: $bar-size;
+    // Contenido tomando en cuenta el navbar
+    // height: 100%;
+    padding: $content-padding-tb $content-padding-lr;
+
+    // [2.2] Modificaciones para el contenido de la landing page
+    &.content-full-width {
+      width: 100%;
+      height: 100%;
+      margin-left: 0;
+      padding-top: $bar-size;
+    }
+
+    &.error-page {
+      min-height: 100vh;
+      padding: $content-padding-tb $content-padding-lr;
+    }
+  }
+
+  // [3] Navbar en una pagina de autenticacion (login / register)
+  .in-auth-page {
+    display: inline-block;
+    width: calc(100% - $auth-page-width);
+    background: $bg-auth-content-color;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  // [3.1] Contenido modificable en una pagina de autenticacion (login / register)
+  &.login-auth-page,
+  &.register-auth-page {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+
+    .content {
+      width: $auth-page-width;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // [3.1.1] Todo en contenido de la pantalla del login
+  &.login-auth-page {
+    background-image: url($bg-img-login-auth-page);
+  }
+
+  // [3.1.2] Todo el contenido de la pantalla de register
+  &.register-auth-page {
+    background-image: url($bg-img-register-auth-page);
+  }
+}
+
+// * ------------------ [ Media queries ] ------------------ * //
+
+@media (max-width: $media-query-md) {
+  // [1] Pantalla en general
+  .all {
+    // [3] Navbar en una pagina de autenticacion
+    .in-auth-page {
+      width: calc(100% - 50%);
+    }
+
+    // [3.1] Contenido modificable en una pagina de autenticacion
+    &.login-auth-page,
+    &.register-auth-page {
+      .content {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-sm) {
+  .all {
+    // display: flex;
+    // flex-direction: column;
+
+    .in-auth-page {
+      width: 100%;
+      height: calc($bar-size);
+      height: 100%;
+      position: absolute;
+    }
+
+    &.login-auth-page,
+    &.register-auth-page {
+      align-items: center;
+      .content {
+        display: flex;
+        width: 100%;
+        max-width: 540px;
+        margin-top: $bar-size;
+        height: 100%;
+        min-height: calc(100vh - $bar-size);
+        z-index: 200;
+      }
+    }
+  }
+}

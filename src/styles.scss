@@ -1,39 +1,78 @@
+// Material Design Components
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+@import "src/assets/scss/utility.scss";
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
-// Plus imports for other components in your app.
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // Scrollbar
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: $bg-color-base-1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core();
+body {
+  position: relative;
+  font-family: "Roboto", sans-serif;
+}
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$MonolithFoodFrontend-primary: mat.define-palette(mat.$indigo-palette);
-$MonolithFoodFrontend-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// * Dialog
+.mat-mdc-dialog-surface {
+  background: transparent !important;
+  border-radius: $dialog-border-radius;
+}
+.style-css-dialog-background {
+  background-color: $bg-back-dialog-gradient;
+  // backdrop-filter: blur(2px);
+}
 
-// The warn palette is optional (defaults to red).
-$MonolithFoodFrontend-warn: mat.define-palette(mat.$red-palette);
+// * Input
+.mat-mdc-form-field-bottom-align {
+  display: none !important;
+}
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-flex,
+.mat-mdc-form-field-infix {
+  height: 100% !important;
+  min-height: $input-height !important;
+  display: flex !important;
+}
+.validation-available {
+  .mat-mdc-text-field-wrapper {
+    padding: 0 70px 0 16px !important;
+  }
+}
+.mat-mdc-form-field-infix {
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+}
+.mat-mdc-form-field-input-control {
+  height: calc($input-height - (27.78% + 27.78%)) !important;
+  font-size: 14px !important;
+}
+.mdc-text-field--filled {
+  color: rgba(#000, 0.8) !important;
+  background: #dadada !important;
+}
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$MonolithFoodFrontend-theme: mat.define-light-theme((
-  color: (
-    primary: $MonolithFoodFrontend-primary,
-    accent: $MonolithFoodFrontend-accent,
-    warn: $MonolithFoodFrontend-warn,
-  )
-));
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($MonolithFoodFrontend-theme);
-
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-datepicker-input {
+  color: rgba(#000, 0.8) !important;
+}

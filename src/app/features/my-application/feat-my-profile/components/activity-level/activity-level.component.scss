@@ -1,0 +1,68 @@
+.alvl__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 220px;
+  min-height: 420px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #191924;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.2);
+  gap: 20px;
+
+  &.selected {
+    box-shadow: 0px 0px 15px 5px rgba(0, 255, 255, 1);
+  }
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px 5px rgba(0, 255, 255, 0.35);
+    cursor: pointer;
+  }
+
+  .alvl__item__title {
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  .alvl__item__description {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .alvl__item__img {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: #636363;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .alvl__item__content {
+    text-align: center;
+
+    .days {
+      font-weight: 600;
+      color: #00ffff;
+    }
+    .info {
+      color: #a1a1a1;
+    }
+  }
+}

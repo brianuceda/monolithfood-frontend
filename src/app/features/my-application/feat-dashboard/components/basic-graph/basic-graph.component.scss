@@ -1,0 +1,40 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+$width: 200px;
+$title-height: 50px;
+
+.graph {
+  width: $width;
+  min-width: $width;
+  height: calc($width + $title-height);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+
+  .graph__title {
+    width: 100%;
+    height: $title-height;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      margin: 0;
+      font-weight: 400;
+    }
+  }
+
+  .graph__value {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // stroke: #ffffff;
+  }
+}

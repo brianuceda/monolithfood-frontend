@@ -1,0 +1,14 @@
+// * Sidebar
+$rotation-img-time: 1s;
+$sidebar-transition-time: all 0.5s ease;
+// * NavBar
+@keyframes rotateInfinite {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+// * Buttons
+$btn-transition: all 0.25s ease;

@@ -1,0 +1,161 @@
+<div class="container">
+  <!-- div de objetives calories -->
+  <div class="div first">
+    <div class="div objetives short">
+      <h2>Objetivos</h2>
+      <div class="progress-hidden">
+        <span [style.padding-left.%]="fitnessProgress.percentence - 4">{{ fitnessProgress.currentWeight }} kg.</span>
+      </div>
+      <div class="card">
+        <p-toast></p-toast>
+        <p-progressBar [value]="fitnessProgress.percentence"></p-progressBar>
+      </div>
+      <div class="progress-hidden end">
+        <span>{{ fitnessProgress.startWeight }} kg.</span>
+        <span>{{ fitnessProgress.targetWeight }} kg.</span>
+      </div>
+    </div>
+    <div class="div calories">
+      <h2>Calorias</h2>
+      <!-- <div class="calories-data">
+        <span>Promedio semanal {{ fitnessData.dailyCaloricIntake }} kg.</span>
+      </div> -->
+      <div class="text">
+        <span>Promedio semanal {{ fitnessData.dailyCaloricIntake }} kg.</span>
+      </div>
+      <div echarts [options]="option" class="calories-chart"></div>
+    </div>
+  </div>
+  <!-- div de fitness information -->
+  <div class="div second">
+    <h2>Información Fitness</h2>
+    <div class="fitness-data">
+
+      <!-- Información personal -->
+      <div class="subtitle">
+        <h3>Información personal</h3>
+        <div class="separator"></div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Genero</span>
+          <span class="data-subitem">{{ fitnessData.gender }}</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Edad</span>
+          <span class="data-subitem">{{ fitnessData.age }} años</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Altura</span>
+          <span class="data-subitem">{{ fitnessData.height }} cm.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Peso</span>
+          <span class="data-subitem">{{ fitnessData.weight }} kg.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Peso objetivo</span>
+          <span class="data-subitem">{{ fitnessData.targetWeightKg }} kg.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Fecha objetivo</span>
+          <span class="data-subitem">{{ fitnessData.targetDate }}</span>
+        </div>
+      </div>
+
+      <!-- Actividad física -->
+      <div class="subtitle">
+        <h3>Actividad física</h3>
+        <div class="separator"></div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Nivel de actividad física</span>
+          <span class="data-subitem">{{ fitnessData.activityLevel }}</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Coeficiente de nivel de actividad física</span>
+          <span class="data-subitem">x {{ fitnessData.activityLevelQuotient }}</span>
+        </div>
+      </div>
+
+      <!-- IMC -->
+      <div class="subtitle">
+        <h3>índice de masa corporal</h3>
+        <div class="separator"></div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>IMC</span>
+          <span class="data-subitem">{{ fitnessData.imc }} %</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Clasificación IMC</span>
+          <span class="data-subitem">{{ fitnessData.clasification }}</span>
+        </div>
+      </div>
+
+      <!-- Ingesta diaria de alimentos -->
+      <div class="subtitle">
+        <h3>Ingesta diaria de alimentos</h3>
+        <div class="separator"></div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Ingesta calórica diaria</span>
+          <span class="data-subitem">{{ fitnessData.dailyCaloricIntake }} kcal.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Ingesta diaria de proteinas</span>
+          <span class="data-subitem">{{ fitnessData.dailyProteinIntake }} g.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Ingesta diaria de carbohidratos</span>
+          <span class="data-subitem">{{ fitnessData.dailyCarbohydrateIntake }} g.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Ingesta diaria de grasas</span>
+          <span class="data-subitem">{{ fitnessData.dailyFatIntake }} g.</span>
+        </div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>Promedio de proteinas por kg. de peso</span>
+          <span class="data-subitem">{{ fitnessData.avgProteinPerKg }} g/kg.</span>
+        </div>
+      </div>
+
+      <!-- TMB -->
+      <div class="subtitle">
+        <h3>Ingesta diaria de nutrientes</h3>
+        <div class="separator"></div>
+      </div>
+      <div class="data">
+        <div class="data-item">
+          <span>TMB</span>
+          <span class="data-subitem">{{ fitnessData.tmb }} kcal.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

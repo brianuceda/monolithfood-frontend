@@ -1,0 +1,51 @@
+<div class="dialog-container">
+    <h2 class="title">Información Personal</h2>
+
+    <form [formGroup]="myForm" (ngSubmit)="setInfo()" class="container">
+        <mat-form-field appearance="fill"
+            [class.error]="myForm.get('gender')?.touched && myForm.get('gender')?.invalid">
+            <mat-select formControlName="gender" placeholder="Género">
+                <mat-option value="M">Masculino</mat-option>
+                <mat-option value="F">Femenino</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill"
+            [class.error]="myForm.get('borndate')?.touched && myForm.get('borndate')?.invalid">
+            <input matInput [matDatepicker]="picker" formControlName="borndate" placeholder="Fecha de Nacimiento">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill"
+            [class.error]="myForm.get('weightKg')?.touched && myForm.get('weightKg')?.invalid">
+            <input matInput type="number" formControlName="weightKg" placeholder="Peso (Kg)">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill"
+            [class.error]="myForm.get('heightCm')?.touched && myForm.get('heightCm')?.invalid">
+            <input matInput type="number" formControlName="heightCm" placeholder="Altura (Cm)">
+        </mat-form-field>
+
+        <div class="divider"></div>
+
+        <h2 class="title title-2">Información Objetiva</h2>
+
+        <mat-form-field appearance="fill"
+            [class.error]="myForm.get('targetWeightKg')?.touched && myForm.get('targetWeightKg')?.invalid">
+            <input matInput type="number" formControlName="targetWeightKg" placeholder="Peso Objetivo (Kg)">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill"
+            [class.error]="myForm.get('targetDate')?.touched && myForm.get('targetDate')?.invalid">
+            <input matInput [matDatepicker]="picker2" formControlName="targetDate" placeholder="Fecha Objetivo">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div class="send">
+            <app-button type="submit" [text]="'Enviar Información'" [type]="'primary'" [icon]="''"
+                [disabled]="!myForm.valid"></app-button>
+        </div>
+    </form>
+</div>

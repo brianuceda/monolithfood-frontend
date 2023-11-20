@@ -1,0 +1,10 @@
+<div class="alvl__item" [ngClass]="{'selected': data.selected}">
+    <div class="alvl__item__title">
+        <h3>{{ data.name }}</h3>
+    </div>
+    <img class="alvl__item__img" src="{{ data.imgUrl }}" alt="{{ data.name }}">
+    <div class="alvl__item__content">
+        <p>Proteina x Kg: <span class="days">{{ data.proteinPerKg }} g.</span></p>
+        <p class="info">{{ data.information }}</p>
+    </div>
+</div>

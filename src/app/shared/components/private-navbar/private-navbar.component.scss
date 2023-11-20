@@ -1,0 +1,136 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+.private-navbar {
+  height: $bar-size;
+  padding: 10px;
+  background: $bg-navbar-color;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+
+  .logo {
+    display: flex;
+    min-width: 200px;
+    justify-content: flex-start;
+  }
+
+  .title {
+    height: $bar-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    position: absolute;
+    left: 10px;
+    width: calc(100% - 20px);
+    z-index: 0;
+    padding-left: $bar-size;
+  }
+
+  .profile {
+    display: flex;
+    min-width: 200px;
+    justify-content: flex-end;
+    text-align: end;
+    z-index: 1;
+    width: 10%;
+
+    .data {
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: $txt-color;
+      gap: 2.5px;
+
+      .money {
+        letter-spacing: 0px;
+        font-weight: 600;
+        color: $primary-color;
+      }
+    }
+
+    .data-more {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      padding: 20px 30px 25px;
+      background: $bg-navbar-color-solid;
+      box-shadow: -5px 5px 5px rgba(255, 255, 255, 0.1);
+      z-index: 10;
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-bottom-left-radius: 15px;
+
+      .btn-expanded {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 7.5px;
+        cursor: pointer;
+        text-decoration: none;
+        color: $txt-color;
+        width: 180px;
+
+        span {
+          cursor: pointer;
+        }
+
+        &.switch {
+          mat-slide-toggle {
+            color: #fff;
+          }
+        }
+
+        &.btn-press {
+          transition: 0.5s all ease;
+
+          &:hover {
+            // animation: rotateInfinite $rotation-img-time linear infinite;
+            color: $primary-color;
+          }
+        }
+      }
+    }
+
+    .img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+      &:hover {
+        cursor: pointer;
+        animation: rotateInfinite $rotation-img-time linear infinite;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-md) {
+  .private-navbar {
+    .profile {
+      .data {
+        display: none;
+      }
+      .data-more {
+        width: calc(100% - 78px);
+        box-shadow: none;
+        border-radius: 0;
+        .btn-expanded {
+          width: auto;
+        }
+      }
+    }
+  }
+}

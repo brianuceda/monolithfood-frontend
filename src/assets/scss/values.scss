@@ -1,0 +1,30 @@
+// * Application Content
+$content-padding-tb: 50px;
+$content-padding-lr: 10%;
+
+// * Auth Page
+$auth-page-width: 450px;
+
+// * Bars
+$bar-size: 78px;
+$sidebar-expanded-width: 300px;
+// * Button
+$button-border-radius: 5px;
+// * Dialog
+$dialog-border-radius: 20px;
+// * Material: Input
+$input-border-radius: 5px;
+$input-width: 300px;
+$input-height: 45px;
+
+// * Media Queries
+// Más comunes
+$media-query-ssm: 480px;
+$media-query-msm: 580px;
+$media-query-sm: 768px;
+$media-query-md: 890px;
+$media-query-lg: 1024px;
+$media-query-xl: 1200px;
+// Menos comunes
+$media-query-xxl: 1400px;
+$media-query-xxxl: 1600px;

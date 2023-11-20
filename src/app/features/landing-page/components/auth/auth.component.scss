@@ -1,0 +1,175 @@
+// Custom Styles
+@import "src/assets/scss/backgrounds.scss";
+@import "src/assets/scss/colors.scss";
+@import "src/assets/scss/values.scss";
+@import "src/assets/scss/animations.scss";
+
+$width-card: 300px;
+$height-card: 45px;
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  text-align: center;
+  color: $txt-color-black;
+  background: $bg-auth-page;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container-card {
+    width: 100%;
+    height: 100%;
+    //   Acá va el contenido dentro de la página
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5%;
+
+    .card__title,
+    .card__buttons,
+    .card__inputs {
+      width: 100%;
+      padding: 0 10%;
+    }
+
+    .card__title {
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .card__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .card__inputs {
+      .caja {
+        text-align: start;
+        margin-bottom: 20px;
+        position: relative;
+
+        .caja-txt {
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .caja-input {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          margin-top: 0.25rem;
+
+          input {
+            color: $txt-color-black;
+          }
+
+          mat-icon {
+            font-size: 22px;
+            color: $txt-color-lead;
+          }
+          mat-icon:hover {
+            color: $txt-color-black !important;
+          }
+        }
+
+        .has-error {
+          position: absolute;
+          display: flex;
+          justify-content: flex-end;
+          width: 100%;
+
+          span {
+            white-space: nowrap;
+            font-size: 12px;
+            color: $txt-color-red;
+          }
+        }
+
+        &.caja-last {
+          margin-bottom: 30px;
+        }
+      }
+
+      .extra-btns {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .lost__pass,
+        .register {
+          text-decoration: none;
+          color: $txt-color-black;
+          cursor: pointer;
+          color: #7746b7;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .lost__pass {
+          margin: 20px 0 10px;
+        }
+
+        .new__account {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-sm) {
+  .container {
+    background: transparent;
+    min-height: calc(100vh - $bar-size);
+    width: 100vw;
+
+    .container-card {
+      background: $bg-auth-page;
+      border-radius: 10px;
+      gap: 30px;
+      padding: 30px 0;
+
+      .card__title,
+      .card__buttons,
+      .card__inputs {
+        width: 100%;
+        padding: 0 15%;
+      }
+    }
+  }
+}
+
+@media (max-width: $media-query-ssm) {
+  .container {
+    background: #ffffff;
+
+    .container-card {
+      padding: 0;
+      .card__title,
+      .card__buttons,
+      .card__inputs {
+        width: 100%;
+        padding: 0 5%;
+      }
+    }
+  }
+}
