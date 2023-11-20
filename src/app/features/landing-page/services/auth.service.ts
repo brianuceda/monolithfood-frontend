@@ -1,16 +1,7 @@
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  Observable,
-  switchMap,
-  tap,
-  catchError,
-  throwError,
-  of,
-  map,
-} from 'rxjs';
+import { Observable, tap, catchError, throwError, of } from 'rxjs';
 import { AuthResponse } from 'src/app/core/interfaces/AuthResponse';
 import { LoginRequestDTO } from 'src/app/core/interfaces/LoginRequestDTO';
 import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
@@ -26,7 +17,6 @@ export class AuthService {
   private authApiUrl: string = environment.api + environment.rscAuth;
   private userApiUrl: string = environment.api + environment.rscUsers;
   private oauthUrl: string = environment.oauthUrl;
-  private ipApiUrl = 'https://api.country.is';
 
   constructor(
     private globalService: GlobalService,
@@ -133,28 +123,6 @@ export class AuthService {
       return '';
     }
   }
-  // public getIpAddress(): string {
-  //   const storedIp = localStorage.getItem('ipAddress');
-  //   if (storedIp) {
-  //     // Si la IP ya está almacenada, la devuelve como un observable
-  //     return of(storedIp);
-  //   } else {
-  //     // Si la IP no está almacenada, realiza la solicitud HTTP
-  //     return this.http.get<{ ip: string }>(this.ipApiUrl).pipe(
-  //       map((response) => {
-  //         localStorage.setItem('ipAddress', response.ip);
-  //         return response.ip;
-  //       }),
-  //       catchError((error) => {
-  //         this.globalService.openCustomSnackbar(
-  //           'Error obteniendo su IP',
-  //           ResponseType.ERROR
-  //         );
-  //         return throwError(() => new Error('Error obtaining IP address'));
-  //       })
-  //     );
-  //   }
-  // }
 
   private saveToken(token: string): void {
     localStorage.setItem('token', token);

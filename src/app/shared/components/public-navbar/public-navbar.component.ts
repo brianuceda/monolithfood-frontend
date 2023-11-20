@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./public-navbar.component.scss'],
 })
 export class PublicNavbarComponent implements OnDestroy {
-  private defaultNavbarOpacity = 0.2;
-
   constructor(private router: Router) {
     window.addEventListener('scroll', this.onScroll, true);
   }
@@ -26,17 +24,6 @@ export class PublicNavbarComponent implements OnDestroy {
       navbarButtons!.classList.contains('in-auth-page')
     ) {
       this.toggleMenu();
-    }
-    if (!this.isInAuthPage()) {
-      const navbar = document.getElementById('navbar');
-      if (navbar) {
-        const scrollPosition = window.scrollY;
-        const newOpacity =
-          scrollPosition > 0
-            ? Math.min(scrollPosition / 500, 1)
-            : this.defaultNavbarOpacity;
-        navbar.style.backgroundColor = `rgba(19, 16, 30, ${newOpacity})`;
-      }
     }
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -9,26 +8,28 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './oauth-callback.component.html',
   styleUrls: ['./oauth-callback.component.scss'],
 })
-export class OauthCallbackComponent implements OnInit {
+export class OauthCallbackComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
-  ) {}
-
-  async ngOnInit(): Promise<void> {
-    await this.identifyOauth();
+  ) {
+    this.identifyOauth();
   }
 
   async identifyOauth(): Promise<void> {
-    const params = await firstValueFrom(this.route.queryParams);
-    const token = params['token'];
-    if (token) {
-      localStorage.setItem('token', token);
-      this.authService.setBasicOauth2Data();
-      await this.router.navigate(['/dashboard']);
-    } else {
-      await this.router.navigate(['/login']);
+    try {
+      const params = await firstValueFrom(this.route.queryParams);
+      const token = params['token'];
+      if (token) {
+        localStorage.setItem('token', token);
+        this.authService.setBasicOauth2Data();
+        await this.router.navigate(['/dashboard']);
+      } else {
+        await this.router.navigate(['/login']);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }

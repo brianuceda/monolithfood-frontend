@@ -18,6 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // Agrega el token al headers en todas las solicitudes HTTP
     const token = localStorage.getItem('token');
     let authReq = req;
 
@@ -27,32 +28,56 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    console.log('Outgoing request details:');
-    console.log('URL:', authReq.url);
-    console.log('Method:', authReq.method);
-    console.log(
-      'Headers:',
-      authReq.headers.keys().map((key) => `${key}: ${authReq.headers.get(key)}`)
-    );
-    console.log('Body:', authReq.body);
+    // console.log('Outgoing request to:', authReq.url);
 
     return next.handle(authReq).pipe(
       tap((evt) => {
         if (evt instanceof HttpResponse) {
-          console.log('Response for:', evt.url);
-          console.log('Response status:', evt.status);
-          console.log('Response body:', evt.body);
+          console.log('Esperando respuesta de:', evt.url);
+          console.log('Cuerpo de la solicitud recibida:', evt.body);
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error('Request failed:', error.message);
-        console.error('Failed request details:', {
-          url: authReq.url,
-          status: error.status,
-          error: error.error,
-        });
+        console.error(
+          'Request to:',
+          authReq.url,
+          'failed with status:',
+          error.status
+        );
+        console.error('Error response:', error);
+        // Handle the error and continue
         return throwError(() => error);
       })
     );
   }
 }
+
+// import { Injectable } from '@angular/core';
+// import {
+//   HttpRequest,
+//   HttpHandler,
+//   HttpEvent,
+//   HttpInterceptor,
+// } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+
+// @Injectable()
+// export class AuthInterceptor implements HttpInterceptor {
+//   constructor() {}
+
+//   // Agrega el token al headers en todas las solicitudes HTTP
+//   intercept(
+//     req: HttpRequest<any>,
+//     next: HttpHandler
+//   ): Observable<HttpEvent<any>> {
+//     const token = localStorage.getItem('token');
+//     if (token) {
+//       const cloned = req.clone({
+//         headers: req.headers.set('Authorization', 'Bearer ' + token),
+//       });
+//       return next.handle(cloned);
+//     } else {
+//       return next.handle(req);
+//     }
+//   }
+// }

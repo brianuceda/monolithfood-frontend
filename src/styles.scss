@@ -68,15 +68,6 @@ body {
   height: calc($input-height - (27.78% + 27.78%)) !important;
   font-size: 14px !important;
 }
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 .mdc-text-field--filled {
   color: rgba(#000, 0.8) !important;
   background: #dadada !important;

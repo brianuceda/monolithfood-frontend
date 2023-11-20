@@ -4,10 +4,13 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CustomSnackbarComponent } from '../components/custom-snackbar/custom-snackbar.component';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { GetUser } from '../interfaces/GetUser';
+import { HttpService } from 'src/app/core/services/http.service';
+import { environment } from 'src/environments/environment.prod';
 
 interface CustomSnackbarData {
   type: string;

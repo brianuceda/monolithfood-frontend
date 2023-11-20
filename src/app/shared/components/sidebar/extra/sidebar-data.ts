@@ -54,10 +54,10 @@ export const sidebarData: ISidebarData[] = [
     label: 'Reportes',
     expanded: false,
     items: [
-      {
-        routerLink: 'reports',
-        label: 'Generales',
-      },
+      // {
+      //   routerLink: 'reports',
+      //   label: 'Generales',
+      // },
       {
         routerLink: 'reports/fitness',
         label: 'Fitness',
