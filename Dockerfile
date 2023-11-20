@@ -29,4 +29,4 @@ RUN ng build --configuration production
 FROM nginx:latest
 
 # Copia los archivos construidos al directorio de Nginx
-COPY --from=0 /app/dist/MonolithFoodFrontend /usr/share/nginx/html
+COPY --from=0 /app/dist/monolith-food-frontend /usr/share/nginx/html
