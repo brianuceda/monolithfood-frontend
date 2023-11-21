@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  oauthUrl: 'https://monolithfood.site:8080/oauth2/authorization',
-  api: 'https://monolithfood.site:8080',
+  oauthUrl: 'http://api.monolithfood.site:8080/oauth2/authorization',
+  api: 'http://api.monolithfood.site:8080',
   rscAuth: '/auth',
   rscUsers: '/user',
   rscConfig: '/user/config',
