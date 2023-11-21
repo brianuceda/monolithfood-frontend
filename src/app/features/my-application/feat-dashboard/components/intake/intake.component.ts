@@ -4,6 +4,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddEditIntakeComponent } from '../../pages/add-edit-intake/add-edit-intake.component';
 import { DashboardService } from '../../services/dashboard.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-intake',
@@ -11,6 +12,7 @@ import { DashboardService } from '../../services/dashboard.service';
   styleUrls: ['./intake.component.scss'],
 })
 export class IntakeComponent {
+  private isInProduction = environment.production;
   @Input() intakes!: CategoryIntake;
 
   constructor(
@@ -90,8 +92,13 @@ export class IntakeComponent {
 
   calcTime(fechaIso: string): string {
     const fecha = new Date(fechaIso);
-    // fecha.setHours(fecha.getHours() + 5); // Para desarrollo
-    fecha.setHours(fecha.getHours() + 10); // Para producción
+
+    if (this.isInProduction) {
+      fecha.setHours(fecha.getHours() + 10); // Para producción
+    } else {
+      fecha.setHours(fecha.getHours() + 5); // Para desarrollo
+    }
+
     const horas = fecha.getHours().toString().padStart(2, '0');
     const minutos = fecha.getMinutes().toString().padStart(2, '0');
     return `${horas}:${minutos}`;
