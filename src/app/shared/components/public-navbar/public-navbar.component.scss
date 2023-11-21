@@ -8,11 +8,13 @@
   position: fixed;
   width: 100%;
   padding: 0 10%;
-  background: $bg-navbar-color;
+  // background: $bg-navbar-color;
+  background: $bg-default-gradient-landing;
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow-x: hidden;
+  z-index: 2000;
 
   // [1.1] Superposición de oscuridad a imagen de fondo de la pagina de autenticacion (login / register)
   &.in-auth-page {
@@ -94,7 +96,7 @@
     }
 
     &.responsive-on {
-      // position: static;
+      background: $bg-default-gradient-landing;
       .navbar-buttons {
         display: flex;
         flex-direction: column;
@@ -104,7 +106,8 @@
         top: $bar-size;
         left: 0;
         width: 100%;
-        height: calc(100% - $bar-size);
+        min-height: calc(100% - $bar-size);
+        height: calc(100vh - $bar-size);
         background: $bg-default-gradient-landing;
         padding: 10px 0;
         animation: $sidebar-transition-time;
@@ -123,7 +126,7 @@
       &.responsive-on {
         .navbar-buttons {
           width: calc(100% - $auth-page-width);
-          background: $bg-auth-navbar-color;
+          background: $bg-default-gradient-landing;
           padding-bottom: $bar-size;
         }
       }
