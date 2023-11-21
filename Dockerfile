@@ -29,7 +29,7 @@ RUN ng build --configuration production
 FROM nginx:latest
 
 # Copia los archivos construidos al directorio de Nginx
-COPY --from=build /app/dist/monolith-food-frontend /usr/share/nginx/html
+COPY --from=0 /app/dist/monolith-food-frontend /usr/share/nginx/html
 
 # Copia tu archivo de configuración de Nginx desde el directorio de trabajo
-COPY --from=build /app/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=0 /app/default.conf /etc/nginx/conf.d/default.conf
