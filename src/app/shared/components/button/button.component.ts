@@ -24,10 +24,10 @@ export class ButtonComponent implements OnInit {
   selectIcon(): string | void {
     if (this.icon === 'join') return 'fas fa fa-sign-in';
     else if (this.icon === 'google')
-      return '../../../../assets/images/google.svg';
+      return '../../../../assets/svgs/google.svg';
     else if (this.icon === 'microsoft')
-      return '../../../../assets/images/microsoft.svg';
+      return '../../../../assets/svgs/microsoft.svg';
     else if (this.icon === 'github')
-      return '../../../../assets/images/github.svg';
+      return '../../../../assets/svgs/github.svg';
   }
 }
