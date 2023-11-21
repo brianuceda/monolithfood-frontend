@@ -5,7 +5,10 @@
             <p>Transforma tu alimentación y estilo de vida.<br>
                 Sencillo, accesible y completamente personalizado.<br>
                 Únete a la comunidad que redefine la nutrición inteligente.</p>
-            <a href="/login" class="cta">¡Mejora Tu Dieta Ahora!</a>
+            <div class="cta-btn">
+                <app-button class="cta-btn" routerLink="/login" [text]="'¡Mejora Tu Dieta Ahora!'" [type]="'primary'"
+                    [icon]="'fa fa-sign-in'"></app-button>
+            </div>
         </div>
         <img src="assets/images/about-us/home.webp" alt="Descripción de la imagen" class="image">
     </div>
@@ -16,17 +19,12 @@
         <div class="quienes-somos-content">
             <h2 class="quienes-somos-title">Quiénes Somos</h2>
             <p class="quienes-somos-description">
-                Somos una empresa comprometida con la excelencia y la innovación. Nuestra misión es proporcionar
-                soluciones de
-                calidad que superen las expectativas de nuestros clientes. Además, nuestro segmento objetivo son los
-                jóvenes y
-                adolescentes entre 16 y 26 años, que buscan llevar una alimentación más saludable pero no saben cómo
-                hacerlo de
-                forma práctica. Lo cual, nuestra propuesta de valor es ofrecer una solución práctica y eficiente para
-                que estos
-                usuarios puedan escanear alimentos, conocer su información nutricional relevante y recibir
-                recomendaciones
-                personalizadas para mejorar su dieta, a través de una aplicación web de fácil uso.
+                Enfocados en jóvenes y adolescentes universitarios de 16 a 26 años, somos una empresa innovadora que
+                facilita un estilo de vida saludable a través de una aplicación web intuitiva y personalizada.
+                Comprendemos los retos que enfrentan los jóvenes en el ámbito universitario y su impacto en la
+                alimentación y el bienestar físico. Nuestro objetivo es ofrecer una herramienta accesible y eficiente
+                para gestionar su nutrición y fitness, brindando una experiencia de usuario que equilibra simplicidad y
+                funcionalidad.
             </p>
         </div>
         <div>
@@ -42,14 +40,13 @@
         <div class="cardBox">
             <div class="card">
                 <div class="h4">
-                    <img src="assets/images/home-img/comida.webp" alt="Descripción de la imagen" class="image">
+                    <img src="assets/images/home-img/comidacard.webp" alt="Descripción de la imagen" class="image">
                 </div>
 
                 <div class="content">
-                    <div class="h3">Optimizando la Nutrición</div>
-                    <p>Descubre el camino hacia una alimentación más saludable. Sigue tu progreso, establece metas y
-                        transforma
-                        tus hábitos alimenticios para sentirte mejor y más en control.</p>
+                    <div class="h3">Interacción Intuitiva y Validación de Datos</div>
+                    <p>Mensajes claros y específicos en formularios para facilitar la corrección y reenvío de datos,
+                        asegurando una experiencia sin errores.</p>
                 </div>
             </div>
         </div>
@@ -61,10 +58,9 @@
                 </div>
 
                 <div class="content">
-                    <div class="h3">Calculando tu Salud</div>
-                    <p>Conoce tu Índice de Masa Corporal (IMC) y desbloquea las claves para mejorar tu bienestar. La
-                        salud está al
-                        alcance de tus manos; descubre cómo avanzar hacia una vida más saludable.</p>
+                    <div class="h3">Registro y Autenticación Seguros</div>
+                    <p>Opciones de registro personalizadas y seguras, incluyendo autenticación a través de proveedores
+                        externos, para una cuenta personal protegida y fiable.</p>
                 </div>
             </div>
         </div>
@@ -76,10 +72,9 @@
                 </div>
 
                 <div class="content">
-                    <div class="h3">Nutrientes a Medida</div>
-                    <p>Explora un mundo de nutrición personalizada. Sigue un plan de alimentación diseñado especialmente
-                        para ti,
-                        con información detallada sobre los nutrientes que tu cuerpo necesita.</p>
+                    <div class="h3">Gestión Personalizada de Salud y Nutrición</div>
+                    <p>Herramientas para gestionar información personal, niveles de actividad física y objetivos
+                        nutricionales, adaptándose a las necesidades individuales de cada usuario.</p>
                 </div>
             </div>
         </div>
@@ -91,11 +86,10 @@
                 </div>
 
                 <div class="content">
-                    <div class="h3">Dosificando la Salud</div>
-                    <p>Encuentra el equilibrio perfecto para tu dieta. Recibe recomendaciones precisas sobre las
-                        cantidades y
-                        tipos de alimentos que necesitas para alcanzar tu dieta ideal y mantener un estilo de vida
-                        saludable.</p>
+                    <div class="h3">Seguimiento de Alimentos e Información Nutricional</div>
+                    <p>Funcionalidades para buscar y registrar alimentos, con análisis detallado de su información
+                        nutricional y recomendaciones personalizadas, facilitando la toma de decisiones informadas para
+                        una dieta equilibrada.</p>
                 </div>
             </div>
         </div>
@@ -106,9 +100,9 @@
 
 <div class="container2">
     <h1>TESTIMONIOS</h1>
-    <h2>"Explora testimonios reales que destacan cómo hemos hecho la diferencia en la vida de nuestros clientes.
-        <br>Descubre experiencias auténticas que reflejan la calidad y el compromiso que ofrecemos en cada interacción."
-    </h2>
+    <div class="span-text">
+        <span>¡Descubre lo que nuestros usuarios tienen que decir sobre nosotros!</span>
+    </div>
     <div class="wrapper">
         <div class="box">
             <i class="fas fa-quote-left quote"></i>

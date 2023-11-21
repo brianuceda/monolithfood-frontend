@@ -9,10 +9,11 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  private isInProduction = environment.production;
 
   intercept(
     req: HttpRequest<any>,
@@ -28,56 +29,28 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    // console.log('Outgoing request to:', authReq.url);
-
     return next.handle(authReq).pipe(
       tap((evt) => {
         if (evt instanceof HttpResponse) {
-          console.log('Esperando respuesta de:', evt.url);
-          console.log('Cuerpo de la solicitud recibida:', evt.body);
+          if (this.isInProduction) {
+            console.log('Esperando respuesta de:', evt.url);
+            console.log('Cuerpo de la solicitud recibida:', evt.body);
+          }
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error(
-          'Request to:',
-          authReq.url,
-          'failed with status:',
-          error.status
-        );
-        console.error('Error response:', error);
+        if (this.isInProduction) {
+          console.error(
+            'Request to:',
+            authReq.url,
+            'failed with status:',
+            error.status
+          );
+          console.error('Error response:', error);
+        }
         // Handle the error and continue
         return throwError(() => error);
       })
     );
   }
 }
-
-// import { Injectable } from '@angular/core';
-// import {
-//   HttpRequest,
-//   HttpHandler,
-//   HttpEvent,
-//   HttpInterceptor,
-// } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-
-// @Injectable()
-// export class AuthInterceptor implements HttpInterceptor {
-//   constructor() {}
-
-//   // Agrega el token al headers en todas las solicitudes HTTP
-//   intercept(
-//     req: HttpRequest<any>,
-//     next: HttpHandler
-//   ): Observable<HttpEvent<any>> {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       const cloned = req.clone({
-//         headers: req.headers.set('Authorization', 'Bearer ' + token),
-//       });
-//       return next.handle(cloned);
-//     } else {
-//       return next.handle(req);
-//     }
-//   }
-// }
