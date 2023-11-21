@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   oauthUrl: 'http://localhost:8080/oauth2/authorization',
   api: 'http://localhost:8080',
   rscAuth: '/auth',

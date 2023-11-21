@@ -9,6 +9,7 @@ import {
 } from '../../interfaces/NutritionDTO';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-add-edit-intake',
@@ -16,6 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-edit-intake.component.scss'],
 })
 export class AddEditIntakeComponent implements OnInit {
+  private isInProduction = environment.production;
   // Verifica si se está agregando o editando un registro de ingesta
   public isAdding!: boolean;
   public addOrEditText!: string;
@@ -167,17 +169,6 @@ export class AddEditIntakeComponent implements OnInit {
     }
   }
 
-  // Método para separar y formatear fecha y hora que vienen juntas del backend
-  separateAndFormatDate(): void {
-    const dateTimeString = this.savedData.date;
-    const dateTime = new Date(dateTimeString);
-    const datePart = dateTime.toISOString().split('T')[0];
-    let timePart = dateTime.toISOString().split('T')[1];
-    timePart = timePart.substring(0, 5);
-    this.savedData.date = datePart;
-    this.time = timePart;
-  }
-
   onTimeChange(): void {
     const hours = parseInt(this.time.split(':')[0], 10);
     if (hours < 12) {
@@ -232,5 +223,22 @@ export class AddEditIntakeComponent implements OnInit {
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  // Método para separar y formatear fecha y hora que vienen juntas del backend
+  separateAndFormatDate(): void {
+    const dateTimeString = this.savedData.date;
+    const dateTime = new Date(dateTimeString);
+
+    // Para producción
+    if (this.isInProduction) {
+      dateTime.setHours(dateTime.getHours() + 5);
+    }
+
+    const datePart = dateTime.toISOString().split('T')[0];
+    let timePart = dateTime.toISOString().split('T')[1];
+    timePart = timePart.substring(0, 5);
+    this.savedData.date = datePart;
+    this.time = timePart;
   }
 }
