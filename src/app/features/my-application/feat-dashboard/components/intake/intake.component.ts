@@ -90,10 +90,10 @@ export class IntakeComponent {
 
   calcTime(fechaIso: string): string {
     const fecha = new Date(fechaIso);
-    fecha.setHours(fecha.getHours() + 5);
+    fecha.setHours(fecha.getHours() + 5); // Para desarrollo
+    // fecha.setHours(fecha.getHours() + 10); // Para producción
     const horas = fecha.getHours().toString().padStart(2, '0');
     const minutos = fecha.getMinutes().toString().padStart(2, '0');
     return `${horas}:${minutos}`;
-    return fechaIso;
   }
 }
