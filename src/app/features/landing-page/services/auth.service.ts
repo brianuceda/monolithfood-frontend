@@ -77,7 +77,7 @@ export class AuthService {
   }
 
   microsoftOauth2(): void {
-    window.location.href = `${this.oauthUrl}/microsoft`;
+    window.location.href = `${environment.oauthUrlMicrosoft}/microsoft`;
   }
 
   githubOauth2(): void {
