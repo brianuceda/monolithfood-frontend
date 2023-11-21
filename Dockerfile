@@ -1,5 +1,5 @@
 # Utiliza la imagen de Node.js 18.16.1 como base
-FROM node:18.16.1 AS build
+FROM node:18.16.1
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -25,8 +25,11 @@ RUN npm install primeng
 # Construye la aplicación para producción
 RUN ng build --configuration production
 
-# Utiliza la imagen de Apache
-FROM httpd:latest
+# Utiliza la imagen de Nginx para servir la aplicación
+FROM nginx:latest
 
-# Copia los archivos construidos al directorio público de Apache
-COPY --from=build /app/dist/monolith-food-frontend /usr/local/apache2/htdocs/
+# Copia los archivos construidos al directorio de Nginx
+COPY --from=build /app/dist/monolith-food-frontend /usr/share/nginx/html
+
+# Copia tu archivo de configuración de Nginx desde el directorio de trabajo
+COPY --from=build /app/default.conf /etc/nginx/conf.d/default.conf
