@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 import { EChartsOption } from 'echarts';
 import { ReportsService } from '../../services/reports.service';
 import {
+  CaloriesPerDayDTO,
   FitnessDataDTO,
   FitnessProgressDTO,
 } from '../../interfaces/FitnessDataDTO';
@@ -38,6 +39,8 @@ export type ChartOptions = {
 export class FitnessReportsComponent {
   fitnessData!: FitnessDataDTO;
   fitnessProgress!: FitnessProgressDTO;
+  option!: EChartsOption;
+  avgCalories!: number;
   private datePipe: DatePipe = new DatePipe('en-US');
 
   constructor(private reportsService: ReportsService) {}
@@ -45,32 +48,23 @@ export class FitnessReportsComponent {
   ngOnInit(): void {
     this.getFitnessProgress();
     this.getFitnessData();
+    this.getCaloriesPerDayData();
   }
 
   private getFitnessProgress(): void {
-    this.reportsService.getProgressWeight().subscribe(
-      (data: any) => {
-        this.fitnessProgress = data;
-        this.fitnessProgress.percentence = parseFloat(
-          this.fitnessProgress.percentence.toFixed(0)
-        );
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.reportsService.getProgressWeight().subscribe((data: any) => {
+      this.fitnessProgress = data;
+      this.fitnessProgress.percentence = parseFloat(
+        this.fitnessProgress.percentence.toFixed(0)
+      );
+    });
   }
 
   private getFitnessData(): void {
-    this.reportsService.calcFitnessInfo().subscribe(
-      (data: any) => {
-        this.fitnessData = data;
-        this.setFitnessData();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.reportsService.calcFitnessInfo().subscribe((data: any) => {
+      this.fitnessData = data;
+      this.setFitnessData();
+    });
   }
 
   setFitnessData(): void {
@@ -82,54 +76,86 @@ export class FitnessReportsComponent {
     this.fitnessData.targetDate = this.formatDate(this.fitnessData.targetDate);
   }
 
+  private getCaloriesPerDayData(): void {
+    this.reportsService.getCaloriesPerDay().subscribe({
+      next: (data: any) => {
+        this.calcAvgCalories(data);
+        this.option = {
+          tooltip: {
+            trigger: 'axis',
+          },
+          legend: {
+            data: ['Calorias'],
+          },
+          toolbox: {
+            show: true,
+            feature: {
+              dataView: { show: true, readOnly: false },
+              magicType: { show: true, type: ['line', 'bar'] },
+              restore: { show: true },
+              saveAsImage: { show: true },
+            },
+          },
+          calculable: true,
+          xAxis: [
+            {
+              type: 'category',
+              data: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+            },
+          ],
+          yAxis: [
+            {
+              type: 'value',
+            },
+          ],
+          series: [
+            {
+              name: 'Calorias',
+              type: 'bar',
+              data: [
+                data.domingo,
+                data.lunes,
+                data.martes,
+                data.miercoles,
+                data.jueves,
+                data.viernes,
+                data.sabado,
+              ],
+              markPoint: {
+                data: [
+                  { type: 'max', name: 'Max' },
+                  { type: 'min', name: 'Min' },
+                ],
+              },
+              markLine: {
+                data: [{ type: 'average', name: 'Promedio' }],
+              },
+            },
+          ],
+        };
+      },
+      error: (error) => {
+        console.error('Error al obtener los datos de calorias por día', error);
+      },
+    });
+  }
+
+  private calcAvgCalories(cpd: CaloriesPerDayDTO): void {
+    this.avgCalories = parseFloat(
+      (
+        (cpd.domingo +
+          cpd.lunes +
+          cpd.martes +
+          cpd.miercoles +
+          cpd.jueves +
+          cpd.viernes +
+          cpd.sabado) /
+        7
+      ).toFixed(2)
+    );
+  }
+
   private formatDate(dateString: string): string {
     return this.datePipe.transform(dateString, 'dd/MM/yyyy') || '';
   }
-
-  option: EChartsOption = {
-    tooltip: {
-      trigger: 'axis',
-    },
-    legend: {
-      data: ['Calorias'],
-    },
-    toolbox: {
-      show: true,
-      feature: {
-        dataView: { show: true, readOnly: false },
-        magicType: { show: true, type: ['line', 'bar'] },
-        restore: { show: true },
-        saveAsImage: { show: true },
-      },
-    },
-    calculable: true,
-    xAxis: [
-      {
-        type: 'category',
-        data: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-      },
-    ],
-    yAxis: [
-      {
-        type: 'value',
-      },
-    ],
-    series: [
-      {
-        name: 'Calorias',
-        type: 'bar',
-        data: [2782.0, 1929.9, 2755.0, 2231.2, 2252.6, 1856.7, 2325.6],
-        markPoint: {
-          data: [
-            { type: 'max', name: 'Max' },
-            { type: 'min', name: 'Min' },
-          ],
-        },
-        //promedio de los datos
-        markLine: {
-          data: [{ type: 'average', name: 'Promedio' }],
-        },
-      },
-    ],
-  };
 }

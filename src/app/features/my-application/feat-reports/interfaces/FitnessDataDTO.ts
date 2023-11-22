@@ -23,3 +23,13 @@ export interface FitnessProgressDTO {
   startWeight: number;
   targetWeight: number;
 }
+
+export interface CaloriesPerDayDTO {
+  domingo: number;
+  lunes: number;
+  martes: number;
+  miercoles: number;
+  jueves: number;
+  viernes: number;
+  sabado: number;
+}

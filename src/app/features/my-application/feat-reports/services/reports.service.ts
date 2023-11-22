@@ -12,11 +12,15 @@ export class ReportsService {
 
   constructor(private httpService: HttpService) {}
 
-  getProgressWeight() {
+  public getProgressWeight() {
     return this.httpService.getSimple(this.apiInfo + '/progress-weight');
   }
 
-  calcFitnessInfo() {
+  public calcFitnessInfo() {
     return this.httpService.getSimple(this.apiFitness + '/calc');
+  }
+
+  public getCaloriesPerDay() {
+    return this.httpService.getSimple(this.apiFitness + '/reports/calories');
   }
 }
