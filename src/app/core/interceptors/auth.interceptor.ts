@@ -32,14 +32,14 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       tap((evt) => {
         if (evt instanceof HttpResponse) {
-          if (this.isInProduction) {
+          if (!this.isInProduction) {
             console.log('Esperando respuesta de:', evt.url);
             console.log('Cuerpo de la solicitud recibida:', evt.body);
           }
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        if (this.isInProduction) {
+        if (!this.isInProduction) {
           console.error(
             'Request to:',
             authReq.url,
