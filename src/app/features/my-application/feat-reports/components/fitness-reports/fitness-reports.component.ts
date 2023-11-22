@@ -81,6 +81,8 @@ export class FitnessReportsComponent {
       next: (data: any) => {
         this.calcAvgCalories(data);
         this.roundValues(data);
+        let markPoints = this.createMarkPoints(data);
+
         this.option = {
           tooltip: {
             trigger: 'axis',
@@ -123,12 +125,13 @@ export class FitnessReportsComponent {
                 data.sabado,
               ],
               markPoint: {
-                data: [
-                  { type: 'max', name: 'Max' },
-                  { type: 'min', name: 'Min' },
-                ],
+                data: markPoints,
               },
               markLine: {
+                lineStyle: {
+                  color: 'yellow',
+                  cap: 'round',
+                },
                 data: [{ type: 'average', name: 'Promedio' }],
               },
             },
@@ -139,6 +142,20 @@ export class FitnessReportsComponent {
         console.error('Error al obtener los datos de calorias por día', error);
       },
     });
+  }
+
+  private createMarkPoints(data: CaloriesPerDayDTO): any[] {
+    return [
+      { type: 'max', name: 'Max' },
+      { type: 'min', name: 'Min' },
+      { value: data.domingo, name: 'Dom', xAxis: 0, yAxis: data.domingo },
+      { value: data.lunes, name: 'Lun', xAxis: 1, yAxis: data.lunes },
+      { value: data.martes, name: 'Mar', xAxis: 2, yAxis: data.martes },
+      { value: data.miercoles, name: 'Mier', xAxis: 3, yAxis: data.miercoles },
+      { value: data.jueves, name: 'Jue', xAxis: 4, yAxis: data.jueves },
+      { value: data.viernes, name: 'Vie', xAxis: 5, yAxis: data.viernes },
+      { value: data.sabado, name: 'Sab', xAxis: 6, yAxis: data.sabado },
+    ];
   }
 
   private calcAvgCalories(cpd: CaloriesPerDayDTO): void {
