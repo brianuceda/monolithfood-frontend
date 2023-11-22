@@ -80,6 +80,7 @@ export class FitnessReportsComponent {
     this.reportsService.getCaloriesPerDay().subscribe({
       next: (data: any) => {
         this.calcAvgCalories(data);
+        this.roundValues(data);
         this.option = {
           tooltip: {
             trigger: 'axis',
@@ -153,6 +154,16 @@ export class FitnessReportsComponent {
         7
       ).toFixed(2)
     );
+  }
+
+  private roundValues(cpd: CaloriesPerDayDTO): void {
+    cpd.domingo = parseFloat(cpd.domingo.toFixed(2));
+    cpd.lunes = parseFloat(cpd.lunes.toFixed(2));
+    cpd.martes = parseFloat(cpd.martes.toFixed(2));
+    cpd.miercoles = parseFloat(cpd.miercoles.toFixed(2));
+    cpd.jueves = parseFloat(cpd.jueves.toFixed(2));
+    cpd.viernes = parseFloat(cpd.viernes.toFixed(2));
+    cpd.sabado = parseFloat(cpd.sabado.toFixed(2));
   }
 
   private formatDate(dateString: string): string {
