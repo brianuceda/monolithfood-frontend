@@ -1,3 +1,4 @@
+import { roles } from 'src/environments/environment.prod';
 import { ISidebarData } from './helper';
 
 export const sidebarData: ISidebarData[] = [
@@ -39,7 +40,7 @@ export const sidebarData: ISidebarData[] = [
       {
         routerLink: 'database/favourites',
         label: 'Favoritos',
-        requiredRoles: ['ROLE_ADMIN', 'ROLE_VIP'],
+        requiredRoles: roles.rolesToSeeFavorites,
       },
     ],
   },

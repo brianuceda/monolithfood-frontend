@@ -13,3 +13,7 @@ export const environment = {
   rscFavorites: '/user/favorites',
   rscFitness: '/user/fitness',
 };
+
+export const roles = {
+  rolesToSeeFavorites: ['ROLE_ADMIN', 'ROLE_VIP'],
+};

@@ -91,7 +91,7 @@ export class FitnessReportsComponent {
       trigger: 'axis',
     },
     legend: {
-      data: ['calories'],
+      data: ['Calorias'],
     },
     toolbox: {
       show: true,
@@ -116,9 +116,9 @@ export class FitnessReportsComponent {
     ],
     series: [
       {
-        name: 'calories',
+        name: 'Calorias',
         type: 'bar',
-        data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6],
+        data: [2782.0, 1929.9, 2755.0, 2231.2, 2252.6, 1856.7, 2325.6],
         markPoint: {
           data: [
             { type: 'max', name: 'Max' },
@@ -127,7 +127,7 @@ export class FitnessReportsComponent {
         },
         //promedio de los datos
         markLine: {
-          data: [{ type: 'average', name: 'Avg' }],
+          data: [{ type: 'average', name: 'Promedio' }],
         },
       },
     ],

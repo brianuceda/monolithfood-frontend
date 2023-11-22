@@ -34,7 +34,6 @@ export class FoodComponent {
       );
       dialogRef = this.dialog.open(AddEditIntakeComponent, config);
     });
-    console.log('Add intake');
   }
 
   addToFavorites(foodId: number): void {
