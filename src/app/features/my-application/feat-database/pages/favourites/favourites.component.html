@@ -3,12 +3,22 @@
         <div class="svg-container">
             <img src="../../../../../../assets/svgs/search-icon.svg" alt="">
         </div>
-        <input class="search-input" type="text" placeholder="Buscar alimento">
-        <button aria-label="filter" class="filter">
-            <img src="../../../../../../assets/svgs/filter.svg" alt="">
-        </button>
+        <input class="search-input" type="text" placeholder="Buscar alimento" (input)="filterFoods($event)">
+        <div class="filter-container">
+            <button aria-label="filter" class="filter" (click)="toggleFilterOptions()">
+                <img src="../../../../../../assets/svgs/filter.svg" alt="">
+            </button>
+            <!-- Opciones de filtro -->
+            <div *ngIf="showFilterOptions" class="filter-options">
+                <button (click)="changeFilterCriteria('foodName')"
+                    [class.active]="filterCriteria === 'foodName'">Nombre</button>
+                <button (click)="changeFilterCriteria('foodCategory')"
+                    [class.active]="filterCriteria === 'foodCategory'">Categoría</button>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container">
-    <app-food *ngFor="let food of data?.foods" [details]="food" [hasRequiredRoles]="hasRequiredRole"></app-food>
+    <app-food *ngFor="let food of filteredFoods" [details]="food" [hasRequiredRoles]="hasRequiredRole"></app-food>
+    <span class="not-found" *ngIf="!hasData">Alimento no encontrado</span>
 </div>

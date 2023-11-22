@@ -21,4 +21,5 @@
 </div>
 <div class="container">
   <app-food *ngFor="let food of filteredFoods" [details]="food" [hasRequiredRoles]="hasRequiredRole"></app-food>
+  <span class="not-found" *ngIf="!hasData">No se encontraron alimentos con ese nombre</span>
 </div>

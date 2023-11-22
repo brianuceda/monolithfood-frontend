@@ -3,16 +3,17 @@ import { Component } from '@angular/core';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { ListFoodDTO } from '../../interfaces/FoodDTO';
 import { DatabaseService } from '../../services/database.service';
-import { PrivateService } from 'src/app/core/services/private.service';
 
 @Component({
   selector: 'app-list-foods',
   templateUrl: './list-foods.component.html',
-  styleUrls: ['./list-foods.component.scss'],
+  styleUrls: ['../foods.component.scss'],
 })
 export class ListFoodsComponent {
+  public hasData: boolean = true;
   public data: ListFoodDTO = { foods: [] };
   public hasRequiredRole!: boolean;
+  public originalFoods: any[] = [];
   public filteredFoods: any[] = [];
   public filterCriteria: keyof ListFoodDTO['foods'][number] = 'foodName';
   public showFilterOptions: boolean = false;
@@ -36,6 +37,7 @@ export class ListFoodsComponent {
   getFoods(): void {
     this.databaseService.getFoods().subscribe((data) => {
       this.data = data;
+      this.originalFoods = [...this.data.foods]; // Crea una copia exacta del array
       this.filteredFoods = this.data.foods;
     });
   }
@@ -54,7 +56,6 @@ export class ListFoodsComponent {
       if (typeof filterValue === 'string') {
         return filterValue.toLowerCase().startsWith(searchTerm);
       }
-      // Puedes agregar más lógica aquí según sea necesario para otros tipos
       return false;
     });
 
@@ -70,6 +71,14 @@ export class ListFoodsComponent {
       }
       return 0;
     });
+
+    // Actualizar hasData basado en si hay alimentos filtrados o no
+    this.hasData = this.filteredFoods.length > 0;
+
+    // Si no hay un termino de busqueda, regresa la tabla a su estado original
+    if (!searchTerm) {
+      this.filteredFoods = [...this.originalFoods];
+    }
   }
 
   toggleFilterOptions(): void {
