@@ -77,7 +77,10 @@ export class RegisterComponent implements OnInit {
   }
 
   googleOauth2(): void {
-    this.authService.googleOauth2();
+    let disabled = true;
+    if (!disabled) {
+      this.authService.googleOauth2();
+    }
   }
 
   githubOauth2(): void {

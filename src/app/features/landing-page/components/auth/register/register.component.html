@@ -5,12 +5,12 @@
             <p>Registrarse</p>
         </div>
         <div class="card__buttons">
-            <app-button (click)="googleOauth2()" [text]="'Ingresar con Google'" [type]="'oauth2'"
-                [icon]="'google'"></app-button>
-            <app-button (click)="microsoftOauth2()" [text]="'Ingresar con Microsoft'" [type]="'oauth2'"
-                [icon]="'microsoft'"></app-button>
             <app-button (click)="githubOauth2()" [text]="'Ingresar con GitHub'" [type]="'oauth2'"
                 [icon]="'github'"></app-button>
+            <app-button (click)="microsoftOauth2()" [text]="'Ingresar con Microsoft'" [type]="'oauth2'"
+                [icon]="'microsoft'"></app-button>
+            <app-button [disabled]="true" (click)="googleOauth2()" [text]="'¡Proximamente!'" [type]="'oauth2'"
+                [icon]="'google'"></app-button>
         </div>
         <div class="card__inputs">
             <form [formGroup]="registerForm">
