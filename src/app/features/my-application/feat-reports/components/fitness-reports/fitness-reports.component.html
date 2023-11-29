@@ -18,7 +18,10 @@
     <div class="div calories">
       <h2>Calorias</h2>
       <div class="text">
-        <span>Promedio semanal {{ avgCalories }} kcal.</span>
+        <p>Prom. de Calorias <br> {{ avgMacros.avgCalories }} kcal.</p>
+        <p>Prom. de Proteinas <br> {{ avgMacros.avgProteins }} g.</p>
+        <p>Prom. de Carbohidratos <br> {{ avgMacros.avgCarbohydrates }} g.</p>
+        <p>Prom. de Grasas <br> {{ avgMacros.avgFats }} g.</p>
       </div>
       <div echarts [options]="option" class="calories-chart"></div>
     </div>

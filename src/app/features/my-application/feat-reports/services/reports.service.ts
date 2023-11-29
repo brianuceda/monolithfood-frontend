@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http.service';
 import { environment } from 'src/environments/environment.prod';
+import { Observable } from 'rxjs';
+import {
+  FitnessProgressDTO,
+  FitnessDataDTO,
+  MacrosPerWeekDTO,
+} from '../interfaces/FitnessDataDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +18,21 @@ export class ReportsService {
 
   constructor(private httpService: HttpService) {}
 
-  public getProgressWeight() {
-    return this.httpService.getSimple(this.apiInfo + '/progress-weight');
+  public getProgressWeight(): Observable<FitnessProgressDTO> {
+    return this.httpService.getSimple<FitnessProgressDTO>(
+      this.apiInfo + '/progress-weight'
+    );
   }
 
-  public calcFitnessInfo() {
-    return this.httpService.getSimple(this.apiFitness + '/calc');
+  public calcFitnessInfo(): Observable<FitnessDataDTO> {
+    return this.httpService.getSimple<FitnessDataDTO>(
+      this.apiFitness + '/calc'
+    );
   }
 
-  public getCaloriesPerDay() {
-    return this.httpService.getSimple(this.apiFitness + '/reports/calories');
+  public getMacrosPerWeek(): Observable<MacrosPerWeekDTO> {
+    return this.httpService.getSimple<MacrosPerWeekDTO>(
+      this.apiFitness + '/reports/calories'
+    );
   }
 }

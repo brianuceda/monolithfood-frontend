@@ -13,7 +13,7 @@ import { HttpService } from 'src/app/core/services/http.service';
   animations: [circle],
 })
 export class PrivateNavbarComponent {
-  data!: GetUser;
+  data: GetUser = new GetUser();
   title?: string;
   titleSub?: Subscription;
   isMenuVisible: boolean = false;

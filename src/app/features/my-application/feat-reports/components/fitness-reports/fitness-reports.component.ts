@@ -13,9 +13,11 @@ import { MessageService } from 'primeng/api';
 import { EChartsOption } from 'echarts';
 import { ReportsService } from '../../services/reports.service';
 import {
-  CaloriesPerDayDTO,
+  MacrosPerDaysDTO,
   FitnessDataDTO,
   FitnessProgressDTO,
+  MacrosPerWeekDTO,
+  avgMacrosPerWeekDTO,
 } from '../../interfaces/FitnessDataDTO';
 import { DatePipe } from '@angular/common';
 
@@ -37,10 +39,10 @@ export type ChartOptions = {
   providers: [MessageService],
 })
 export class FitnessReportsComponent {
-  fitnessData!: FitnessDataDTO;
-  fitnessProgress!: FitnessProgressDTO;
+  fitnessData: FitnessDataDTO = new FitnessDataDTO();
+  fitnessProgress: FitnessProgressDTO = new FitnessProgressDTO();
   option!: EChartsOption;
-  avgCalories!: number;
+  avgMacros: avgMacrosPerWeekDTO = new avgMacrosPerWeekDTO();
   private datePipe: DatePipe = new DatePipe('en-US');
 
   constructor(private reportsService: ReportsService) {}
@@ -48,47 +50,52 @@ export class FitnessReportsComponent {
   ngOnInit(): void {
     this.getFitnessProgress();
     this.getFitnessData();
-    this.getCaloriesPerDayData();
+    this.getCaloriesPerWeekData();
   }
 
   private getFitnessProgress(): void {
-    this.reportsService.getProgressWeight().subscribe((data: any) => {
-      this.fitnessProgress = data;
-      this.fitnessProgress.percentence = parseFloat(
-        this.fitnessProgress.percentence.toFixed(0)
-      );
-    });
+    this.reportsService.getProgressWeight().subscribe(
+      (data: FitnessProgressDTO) => {
+        if (data && data.percentence != null) {
+          this.fitnessProgress = {
+            ...data,
+            percentence: parseFloat(data.percentence.toFixed(0)),
+          };
+        }
+      },
+      (error) => {
+        console.error('Error al obtener el progreso de fitness', error);
+      }
+    );
   }
 
   private getFitnessData(): void {
-    this.reportsService.calcFitnessInfo().subscribe((data: any) => {
-      this.fitnessData = data;
-      this.setFitnessData();
-    });
+    this.reportsService.calcFitnessInfo().subscribe(
+      (data: FitnessDataDTO) => {
+        if (data) {
+          this.fitnessData = {
+            ...data,
+            gender: data.gender === 'M' ? 'Masculino' : 'Femenino',
+            targetDate: this.formatDate(data.targetDate),
+          };
+        }
+      },
+      (error) => {
+        console.error('Error al obtener los datos de fitness', error);
+      }
+    );
   }
 
-  setFitnessData(): void {
-    if ((this.fitnessData.gender = 'M')) {
-      this.fitnessData.gender = 'Masculino';
-    } else {
-      this.fitnessData.gender = 'Femenino';
-    }
-    this.fitnessData.targetDate = this.formatDate(this.fitnessData.targetDate);
-  }
-
-  private getCaloriesPerDayData(): void {
-    this.reportsService.getCaloriesPerDay().subscribe({
+  private getCaloriesPerWeekData(): void {
+    this.reportsService.getMacrosPerWeek().subscribe({
       next: (data: any) => {
-        this.calcAvgCalories(data);
-        this.roundValues(data);
-        let markPoints = this.createMarkPoints(data);
-
+        this.calcAvgMacros(data);
         this.option = {
           tooltip: {
             trigger: 'axis',
           },
           legend: {
-            data: ['Calorias'],
+            data: ['Calorias', 'Proteinas', 'Carbohidratos', 'Grasas'],
           },
           toolbox: {
             show: true,
@@ -115,21 +122,58 @@ export class FitnessReportsComponent {
             {
               name: 'Calorias',
               type: 'bar',
-              data: [
-                data.domingo,
-                data.lunes,
-                data.martes,
-                data.miercoles,
-                data.jueves,
-                data.viernes,
-                data.sabado,
-              ],
+              data: this.mapDayValuesToSeries(data.calories),
               markPoint: {
-                data: markPoints,
+                data: this.createMarkPoints(data.calories),
+              },
+              markLine: {
+                lineStyle: {
+                  color: 'blue',
+                  cap: 'round',
+                },
+                data: [{ type: 'average', name: 'Promedio' }],
+              },
+            },
+            {
+              name: 'Proteinas',
+              type: 'bar',
+              data: this.mapDayValuesToSeries(data.proteins),
+              markPoint: {
+                data: this.createMarkPoints(data.proteins),
+              },
+              markLine: {
+                lineStyle: {
+                  color: 'green',
+                  cap: 'round',
+                },
+                data: [{ type: 'average', name: 'Promedio' }],
+              },
+            },
+            {
+              name: 'Carbohidratos',
+              type: 'bar',
+              data: this.mapDayValuesToSeries(data.carbohydrates),
+              markPoint: {
+                data: this.createMarkPoints(data.carbohydrates),
               },
               markLine: {
                 lineStyle: {
                   color: 'yellow',
+                  cap: 'round',
+                },
+                data: [{ type: 'average', name: 'Promedio' }],
+              },
+            },
+            {
+              name: 'Grasas',
+              type: 'bar',
+              data: this.mapDayValuesToSeries(data.fats),
+              markPoint: {
+                data: this.createMarkPoints(data.fats),
+              },
+              markLine: {
+                lineStyle: {
+                  color: 'red',
                   cap: 'round',
                 },
                 data: [{ type: 'average', name: 'Promedio' }],
@@ -144,7 +188,19 @@ export class FitnessReportsComponent {
     });
   }
 
-  private createMarkPoints(data: CaloriesPerDayDTO): any[] {
+  private mapDayValuesToSeries(macrosPerDay: MacrosPerDaysDTO): number[] {
+    return [
+      macrosPerDay.domingo,
+      macrosPerDay.lunes,
+      macrosPerDay.martes,
+      macrosPerDay.miercoles,
+      macrosPerDay.jueves,
+      macrosPerDay.viernes,
+      macrosPerDay.sabado,
+    ];
+  }
+
+  private createMarkPoints(data: MacrosPerDaysDTO): any[] {
     return [
       { type: 'max', name: 'Max' },
       { type: 'min', name: 'Min' },
@@ -158,29 +214,28 @@ export class FitnessReportsComponent {
     ];
   }
 
-  private calcAvgCalories(cpd: CaloriesPerDayDTO): void {
-    this.avgCalories = parseFloat(
+  private calcAvgMacros(data: MacrosPerWeekDTO): void {
+    this.avgMacros.avgCalories = this.calcAvgMacrosSpecificDay(data.calories);
+    this.avgMacros.avgProteins = this.calcAvgMacrosSpecificDay(data.proteins);
+    this.avgMacros.avgCarbohydrates = this.calcAvgMacrosSpecificDay(
+      data.carbohydrates
+    );
+    this.avgMacros.avgFats = this.calcAvgMacrosSpecificDay(data.fats);
+  }
+
+  private calcAvgMacrosSpecificDay(data: MacrosPerDaysDTO): number {
+    return parseFloat(
       (
-        (cpd.domingo +
-          cpd.lunes +
-          cpd.martes +
-          cpd.miercoles +
-          cpd.jueves +
-          cpd.viernes +
-          cpd.sabado) /
+        (data.domingo +
+          data.lunes +
+          data.martes +
+          data.miercoles +
+          data.jueves +
+          data.viernes +
+          data.sabado) /
         7
       ).toFixed(2)
     );
-  }
-
-  private roundValues(cpd: CaloriesPerDayDTO): void {
-    cpd.domingo = parseFloat(cpd.domingo.toFixed(2));
-    cpd.lunes = parseFloat(cpd.lunes.toFixed(2));
-    cpd.martes = parseFloat(cpd.martes.toFixed(2));
-    cpd.miercoles = parseFloat(cpd.miercoles.toFixed(2));
-    cpd.jueves = parseFloat(cpd.jueves.toFixed(2));
-    cpd.viernes = parseFloat(cpd.viernes.toFixed(2));
-    cpd.sabado = parseFloat(cpd.sabado.toFixed(2));
   }
 
   private formatDate(dateString: string): string {
