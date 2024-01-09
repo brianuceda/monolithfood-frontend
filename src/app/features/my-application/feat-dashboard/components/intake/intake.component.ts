@@ -4,7 +4,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddEditIntakeComponent } from '../../pages/add-edit-intake/add-edit-intake.component';
 import { DashboardService } from '../../services/dashboard.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-intake',
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./intake.component.scss'],
 })
 export class IntakeComponent {
-  private isInProduction = environment.production;
+  private isInProduction = environment.PRODUCTION;
   @Input() intakes!: CategoryIntake;
 
   constructor(

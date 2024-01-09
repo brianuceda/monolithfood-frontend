@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 import { ListActivityLevelsDTO } from '../interfaces/ActivityLevelDTO';
 import { ListObjectivesDTO } from '../interfaces/ObjectiveDTO';
 import { HttpParams } from '@angular/common/http';
@@ -10,8 +10,8 @@ import { HttpParams } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PersonalInformationService {
-  private apiActivityLevelsUrl = `${environment.api}${environment.rscFitness}/activity-levels`;
-  private apiObjectivesUrl = `${environment.api}${environment.rscFitness}/objectives`;
+  private apiActivityLevelsUrl = `${environment.API}${environment.rscFitness}/activity-levels`;
+  private apiObjectivesUrl = `${environment.API}${environment.rscFitness}/objectives`;
 
   constructor(private httpService: HttpService) {}
 

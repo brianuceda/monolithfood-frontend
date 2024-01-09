@@ -9,11 +9,11 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private isInProduction = environment.production;
+  private isInProduction = environment.PRODUCTION;
 
   intercept(
     req: HttpRequest<any>,

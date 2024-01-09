@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginRequestDTO } from 'src/app/core/interfaces/LoginRequestDTO';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { GlobalService } from 'src/app/shared/services/global.service';
-import { environment } from 'src/environments/environment.prod';
 import { AuthService } from '../../../services/auth.service';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,6 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  private oauthUrl: string = environment.oauthUrl;
   disabled: boolean = true;
   hide = true;
 
@@ -26,6 +25,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm();
+
+    console.log('PRODUCTION: ' + environment.PRODUCTION);
+    console.log('ENV_NAME: ' + environment.ENV_NAME);
+    console.log('API: ' + environment.API);
+    console.log('OAUTH2_URL: ' + environment.OAUTH2_URL + '/github');
+    console.log('OAUTH2_URL_MICROSOFT' + environment.OAUTH2_URL_MICROSOFT);
+
   }
 
   reactiveForm(): void {

@@ -1,4 +1,4 @@
-import { roles } from 'src/environments/environment.prod';
+import { roles } from 'src/environments/environment';
 import { ISidebarData } from './helper';
 
 export const sidebarData: ISidebarData[] = [

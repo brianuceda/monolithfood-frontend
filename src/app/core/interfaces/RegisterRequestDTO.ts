@@ -3,5 +3,4 @@ export interface RegisterRequestDTO {
   email: string;
   password: string;
   names: string;
-  ipAddress?: string;
 }

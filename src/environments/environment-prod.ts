@@ -1,8 +1,9 @@
 export const environment = {
-  production: true,
-  api: 'https://monolithcards.site',
-  oauthUrl: 'http://34.135.121.150/oauth2/authorization',
-  oauthUrlMicrosoft: 'https://monolithcards.site/oauth2/authorization',
+  PRODUCTION: true,
+  ENV_NAME: 'production',
+  API: 'https://monolithfood.monalek.xyz',
+  OAUTH2_URL: 'http://34.135.121.150/oauth2/authorization',
+  OAUTH2_URL_MICROSOFT: 'https://monolithfood.monalek.xyz/oauth2/authorization',
 
   rscAuth: '/auth',
   rscUsers: '/user',

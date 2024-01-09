@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 import { Observable } from 'rxjs';
 import {
   FitnessProgressDTO,
@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class ReportsService {
-  apiUrl: string = environment.api;
+  apiUrl: string = environment.API;
   apiInfo: string = this.apiUrl + environment.rscInfo;
   apiFitness: string = this.apiUrl + environment.rscFitness;
 

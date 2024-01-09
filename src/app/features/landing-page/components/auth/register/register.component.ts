@@ -11,7 +11,6 @@ import {
 import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { GlobalService } from 'src/app/shared/services/global.service';
-import { environment } from 'src/environments/environment.prod';
 import { AuthService } from '../../../services/auth.service';
 
 // lista de validaciones establecidas para la contraseña (mínimo 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial)
@@ -30,7 +29,6 @@ interface Validations {
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  private oauthUrl: string = environment.oauthUrl;
   disabled: boolean = true;
   hide = true;
 

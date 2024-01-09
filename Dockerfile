@@ -17,10 +17,10 @@ RUN npm install -g @angular/cli@16.1.4
 RUN npm install
 
 # Instala las dependencias adicionales
-RUN npm install apexcharts ng-apexcharts
-RUN npm install echarts -S
-RUN npm install ngx-echarts -S
-RUN npm install primeng
+# RUN npm install apexcharts ng-apexcharts
+# RUN npm install echarts -S
+# RUN npm install ngx-echarts -S
+# RUN npm install primeng
 
 # Construye la aplicación para producción
 RUN ng build --configuration production

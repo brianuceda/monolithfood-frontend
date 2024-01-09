@@ -4,13 +4,13 @@ import { Observable, catchError, throwError, tap } from 'rxjs';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { ResponseType } from '../interfaces/ResponseType';
 import { GetUser } from 'src/app/shared/interfaces/GetUser';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  private apiUrl = `${environment.api}`;
+  private apiUrl = `${environment.API}`;
 
   constructor(private http: HttpClient, private globalService: GlobalService) {}
 

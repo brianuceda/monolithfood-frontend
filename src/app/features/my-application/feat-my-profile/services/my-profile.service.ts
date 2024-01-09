@@ -4,7 +4,7 @@ import {
   PutMyProfile,
 } from './../interfaces/my-profile';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/core/services/http.service';
 
@@ -12,7 +12,7 @@ import { HttpService } from 'src/app/core/services/http.service';
   providedIn: 'root',
 })
 export class MyProfileService {
-  private apiUrl = environment.api;
+  private apiUrl = environment.API;
   private apiPersonalInfo = this.apiUrl + environment.rscInfo;
 
   constructor(private httpService: HttpService) {}

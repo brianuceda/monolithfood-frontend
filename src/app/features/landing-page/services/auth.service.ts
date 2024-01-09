@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap, catchError, throwError, of } from 'rxjs';
@@ -8,29 +7,24 @@ import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { HttpService } from 'src/app/core/services/http.service';
 import { GlobalService } from 'src/app/shared/services/global.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authApiUrl: string = environment.api + environment.rscAuth;
-  private userApiUrl: string = environment.api + environment.rscUsers;
-  private oauthUrl: string = environment.oauthUrl;
+  private authApiUrl: string = environment.API + environment.rscAuth;
+  private userApiUrl: string = environment.API + environment.rscUsers;
+  private oauthUrl: string = environment.OAUTH2_URL;
 
   constructor(
     private globalService: GlobalService,
-    private http: HttpClient,
     private httpService: HttpService,
     private router: Router
   ) {}
 
   // * Login
   public login(loginData: LoginRequestDTO): Observable<AuthResponse> {
-    let ipAddress: string = this.getPublicIP();
-    if (ipAddress) {
-      loginData.ipAddress = ipAddress;
-    }
     return this.httpService
       .postBodySimple<AuthResponse>(this.authApiUrl + '/login', loginData)
       .pipe(
@@ -50,10 +44,6 @@ export class AuthService {
 
   // * Register
   public register(registerData: RegisterRequestDTO): Observable<AuthResponse> {
-    let ipAddress: string = this.getPublicIP();
-    if (ipAddress) {
-      registerData.ipAddress = ipAddress;
-    }
     return this.httpService
       .postBodySimple<AuthResponse>(this.authApiUrl + '/register', registerData)
       .pipe(
@@ -77,7 +67,7 @@ export class AuthService {
   }
 
   microsoftOauth2(): void {
-    window.location.href = `${environment.oauthUrlMicrosoft}/microsoft`;
+    window.location.href = `${environment.OAUTH2_URL_MICROSOFT}/microsoft`;
   }
 
   githubOauth2(): void {
@@ -85,16 +75,9 @@ export class AuthService {
   }
 
   setBasicOauth2Data(): Observable<any> {
-    let ipAddress: string = this.getPublicIP();
-    if (ipAddress) {
-      return this.httpService.postSimple(
-        this.authApiUrl + '/set-basic-oauth2-data',
-        {
-          ipAddress: ipAddress,
-        }
-      );
-    }
-    return of(null);
+    return this.httpService.postSimple(
+      this.authApiUrl + '/set-basic-oauth2-data'
+    );
   }
 
   // * Logout
@@ -106,22 +89,6 @@ export class AuthService {
         this.router.navigateByUrl('/login');
       },
     });
-  }
-
-  // * Obtener dirección IP
-  public getPublicIP(): string {
-    const storedIp = localStorage.getItem('ipAddress');
-    if (storedIp) {
-      return storedIp;
-    } else {
-      this.http.get<any>('http://ip-api.com/json/').subscribe((data) => {
-        const ip = data.query;
-        localStorage.setItem('ipAddress', ip);
-        return ip;
-      });
-      console.log('No se pudo obtener la direccion IP');
-      return '';
-    }
   }
 
   private saveToken(token: string): void {

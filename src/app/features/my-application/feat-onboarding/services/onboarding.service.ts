@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/services/http.service';
 import { SetInfoDTO } from '../interfaces/SetDataDTO';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 import { Observable } from 'rxjs/internal/Observable';
 import { tap } from 'rxjs/internal/operators/tap';
 
@@ -9,7 +9,7 @@ import { tap } from 'rxjs/internal/operators/tap';
   providedIn: 'root',
 })
 export class OnboardingService {
-  apiUrl = environment.api;
+  apiUrl = environment.API;
   apiInfo = this.apiUrl + environment.rscInfo;
   private apiActivityLevelsUrl =
     this.apiUrl + environment.rscFitness + '/activity-levels';

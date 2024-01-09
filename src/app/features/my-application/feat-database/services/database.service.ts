@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpService } from 'src/app/core/services/http.service';
-import { environment, roles } from 'src/environments/environment.prod';
+import { environment, roles } from 'src/environments/environment-prod';
 import { ListFoodDTO } from '../interfaces/FoodDTO';
 import { PrivateService } from 'src/app/core/services/private.service';
 
@@ -10,8 +10,8 @@ import { PrivateService } from 'src/app/core/services/private.service';
 })
 export class DatabaseService {
   // * APIs
-  private apiFoodsUrl = `${environment.api}${environment.rscFoods}`;
-  private apiFavoritesUrl = `${environment.api}${environment.rscFavorites}`;
+  private apiFoodsUrl = `${environment.API}${environment.rscFoods}`;
+  private apiFavoritesUrl = `${environment.API}${environment.rscFavorites}`;
   // * Roles required to see favorites
   private rolesToSeeFavorites: string[] = roles.rolesToSeeFavorites;
   // * Refresh data

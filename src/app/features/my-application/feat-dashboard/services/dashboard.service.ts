@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
@@ -10,7 +9,7 @@ import {
   tap,
   throwError,
 } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 import { AllMacrosAndIntakesDTO } from '../interfaces/MacrosDetailedDTO';
 import { HttpService } from 'src/app/core/services/http.service';
 import { MatDialogConfig } from '@angular/material/dialog';
@@ -24,9 +23,9 @@ import {
   providedIn: 'root',
 })
 export class DashboardService {
-  private apiUrl = `${environment.api}${environment.rscIntakes}`;
-  private apiIntakeUrl = `${environment.api}${environment.rscIntakes}`;
-  private apiFoodUrl = `${environment.api}${environment.rscFoods}`;
+  private apiUrl = `${environment.API}${environment.rscIntakes}`;
+  private apiIntakeUrl = `${environment.API}${environment.rscIntakes}`;
+  private apiFoodUrl = `${environment.API}${environment.rscFoods}`;
 
   private refreshNeededSubject = new BehaviorSubject<void>(undefined);
   public refreshNeeded$ = this.refreshNeededSubject.asObservable();

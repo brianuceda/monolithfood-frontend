@@ -9,7 +9,7 @@ import {
 } from '../../interfaces/NutritionDTO';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-add-edit-intake',
@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment.prod';
   styleUrls: ['./add-edit-intake.component.scss'],
 })
 export class AddEditIntakeComponent implements OnInit {
-  private isInProduction = environment.production;
+  private isInProduction = environment.PRODUCTION;
   // Verifica si se está agregando o editando un registro de ingesta
   public isAdding!: boolean;
   public addOrEditText!: string;
