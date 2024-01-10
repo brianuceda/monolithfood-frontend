@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment-prod';
 export class AuthService {
   private authApiUrl: string = environment.API + environment.rscAuth;
   private userApiUrl: string = environment.API + environment.rscUsers;
-  private oAuth2Url: string = environment.API + environment.rscOAuth2;
+  private oauthUrl: string = environment.OAUTH2_URL;
 
   constructor(
     private globalService: GlobalService,
@@ -77,15 +77,15 @@ export class AuthService {
 
   // * OAuth2
   googleOauth2(): void {
-    window.location.href = `${this.oAuth2Url}/google`;
+    window.location.href = `${this.oauthUrl}/google`;
   }
 
   microsoftOauth2(): void {
-    window.location.href = `${this.oAuth2Url}/microsoft`;
+    window.location.href = `${environment.OAUTH2_URL_MICROSOFT}/microsoft`;
   }
 
   githubOauth2(): void {
-    window.location.href = `${this.oAuth2Url}/github`;
+    window.location.href = `${this.oauthUrl}/github`;
   }
 
   setBasicOauth2Data(): Observable<any> {
