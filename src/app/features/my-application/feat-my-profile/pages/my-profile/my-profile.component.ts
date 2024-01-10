@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-my-profile',
@@ -15,6 +16,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./my-profile.component.scss'],
 })
 export class MyProfileComponent {
+  private production = environment.PRODUCTION;
+
   myForm!: FormGroup;
   data!: MyProfile;
 
@@ -58,10 +61,11 @@ export class MyProfileComponent {
         this.myForm.get('weightKg')?.setValue(data.weightKg);
         this.myForm.get('heightCm')?.setValue(data.heightCm);
         this.myForm.get('imc')?.setValue(data.imc);
-        console.log(data);
       },
       (error) => {
-        console.log(error);
+        if (!this.production) {
+          console.log('my-profile.component.ts (1): Error al obtener la información de perfil perfil - ', error);
+        }
       }
     );
   }
@@ -73,7 +77,9 @@ export class MyProfileComponent {
       borndate: this.myForm.get('borndate')?.value,
     };
     this.myProfileService.updatePersonalInfo(data).subscribe((error: any) => {
-      console.log(error);
+      if (!this.production) {
+        console.log('my-profile.component.ts (2): Error al actualizar la información de perfil - ', error);
+      }
     });
   }
 
@@ -85,7 +91,9 @@ export class MyProfileComponent {
     this.myProfileService
       .updateHeightAndWeight(data)
       .subscribe((error: any) => {
-        console.log(error);
+        if (!this.production) {
+          console.log('my-profile.component.ts (3): Error al actualizar la información fitness - ', error);
+        }
       });
   }
 

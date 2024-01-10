@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment-prod';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private isInProduction = environment.PRODUCTION;
+  private production = environment.PRODUCTION;
 
   intercept(
     req: HttpRequest<any>,
@@ -32,14 +32,14 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       tap((evt) => {
         if (evt instanceof HttpResponse) {
-          if (!this.isInProduction) {
+          if (!this.production) {
             console.log('Esperando respuesta de:', evt.url);
             console.log('Cuerpo de la solicitud recibida:', evt.body);
           }
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        if (!this.isInProduction) {
+        if (!this.production) {
           console.error(
             'Request to:',
             authReq.url,

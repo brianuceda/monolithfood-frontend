@@ -48,7 +48,6 @@ export class IntakeComponent {
       );
       dialogRef = this.dialog.open(AddEditIntakeComponent, config);
     });
-    console.log('Edit intake');
   }
 
   delete(id: number): void {

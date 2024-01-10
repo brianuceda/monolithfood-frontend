@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-oauth-callback',
@@ -29,7 +30,9 @@ export class OauthCallbackComponent {
         await this.router.navigate(['/login']);
       }
     } catch (error) {
-      console.log(error);
+      if (!environment.PRODUCTION) {
+        console.log('oauth-callback.component.ts: ' + error);
+      }
     }
   }
 }

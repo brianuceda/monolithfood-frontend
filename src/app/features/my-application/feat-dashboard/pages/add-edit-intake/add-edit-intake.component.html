@@ -19,7 +19,7 @@
             </div>
             <mat-form-field>
                 <input matInput type="number" [(ngModel)]="savedData.quantity"
-                    (ngModelChange)="updateNutrientQuantities()">
+                    (ngModelChange)="updateNutrientQuantities()" title="Cantidad">
             </mat-form-field>
         </div>
         <!-- Medida -->
@@ -45,7 +45,7 @@
                 <span class="text-label">Fecha</span>
             </div>
             <mat-form-field>
-                <input matInput type="date" [(ngModel)]="savedData.date">
+                <input matInput type="date" [(ngModel)]="savedData.date" title="Fecha">
             </mat-form-field>
         </div>
         <!-- Hora -->
@@ -55,7 +55,7 @@
                 <span class="text-label">Hora</span>
             </div>
             <mat-form-field>
-                <input matInput type="time" [(ngModel)]="time" (ngModelChange)="onTimeChange()">
+                <input matInput type="time" [(ngModel)]="time" (ngModelChange)="onTimeChange()" title="Hora">
             </mat-form-field>
         </div>
         <!-- Categoría -->

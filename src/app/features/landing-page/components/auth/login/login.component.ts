@@ -25,55 +25,55 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.reactiveForm();
-
-    console.log('PRODUCTION: ' + environment.PRODUCTION);
-    console.log('ENV_NAME: ' + environment.ENV_NAME);
-    console.log('API: ' + environment.API);
-    console.log('OAUTH2_URL: ' + environment.OAUTH2_URL + '/github');
-    console.log('OAUTH2_URL_MICROSOFT' + environment.OAUTH2_URL_MICROSOFT);
-
   }
 
-  reactiveForm(): void {
+  public reactiveForm(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
-  login(): void {
+  public async login(): Promise<void> {
     if (this.loginForm.valid) {
+      this.globalService.openCustomSnackbar(
+        'Cargando...',
+        ResponseType.LOADING
+      );
+
       const loginData: LoginRequestDTO = {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password,
       };
-      this.authService.login(loginData).subscribe({
-        next: (response) => {
-          console.log(response);
+
+      await this.authService.login(loginData).subscribe({
+        next: () => {
           this.globalService.openCustomSnackbar(
             'Sesión iniciada correctamente',
             ResponseType.SUCCESS
           );
         },
-        error: (error) => {
-          console.log(error);
+        error: (error: any) => {
+          if (!environment.PRODUCTION) {
+            console.log('login.component.ts: ' + error);
+          }
         },
       });
     }
   }
 
-  googleOauth2(): void {
+  public googleOauth2(): void {
     let disabled = true;
     if (!disabled) {
       this.authService.googleOauth2();
     }
   }
 
-  githubOauth2(): void {
+  public githubOauth2(): void {
     this.authService.githubOauth2();
   }
 
-  microsoftOauth2(): void {
+  public microsoftOauth2(): void {
     this.authService.microsoftOauth2();
   }
 }

@@ -22,7 +22,7 @@ export class CustomSnackbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  closeCustomSnackbar(): void {
+  public closeCustomSnackbar(): void {
     this.globalService.closeCustomSnackbar();
   }
 }

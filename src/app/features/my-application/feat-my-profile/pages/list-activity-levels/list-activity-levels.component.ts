@@ -5,6 +5,7 @@ import {
   ActivityLevelDTO,
   ListActivityLevelsDTO,
 } from '../../interfaces/ActivityLevelDTO';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-list-activity-levels',
@@ -57,7 +58,11 @@ export class ListActivityLevelsComponent {
     if (selectedLevel) {
       this.piService.updateActivityLevel(selectedLevel.name).subscribe();
     } else {
-      console.error('No hay ningún nivel de actividad seleccionado');
+      if (!environment.PRODUCTION) {
+        console.log(
+          'list-activity-levels.component.ts (1): No hay ningún nivel de actividad seleccionado.'
+        );
+      }
     }
   }
 }

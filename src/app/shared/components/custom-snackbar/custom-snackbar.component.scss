@@ -5,7 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px;
+  // padding: 0 15px;
+  // height: 64px;
   min-width: 400px;
 
   .txt-snakebar {
@@ -13,6 +14,7 @@
     justify-content: flex-start;
     align-items: center;
     font-weight: 500;
+    padding-left: 12px;
 
     mat-icon {
       font-size: 2rem;

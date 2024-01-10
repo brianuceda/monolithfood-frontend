@@ -6,6 +6,7 @@ import {
 } from '../../../feat-my-profile/interfaces/ActivityLevelDTO';
 import { PersonalInformationService } from '../../../feat-my-profile/services/personal-information.service';
 import { OnboardingService } from '../../services/onboarding.service';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-select-activity-level',
@@ -64,7 +65,11 @@ export class SelectActivityLevelComponent {
         .setNewActivityLevel(selectedLevel.name)
         .subscribe();
     } else {
-      console.error('No hay ningún nivel de actividad seleccionado');
+      if (!environment.PRODUCTION) {
+        console.log(
+          'select-activity-level.component.ts: No hay ningún nivel de actividad seleccionado.'
+        );
+      }
     }
   }
 }

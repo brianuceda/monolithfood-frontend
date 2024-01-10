@@ -12,7 +12,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 interface CustomSnackbarData {
   type: string;
   icon: string;
-  action: string;
+  action?: string;
 }
 
 @Injectable({
@@ -57,7 +57,6 @@ export class GlobalService {
     let data: CustomSnackbarData = {
       type: type,
       icon: '',
-      action: 'Cerrar',
     };
     data = this.selectTypeOfSnackBar(data);
     this.snackBar.openFromComponent(CustomSnackbarComponent, {
@@ -78,32 +77,37 @@ export class GlobalService {
       // Basic
       case ResponseType.SUCCESS:
         data.type = 'success-snackbar';
-        data.icon = 'done';
+        data.icon = 'fa-solid fa-check';
         data.action = 'Hecho';
         return data;
       case ResponseType.INFO:
         data.type = 'info-snackbar';
-        data.icon = 'info';
+        data.icon = 'fa-solid fa-circle-info';
         data.action = 'Hecho';
         return data;
       case ResponseType.WARN:
         data.type = 'warn-snackbar';
-        data.icon = 'error';
+        data.icon = 'fa-solid fa-circle-exclamation';
         data.action = 'Hecho';
         return data;
       case ResponseType.ERROR:
         data.type = 'error-snackbar';
-        data.icon = 'warning';
+        data.icon = 'fa-solid fa-triangle-exclamation';
         data.action = 'Cerrar';
         return data;
       case ResponseType.FAVORITE:
         data.type = 'favorite-snackbar';
-        data.icon = 'favorite';
+        data.icon = 'fa-solid fa-heart';
         data.action = 'Hecho';
+        return data;
+      case ResponseType.LOADING:
+        data.type = 'loading-snackbar';
+        data.icon = 'fa-solid fa-spinner';
         return data;
       default:
         data.type = 'success-snackbar';
-        data.icon = 'done';
+        data.icon = 'fa-solid fa-check';
+        data.action = 'Cerrar';
         return data;
     }
   }

@@ -4,4 +4,7 @@ export enum ResponseType {
   WARN = 'WARN',
   INFO = 'INFO',
   FAVORITE = 'FAVORITE',
+
+  // Custom
+  LOADING = 'LOADING',
 }

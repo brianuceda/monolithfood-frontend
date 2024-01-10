@@ -7,6 +7,7 @@ import {
 } from '../../../feat-my-profile/interfaces/ObjectiveDTO';
 import { PersonalInformationService } from '../../../feat-my-profile/services/personal-information.service';
 import { OnboardingService } from '../../services/onboarding.service';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-select-objectives',
@@ -14,6 +15,8 @@ import { OnboardingService } from '../../services/onboarding.service';
   styleUrls: ['./select-objectives.component.scss'],
 })
 export class SelectObjectivesComponent {
+  private production = environment.PRODUCTION;
+
   public data: ListObjectivesDTO = { objectives: [] };
   public selectedObjectivesCount = 0;
   public maxObjectives = 3;
@@ -63,13 +66,6 @@ export class SelectObjectivesComponent {
     const selectedObjectivesNames = this.data.objectives
       .filter((obj) => obj.selected)
       .map((obj) => obj.name);
-    this.onBoardingService.setNewObjectives(selectedObjectivesNames).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.onBoardingService.setNewObjectives(selectedObjectivesNames).subscribe();
   }
 }

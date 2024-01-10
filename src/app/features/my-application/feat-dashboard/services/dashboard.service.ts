@@ -39,7 +39,9 @@ export class DashboardService {
     const params = this.startAndEndDate(dateControl);
     return this.httpService.getSimple<AllMacrosAndIntakesDTO>(api, params).pipe(
       catchError((error) => {
-        console.error('Error fetching macros detailed:', error);
+        if (!environment.PRODUCTION) {
+          console.log('dashboard.service.ts: Error obteniendo las macros - ', error);
+        }
         return of(null);
       })
     );

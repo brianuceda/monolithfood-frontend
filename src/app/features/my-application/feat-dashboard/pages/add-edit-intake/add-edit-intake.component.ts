@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment-prod';
   styleUrls: ['./add-edit-intake.component.scss'],
 })
 export class AddEditIntakeComponent implements OnInit {
-  private isInProduction = environment.PRODUCTION;
+  private production = environment.PRODUCTION;
   // Verifica si se está agregando o editando un registro de ingesta
   public isAdding!: boolean;
   public addOrEditText!: string;
@@ -209,7 +209,11 @@ export class AddEditIntakeComponent implements OnInit {
       this.mainNutrients = this.mainNutrients.map(this.transformNutrientData);
       this.otherNutrients = this.otherNutrients.map(this.transformNutrientData);
     } else {
-      console.error('Los datos recibidos no son válidos');
+      if (!this.production) {
+        console.error(
+          'add-edit-intake.component.ts: Los datos recibidos no son válidos'
+        );
+      }
     }
   }
 
@@ -231,7 +235,7 @@ export class AddEditIntakeComponent implements OnInit {
     const dateTime = new Date(dateTimeString);
 
     // Para producción
-    if (this.isInProduction) {
+    if (this.production) {
       dateTime.setHours(dateTime.getHours() + 5);
     }
 

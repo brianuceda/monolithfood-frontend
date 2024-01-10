@@ -83,8 +83,7 @@ export class AuthService {
   // * Logout
   public logout(): void {
     this.httpService.postSimple(this.userApiUrl + '/logout').subscribe({
-      next: (data) => {
-        console.log(data);
+      next: () => {
         localStorage.removeItem('token');
         this.router.navigateByUrl('/login');
       },

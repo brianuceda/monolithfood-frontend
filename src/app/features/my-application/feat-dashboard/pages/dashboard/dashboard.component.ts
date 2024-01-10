@@ -22,6 +22,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { BehaviorSubject } from 'rxjs';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { environment } from 'src/environments/environment-prod';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -36,6 +37,8 @@ export type ChartOptions = {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  private production = environment.PRODUCTION;
+
   public chartOptionsCalories?: ChartOptions;
   public colorCalories: string = '';
   public chartOptionsProteins?: ChartOptions;
@@ -123,8 +126,14 @@ export class DashboardComponent {
           this.dataSubject.next(defaultData);
         }
       },
-      error: (error) =>
-        console.error('An error occurred while fetching data', error),
+      error: (error) => {
+        if (!this.production) {
+          console.log(
+            'dashboard.component.ts: Error obteniendo los datos del dashboard - ',
+            error
+          );
+        }
+      },
     });
   }
 
@@ -211,7 +220,12 @@ export class DashboardComponent {
           }
         }
       } catch (error) {
-        console.log(error);
+        if (!this.production) {
+          console.log(
+            'dashboard.component.ts: Error abriendo el dialogo de Onboarding - ',
+            error
+          );
+        }
       }
     });
   }

@@ -1,3 +1,5 @@
+@import "./animations.scss";
+
 // SnackBar Variables
 $snackbar-background: #292929;
 $snackbar-text-color: #f3f3f3;
@@ -44,18 +46,38 @@ $favorite-gradient: linear-gradient(
   $snackbar-background 100%
 );
 
+$loading-primary: #00b0ff;
+$loading-secondary: #6dc7ff;
+$loading-gradient: linear-gradient(
+  90deg,
+  $loading-primary 15%,
+  $snackbar-background 100%
+);
+
 // SnackBar Styles
 .mat-mdc-snack-bar-container {
+
+  .mdc-snackbar__surface {
+    height: 100%;
+  }
+
   &.success-snackbar,
   &.error-snackbar,
   &.warn-snackbar,
   &.info-snackbar,
-  &.favorite-snackbar {
+  &.favorite-snackbar,
+  &.loading-snackbar {
     background: $snackbar-background;
     color: $snackbar-text-color !important;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
+    height: 64px;
+
+    .icon {
+      font-size: 26px;
+      margin-right: 16px;
+    }
 
     &::before {
       content: "";
@@ -78,7 +100,7 @@ $favorite-gradient: linear-gradient(
       background: $success-primary;
     }
     --mdc-snackbar-container-color: $success-gradient;
-    .mat-icon {
+    .icon {
       color: $success-secondary !important;
     }
     .btn {
@@ -90,7 +112,7 @@ $favorite-gradient: linear-gradient(
       background: $info-primary;
     }
     --mdc-snackbar-container-color: $info-gradient;
-    .mat-icon {
+    .icon {
       color: $info-secondary !important;
     }
     .btn {
@@ -102,7 +124,7 @@ $favorite-gradient: linear-gradient(
       background: $warn-primary;
     }
     --mdc-snackbar-container-color: $warn-gradient;
-    .mat-icon {
+    .icon {
       color: $warn-secondary !important;
     }
     .btn {
@@ -114,7 +136,7 @@ $favorite-gradient: linear-gradient(
       background: $error-primary;
     }
     --mdc-snackbar-container-color: $error-gradient;
-    .mat-icon {
+    .icon {
       color: $error-secondary !important;
     }
     .btn {
@@ -126,11 +148,24 @@ $favorite-gradient: linear-gradient(
       background: $favorite-primary !important;
     }
     --mdc-snackbar-container-color: $favorite-gradient;
-    .mat-icon {
+    .icon {
       color: $favorite-secondary !important;
     }
     .btn {
       color: $favorite-primary !important;
+    }
+  }
+  &.loading-snackbar {
+    &::before {
+      background: $loading-primary;
+    }
+    --mdc-snackbar-container-color: $loading-gradient;
+    .icon {
+      color: $loading-secondary !important;
+      animation: rotateInfinite $rotation-img-time linear infinite;
+    }
+    .btn {
+      color: $loading-secondary !important;
     }
   }
 }

@@ -18,7 +18,7 @@
                 <div class="caja validation-available">
                     <span class="caja-txt">Nombre de usuario</span>
                     <mat-form-field class="caja-input" appearance="outline">
-                        <input matInput formControlName="username" autocomplete="username">
+                        <input matInput formControlName="username" autocomplete="username" title="Username input">
                     </mat-form-field>
                     <div *ngIf="registerForm.get('username')?.touched">
                         <ng-container *ngIf="registerForm.get('username')?.hasError('required'); else minLengthError">
@@ -47,7 +47,7 @@
                 <div class="caja">
                     <span class="caja-txt">Correo electrónico</span>
                     <mat-form-field class="caja-input" appearance="outline">
-                        <input matInput formControlName="email">
+                        <input matInput formControlName="email" title="Email input">
                     </mat-form-field>
                     <div *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched"
                         class="has-error">
@@ -63,8 +63,8 @@
                     <span class="caja-txt">Contraseña</span>
                     <mat-form-field class="caja-input" appearance="outline">
                         <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
-                            autocomplete="current-password">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            autocomplete="current-password" title="Password input">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </button>
@@ -120,7 +120,7 @@
                 <div class="caja caja-last">
                     <span class="caja-txt">Nombre completo</span>
                     <mat-form-field class="caja-input" appearance="outline">
-                        <input matInput formControlName="names">
+                        <input matInput formControlName="names" title="Names input">
                     </mat-form-field>
                     <div *ngIf="registerForm.get('names')?.hasError('required') && registerForm.get('names')?.touched"
                         class="has-error">

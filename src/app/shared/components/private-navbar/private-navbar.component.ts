@@ -5,6 +5,7 @@ import { circle } from './navbar.animations';
 import { AuthService } from 'src/app/features/landing-page/services/auth.service';
 import { GetUser } from '../../interfaces/GetUser';
 import { HttpService } from 'src/app/core/services/http.service';
+import { environment } from 'src/environments/environment-prod';
 
 @Component({
   selector: 'app-private-navbar',
@@ -36,7 +37,9 @@ export class PrivateNavbarComponent {
         this.data = data;
       },
       (error) => {
-        console.log(error);
+        if (!environment.PRODUCTION) {
+          console.log('private-navbar.component.ts: ' + error);
+        }
       }
     );
   }

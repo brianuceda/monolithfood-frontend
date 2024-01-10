@@ -20,6 +20,7 @@ import {
   avgMacrosPerWeekDTO,
 } from '../../interfaces/FitnessDataDTO';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment-prod';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,6 +40,8 @@ export type ChartOptions = {
   providers: [MessageService],
 })
 export class FitnessReportsComponent {
+  private production = environment.PRODUCTION;
+
   fitnessData: FitnessDataDTO = new FitnessDataDTO();
   fitnessProgress: FitnessProgressDTO = new FitnessProgressDTO();
   option!: EChartsOption;
@@ -64,7 +67,10 @@ export class FitnessReportsComponent {
         }
       },
       (error) => {
-        console.error('Error al obtener el progreso de fitness', error);
+        if (!this.production) {
+          console.log('fitness-resports.component.ts (1): Error al obtener el progreso de fitness - ', error);
+        }
+        console.error('Error al obtener el progreso de fitness: ', error);
       }
     );
   }
@@ -81,7 +87,9 @@ export class FitnessReportsComponent {
         }
       },
       (error) => {
-        console.error('Error al obtener los datos de fitness', error);
+        if (!this.production) {
+          console.log('fitness-resports.component.ts (2): Error al obtener los datos de fitness - ', error);
+        }
       }
     );
   }
@@ -183,7 +191,9 @@ export class FitnessReportsComponent {
         };
       },
       error: (error) => {
-        console.error('Error al obtener los datos de calorias por día', error);
+        if (!this.production) {
+          console.log('fitness-resports.component.ts (3): Error al obtener los datos de calorias por día - ', error);
+        }
       },
     });
   }

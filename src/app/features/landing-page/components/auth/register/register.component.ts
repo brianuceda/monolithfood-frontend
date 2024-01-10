@@ -12,6 +12,7 @@ import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
 import { ResponseType } from 'src/app/core/interfaces/ResponseType';
 import { GlobalService } from 'src/app/shared/services/global.service';
 import { AuthService } from '../../../services/auth.service';
+import { environment } from 'src/environments/environment-prod';
 
 // lista de validaciones establecidas para la contraseña (mínimo 8 caracteres, una mayúscula, una minúscula, un número y un caracter especial)
 interface Validations {
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
     this.reactiveForm();
   }
 
-  reactiveForm(): void {
+  public reactiveForm(): void {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, this.usernameStrengthValidator()]],
       email: ['', [Validators.required, Validators.email]],
@@ -51,48 +52,70 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register(): void {
+  public async register(): Promise<void> {
     if (this.registerForm.valid) {
+      this.globalService.openCustomSnackbar(
+        'Cargando...',
+        ResponseType.LOADING
+      );
+
       const registerData: RegisterRequestDTO = {
         username: this.registerForm.value.username,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
         names: this.registerForm.value.names,
       };
-      this.authService.register(registerData).subscribe({
-        next: (response) => {
-          console.log(response);
+
+      await this.authService.register(registerData).subscribe({
+        next: () => {
           this.globalService.openCustomSnackbar(
             'Sesión iniciada correctamente',
             ResponseType.SUCCESS
           );
         },
         error: (error) => {
-          console.log(error);
+          if (!environment.PRODUCTION) {
+            console.log('register.component.ts' + error);
+          }
         },
       });
     }
   }
 
-  googleOauth2(): void {
+  public googleOauth2(): void {
     let disabled = true;
     if (!disabled) {
       this.authService.googleOauth2();
     }
   }
 
-  githubOauth2(): void {
+  public githubOauth2(): void {
     this.authService.githubOauth2();
   }
 
-  microsoftOauth2(): void {
+  public microsoftOauth2(): void {
     this.authService.microsoftOauth2();
   }
 
-  // Método para validar la fuerza de la contraseña
+  private usernameStrengthValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value || '';
+      let errors: ValidationErrors = {};
+      const validations: Validations = {
+        minlength: value.length >= 6,
+        hasUpperCase: /[A-Z]/.test(value),
+      };
+      if (!validations.minlength) {
+        errors['minlength'] = true;
+      }
+      if (validations.hasUpperCase) {
+        errors['hasUpperCase'] = true;
+      }
+      return Object.keys(errors).length > 0 ? errors : null;
+    };
+  }
+
   private passwordStrengthValidator(): ValidatorFn {
-    // (control: AbstractControl): ValidationErrors | null: Retorna un objeto de tipo ValidationErrors o null
-    // AbstractControl: Es la clase padre de FormGroup, FormControl y FormArray, se puede usar para validar cualquier tipo de formulario
     return (control: AbstractControl): ValidationErrors | null => {
       // control.value: Es el valor del campo que se está validando
       const value = control.value || '';
@@ -125,25 +148,6 @@ export class RegisterComponent implements OnInit {
         errors['hasSpecialCharacter'] = true;
       }
       // Retorna un objeto que almacena en el atributo errors los errores encontrados o null
-      return Object.keys(errors).length > 0 ? errors : null;
-    };
-  }
-
-  // Método para validar las validaciones del username
-  private usernameStrengthValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value || '';
-      let errors: ValidationErrors = {};
-      const validations: Validations = {
-        minlength: value.length >= 6,
-        hasUpperCase: /[A-Z]/.test(value),
-      };
-      if (!validations.minlength) {
-        errors['minlength'] = true;
-      }
-      if (validations.hasUpperCase) {
-        errors['hasUpperCase'] = true;
-      }
       return Object.keys(errors).length > 0 ? errors : null;
     };
   }

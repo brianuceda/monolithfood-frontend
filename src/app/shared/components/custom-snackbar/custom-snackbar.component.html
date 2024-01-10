@@ -1,9 +1,9 @@
 <div class="cus-snakebar" @snackBarAnimation>
     <div class="txt-snakebar">
-        <mat-icon>{{data.icon}}</mat-icon>
+        <i class="icon {{ data.icon }}"></i>
         &nbsp;
         <span>{{data?.message}}</span>
     </div>
     <div class="spacer"></div>
-    <button class="btn" mat-button (click)="closeCustomSnackbar()">{{data?.action}}</button>
+    <button *ngIf="data.action" class="btn" mat-button (click)="closeCustomSnackbar()">{{data?.action}}</button>
 </div>
