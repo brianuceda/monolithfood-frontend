@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment-prod';
 export class AuthService {
   private authApiUrl: string = environment.API + environment.rscAuth;
   private userApiUrl: string = environment.API + environment.rscUsers;
-  private oauthUrl: string = environment.OAUTH2_URL;
+  private oAuth2Url: string = environment.API + environment.rscOAuth2;
 
   constructor(
     private globalService: GlobalService,
@@ -33,11 +33,18 @@ export class AuthService {
           this.router.navigateByUrl('/dashboard');
         }),
         catchError((error) => {
-          this.globalService.openCustomSnackbar(
-            error.error.message,
-            ResponseType.ERROR
-          );
-          return throwError(() => new Error('Error durante el registro'));
+          if (error.error.message) {
+            this.globalService.openCustomSnackbar(
+              error.error.message,
+              ResponseType.ERROR
+            );
+          } else {
+            this.globalService.openCustomSnackbar(
+              'Ocurrió un error interno',
+              ResponseType.ERROR
+            );
+          }
+          return throwError(() => new Error('No se pudo iniciar sesión'));
         })
       );
   }
@@ -52,26 +59,33 @@ export class AuthService {
           this.router.navigateByUrl('/dashboard');
         }),
         catchError((error) => {
-          this.globalService.openCustomSnackbar(
-            error.error.message,
-            ResponseType.ERROR
-          );
-          return throwError(() => new Error('Error durante el registro'));
+          if (error.error.message) {
+            this.globalService.openCustomSnackbar(
+              error.error.message,
+              ResponseType.ERROR
+            );
+          } else {
+            this.globalService.openCustomSnackbar(
+              'Ocurrió un error interno',
+              ResponseType.ERROR
+            );
+          }
+          return throwError(() => new Error('No se pudo registrar'));
         })
       );
   }
 
   // * OAuth2
   googleOauth2(): void {
-    window.location.href = `${this.oauthUrl}/google`;
+    window.location.href = `${this.oAuth2Url}/google`;
   }
 
   microsoftOauth2(): void {
-    window.location.href = `${environment.OAUTH2_URL_MICROSOFT}/microsoft`;
+    window.location.href = `${this.oAuth2Url}/microsoft`;
   }
 
   githubOauth2(): void {
-    window.location.href = `${this.oauthUrl}/github`;
+    window.location.href = `${this.oAuth2Url}/github`;
   }
 
   setBasicOauth2Data(): Observable<any> {
