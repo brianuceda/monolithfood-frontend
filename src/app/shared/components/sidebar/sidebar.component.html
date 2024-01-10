@@ -2,10 +2,10 @@
   (mouseleave)="closeSidenav()">
   <div class="logo-container">
     <div class="logo">
-      <img src="../../../../assets/images/logo.png" (click)="toggleCollapse()" />
+      <img src="../../../../assets/images/logo.webp" title="Logo" (click)="toggleCollapse()" />
     </div>
     <div class="logo-text" @fadeInOut *ngIf="collapsed">MonolithFood</div>
-    <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
+    <button type="button" title="Toggle sidebar" class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">
       <i class="fas fa-times close-icon"></i>
     </button>
   </div>
