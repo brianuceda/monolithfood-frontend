@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { AuthService } from '../../services/auth.service';
 import { environment } from 'src/environments/environment-prod';
 
 @Component({
@@ -13,18 +12,16 @@ export class OauthCallbackComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
   ) {
     this.identifyOauth();
   }
 
-  async identifyOauth(): Promise<void> {
+  private async identifyOauth(): Promise<void> {
     try {
       const params = await firstValueFrom(this.route.queryParams);
       const token = params['token'];
       if (token) {
         localStorage.setItem('token', token);
-        this.authService.setBasicOauth2Data();
         await this.router.navigate(['/dashboard']);
       } else {
         await this.router.navigate(['/login']);

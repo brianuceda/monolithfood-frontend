@@ -1,5 +1,5 @@
 <div class="dialog-container">
-    <h2 class="title">Información Personal</h2>
+    <h2 class="title">Información personal</h2>
 
     <form [formGroup]="myForm" (ngSubmit)="setInfo()" class="container">
         <mat-form-field appearance="fill"
@@ -29,7 +29,7 @@
 
         <div class="divider"></div>
 
-        <h2 class="title title-2">Información Objetiva</h2>
+        <h2 class="title title-2">Información fitness</h2>
 
         <mat-form-field appearance="fill"
             [class.error]="myForm.get('targetWeightKg')?.touched && myForm.get('targetWeightKg')?.invalid">
@@ -44,7 +44,7 @@
         </mat-form-field>
 
         <div class="send">
-            <app-button type="submit" [text]="'Enviar Información'" [type]="'primary'" [icon]="''"
+            <app-button type="submit" [text]="'Guardar Información'" [type]="'primary'" [icon]="''"
                 [disabled]="!myForm.valid"></app-button>
         </div>
     </form>

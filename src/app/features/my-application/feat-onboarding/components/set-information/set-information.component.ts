@@ -31,11 +31,11 @@ export class SetInformationComponent implements OnInit {
   reactiveForm(): void {
     this.myForm = this.formBuilder.group({
       gender: ['', Validators.required],
-      borndate: ['', Validators.required],
-      weightKg: ['', Validators.required],
-      heightCm: ['', Validators.required],
+      borndate: ['', Validators.required, Validators.min(new Date().getTime() - 2 * 365 * 24 * 60 * 60 * 1000)], // Edad mínima 2 años
+      weightKg: ['', Validators.required, Validators.min(20), Validators.max(800)], // Peso mínimo 20kg y máximo 800kg
+      heightCm: ['', Validators.required, Validators.min(20), Validators.max(300)], // Altura mínima 20cm y máxima 300cm
       targetWeightKg: ['', Validators.required],
-      targetDate: ['', Validators.required],
+      targetDate: ['', Validators.required, Validators.min(new Date().getTime())],
     });
   }
 

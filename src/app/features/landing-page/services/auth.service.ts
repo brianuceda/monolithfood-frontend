@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap, catchError, throwError, of } from 'rxjs';
+import { Observable, tap, catchError, throwError } from 'rxjs';
 import { AuthResponse } from 'src/app/core/interfaces/AuthResponse';
 import { LoginRequestDTO } from 'src/app/core/interfaces/LoginRequestDTO';
 import { RegisterRequestDTO } from 'src/app/core/interfaces/RegisterRequestDTO';
@@ -86,12 +86,6 @@ export class AuthService {
 
   githubOauth2(): void {
     window.location.href = `${this.oauthUrl}/github`;
-  }
-
-  setBasicOauth2Data(): Observable<any> {
-    return this.httpService.postSimple(
-      this.authApiUrl + '/set-basic-oauth2-data'
-    );
   }
 
   // * Logout
