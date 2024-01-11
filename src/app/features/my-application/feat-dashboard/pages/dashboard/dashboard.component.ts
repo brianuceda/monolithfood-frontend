@@ -173,7 +173,7 @@ export class DashboardComponent {
               let informationConfig = new MatDialogConfig();
               informationConfig = this.dashboardService.getDialogConfig(
                 '500px',
-                '750px',
+                '90%',
                 true,
                 false
               );
@@ -189,7 +189,7 @@ export class DashboardComponent {
               let activityLevelConfig = new MatDialogConfig();
               activityLevelConfig = this.dashboardService.getDialogConfig(
                 '1450px',
-                '750px',
+                '90%',
                 true,
                 false
               );
@@ -205,7 +205,7 @@ export class DashboardComponent {
               let objectivesConfig = new MatDialogConfig();
               objectivesConfig = this.dashboardService.getDialogConfig(
                 '1450px',
-                '850px',
+                '90%',
                 true,
                 false
               );
