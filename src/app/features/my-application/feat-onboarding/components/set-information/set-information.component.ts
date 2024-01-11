@@ -32,8 +32,8 @@ export class SetInformationComponent implements OnInit {
     this.myForm = this.formBuilder.group({
       gender: ['', Validators.required],
       borndate: ['', Validators.required],
-      weightKg: ['', Validators.required, Validators.min(20), Validators.max(800)], // Peso mínimo 20kg y máximo 800kg
-      heightCm: ['', Validators.required, Validators.min(20), Validators.max(300)], // Altura mínima 20cm y máxima 300cm
+      weightKg: ['', Validators.required],
+      heightCm: ['', Validators.required],
       targetWeightKg: ['', Validators.required],
       targetDate: ['', Validators.required],
     });
