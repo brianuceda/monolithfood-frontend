@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
   }
 
   public googleOauth2(): void {
-    if (false) {
+    if (true) {
       this.globalService.openCustomSnackbar(
         'Cargando...',
         ResponseType.LOADING

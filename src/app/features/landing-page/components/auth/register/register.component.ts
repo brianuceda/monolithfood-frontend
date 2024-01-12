@@ -82,19 +82,34 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public googleOauth2(): void {
-    let disabled = true;
-    if (!disabled) {
-      this.authService.googleOauth2();
+  public githubOauth2(): void {
+    if (true) {
+      this.globalService.openCustomSnackbar(
+        'Cargando...',
+        ResponseType.LOADING
+      );
+      this.authService.githubOauth2();
     }
   }
 
-  public githubOauth2(): void {
-    this.authService.githubOauth2();
+  public microsoftOauth2(): void {
+    if (true) {
+      this.globalService.openCustomSnackbar(
+        'Cargando...',
+        ResponseType.LOADING
+      );
+      this.authService.microsoftOauth2();
+    }
   }
 
-  public microsoftOauth2(): void {
-    this.authService.microsoftOauth2();
+  public googleOauth2(): void {
+    if (true) {
+      this.globalService.openCustomSnackbar(
+        'Cargando...',
+        ResponseType.LOADING
+      );
+      this.authService.googleOauth2();
+    }
   }
 
   private usernameStrengthValidator(): ValidatorFn {
