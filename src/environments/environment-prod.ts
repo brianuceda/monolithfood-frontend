@@ -2,7 +2,7 @@ export const environment = {
   PRODUCTION: true,
   ENV_NAME: 'production',
   API: 'https://monolithfood.monalek.xyz',
-  OAUTH2_URL: 'https://monolithfood.monalek.xyz/oauth2/authorization',
+  OAUTH2_URL: 'http://34.173.22.184/oauth2/authorization',
   OAUTH2_URL_MICROSOFT: 'https://monolithfood.monalek.xyz/oauth2/authorization',
 
   rscAuth: '/auth',
