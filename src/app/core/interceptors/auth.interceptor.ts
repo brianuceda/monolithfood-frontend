@@ -39,7 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        if (!this.production) {
+        // if (!this.production) {
           console.error(
             'Request to:',
             authReq.url,
@@ -47,7 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
             error.status
           );
           console.error('Error response:', error);
-        }
+        // }
         // Handle the error and continue
         return throwError(() => error);
       })
