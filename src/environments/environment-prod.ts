@@ -1,9 +1,9 @@
 export const environment = {
   PRODUCTION: true,
   ENV_NAME: 'production',
-  API: 'https://monolithfood.globitokuki.site',
+  API: 'https://monolithfood.brianuceda.xyz/api/v1',
   OAUTH2_URL: 'http://35.188.150.59/oauth2/authorization',
-  OAUTH2_URL_MICROSOFT: 'https://monolithfood.globitokuki.site/oauth2/authorization',
+  OAUTH2_URL_MICROSOFT: 'https://monolithfood.brianuceda.xyz/api/v1/oauth2/authorization',
 
   rscAuth: '/auth',
   rscUsers: '/user',
