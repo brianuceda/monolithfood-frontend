@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   public reactiveForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['testuser', [Validators.required]],
-      password: ['testuser123A!', [Validators.required]],
+      username: ['brian.uceda', [Validators.required]],
+      password: ['brian.uceda123A!', [Validators.required]],
     });
   }
 
